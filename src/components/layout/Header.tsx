@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from '@/components/shared/ThemeToggle'
 import type { Locale } from '@/lib/i18n/config'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import { groupInfo } from '@/data/group-data'
@@ -168,6 +169,8 @@ export function Header({ locale, dict }: HeaderProps) {
                 <span>{isRTL ? 'القاهرة، مصر' : 'Cairo, Egypt'}</span>
               </span>
               <div className="h-4 w-px bg-primary-700 hidden lg:block" />
+              <ThemeToggle locale={locale} />
+              <div className="h-4 w-px bg-primary-700" />
               <LanguageSwitcher locale={locale} />
             </div>
           </div>
@@ -175,7 +178,7 @@ export function Header({ locale, dict }: HeaderProps) {
       </div>
 
       {/* Main Header */}
-      <div className={`bg-white/95 backdrop-blur-md border-b transition-all duration-300 ${isScrolled ? 'border-secondary-200/50' : 'border-secondary-200'}`}>
+      <div className={`bg-white/95 dark:bg-secondary-900/95 backdrop-blur-md border-b transition-all duration-300 ${isScrolled ? 'border-secondary-200/50 dark:border-secondary-700/50' : 'border-secondary-200 dark:border-secondary-700'}`}>
         <div className="container-wide">
           <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
             {/* Logo */}
@@ -191,10 +194,10 @@ export function Header({ locale, dict }: HeaderProps) {
                 />
               </div>
               <div className="flex flex-col">
-                <span className={`font-bold text-secondary-900 group-hover:text-primary-600 transition-all duration-300 ${isScrolled ? 'text-lg' : 'text-xl'}`}>
+                <span className={`font-bold text-secondary-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-all duration-300 ${isScrolled ? 'text-lg' : 'text-xl'}`}>
                   {isRTL ? groupInfo.name.ar : groupInfo.shortName.en}
                 </span>
-                <span className={`text-xs text-secondary-500 transition-all duration-300 ${isScrolled ? 'hidden' : 'hidden sm:block'}`}>
+                <span className={`text-xs text-secondary-500 dark:text-secondary-400 transition-all duration-300 ${isScrolled ? 'hidden' : 'hidden sm:block'}`}>
                   {isRTL ? 'للتجارة والصناعة' : groupInfo.name.en}
                 </span>
               </div>
@@ -211,8 +214,8 @@ export function Header({ locale, dict }: HeaderProps) {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-1 px-4 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all font-medium ${
-                      item.hasMegaMenu && isMegaMenuOpen ? 'text-primary-600 bg-primary-50' : ''
+                    className={`flex items-center gap-1 px-4 py-2 text-secondary-700 dark:text-secondary-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all font-medium ${
+                      item.hasMegaMenu && isMegaMenuOpen ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30' : ''
                     }`}
                   >
                     {item.name}
@@ -224,14 +227,14 @@ export function Header({ locale, dict }: HeaderProps) {
                   {/* Mega Menu */}
                   {item.hasMegaMenu && isMegaMenuOpen && (
                     <div className="absolute top-full start-0 pt-2 w-[600px] animate-slide-down">
-                      <div className="bg-white rounded-xl shadow-hard border border-secondary-200 p-6">
+                      <div className="bg-white dark:bg-secondary-800 rounded-xl shadow-hard dark:shadow-lg dark:shadow-secondary-900/50 border border-secondary-200 dark:border-secondary-700 p-6">
                         <div className="flex items-center justify-between mb-4">
-                          <h3 className="font-bold text-secondary-900">
+                          <h3 className="font-bold text-secondary-900 dark:text-white">
                             {isRTL ? 'تصفح الأقسام' : 'Browse Categories'}
                           </h3>
                           <Link
                             href={`/${locale}/products`}
-                            className="text-sm text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                            className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 flex items-center gap-1"
                           >
                             {isRTL ? 'عرض الكل' : 'View All'}
                             <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
@@ -244,16 +247,16 @@ export function Header({ locale, dict }: HeaderProps) {
                               <Link
                                 key={cat.slug}
                                 href={`/${locale}/categories/${cat.slug}`}
-                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-secondary-50 transition-colors group"
+                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-secondary-50 dark:hover:bg-secondary-700 transition-colors group"
                               >
-                                <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400 group-hover:bg-primary-600 group-hover:text-white transition-colors">
                                   <Icon className="w-5 h-5" />
                                 </div>
                                 <div>
-                                  <span className="font-medium text-secondary-900 group-hover:text-primary-600 transition-colors block">
+                                  <span className="font-medium text-secondary-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors block">
                                     {isRTL ? cat.nameAr : cat.nameEn}
                                   </span>
-                                  <span className="text-xs text-secondary-500">
+                                  <span className="text-xs text-secondary-500 dark:text-secondary-400">
                                     {isRTL ? cat.descAr : cat.descEn}
                                   </span>
                                 </div>
@@ -271,7 +274,7 @@ export function Header({ locale, dict }: HeaderProps) {
             {/* Actions */}
             <div className="flex items-center gap-2">
               {/* Search */}
-              <button className="p-3 text-secondary-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all">
+              <button className="p-3 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all">
                 <Search className="w-5 h-5" />
               </button>
 
@@ -284,7 +287,7 @@ export function Header({ locale, dict }: HeaderProps) {
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                     onBlur={() => setTimeout(() => setIsUserMenuOpen(false), 200)}
-                    className="flex items-center gap-2 px-3 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all"
+                    className="flex items-center gap-2 px-3 py-2 text-secondary-700 dark:text-secondary-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all"
                   >
                     <User className="w-5 h-5" />
                     <span className="text-sm font-medium hidden md:block">
@@ -295,16 +298,16 @@ export function Header({ locale, dict }: HeaderProps) {
 
                   {/* User Dropdown Menu */}
                   {isUserMenuOpen && (
-                    <div className="absolute top-full end-0 mt-2 w-56 bg-white rounded-xl shadow-hard border border-secondary-200 py-2 animate-slide-down z-50">
-                      <div className="px-4 py-3 border-b border-secondary-200">
-                        <p className="text-sm font-medium text-secondary-900">
+                    <div className="absolute top-full end-0 mt-2 w-56 bg-white dark:bg-secondary-800 rounded-xl shadow-hard dark:shadow-lg dark:shadow-secondary-900/50 border border-secondary-200 dark:border-secondary-700 py-2 animate-slide-down z-50">
+                      <div className="px-4 py-3 border-b border-secondary-200 dark:border-secondary-700">
+                        <p className="text-sm font-medium text-secondary-900 dark:text-white">
                           {customer.firstName} {customer.lastName}
                         </p>
-                        <p className="text-xs text-secondary-500 truncate">{customer.email}</p>
+                        <p className="text-xs text-secondary-500 dark:text-secondary-400 truncate">{customer.email}</p>
                       </div>
                       <Link
                         href={`/${locale}/account`}
-                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 dark:text-secondary-200 hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <User className="w-4 h-4" />
@@ -312,7 +315,7 @@ export function Header({ locale, dict }: HeaderProps) {
                       </Link>
                       <Link
                         href={`/${locale}/account/orders`}
-                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 dark:text-secondary-200 hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <Package className="w-4 h-4" />
@@ -320,16 +323,16 @@ export function Header({ locale, dict }: HeaderProps) {
                       </Link>
                       <Link
                         href={`/${locale}/account/settings`}
-                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 dark:text-secondary-200 hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <Settings className="w-4 h-4" />
                         <span className="text-sm">{isRTL ? 'الإعدادات' : 'Settings'}</span>
                       </Link>
-                      <div className="border-t border-secondary-200 mt-2 pt-2">
+                      <div className="border-t border-secondary-200 dark:border-secondary-700 mt-2 pt-2">
                         <button
                           onClick={handleLogout}
-                          className="flex items-center gap-3 px-4 py-2.5 text-error-600 hover:bg-error-50 transition-colors w-full"
+                          className="flex items-center gap-3 px-4 py-2.5 text-error-600 dark:text-error-500 hover:bg-error-50 dark:hover:bg-error-500/10 transition-colors w-full"
                         >
                           <LogOut className="w-4 h-4" />
                           <span className="text-sm">{isRTL ? 'تسجيل الخروج' : 'Logout'}</span>
@@ -341,7 +344,7 @@ export function Header({ locale, dict }: HeaderProps) {
               ) : (
                 <Link
                   href={`/${locale}/login`}
-                  className="hidden sm:flex items-center gap-2 px-4 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all font-medium"
+                  className="hidden sm:flex items-center gap-2 px-4 py-2 text-secondary-700 dark:text-secondary-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all font-medium"
                 >
                   <User className="w-5 h-5" />
                   <span className="text-sm hidden md:block">{dict.common.login}</span>
@@ -358,7 +361,7 @@ export function Header({ locale, dict }: HeaderProps) {
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden p-3 text-secondary-600 hover:bg-secondary-100 rounded-lg transition-all"
+                className="lg:hidden p-3 text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-700 rounded-lg transition-all"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
               >
@@ -371,7 +374,7 @@ export function Header({ locale, dict }: HeaderProps) {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-secondary-200 animate-slide-down">
+        <div className="lg:hidden bg-white dark:bg-secondary-900 border-b border-secondary-200 dark:border-secondary-700 animate-slide-down">
           <div className="container-custom py-4">
             {/* Mobile Navigation */}
             <nav className="flex flex-col gap-1 mb-4">
@@ -379,7 +382,7 @@ export function Header({ locale, dict }: HeaderProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center justify-between px-4 py-3 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all font-medium"
+                  className="flex items-center justify-between px-4 py-3 text-secondary-700 dark:text-secondary-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -389,8 +392,8 @@ export function Header({ locale, dict }: HeaderProps) {
             </nav>
 
             {/* Mobile Categories */}
-            <div className="border-t border-secondary-200 pt-4 mb-4">
-              <h3 className="text-sm font-bold text-secondary-500 uppercase tracking-wider mb-3 px-4">
+            <div className="border-t border-secondary-200 dark:border-secondary-700 pt-4 mb-4">
+              <h3 className="text-sm font-bold text-secondary-500 dark:text-secondary-400 uppercase tracking-wider mb-3 px-4">
                 {isRTL ? 'الأقسام' : 'Categories'}
               </h3>
               <div className="grid grid-cols-2 gap-2">
@@ -400,11 +403,11 @@ export function Header({ locale, dict }: HeaderProps) {
                     <Link
                       key={cat.slug}
                       href={`/${locale}/categories/${cat.slug}`}
-                      className="flex items-center gap-2 p-3 rounded-lg hover:bg-secondary-50 transition-colors"
+                      className="flex items-center gap-2 p-3 rounded-lg hover:bg-secondary-50 dark:hover:bg-secondary-800 transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      <Icon className="w-5 h-5 text-primary-600" />
-                      <span className="text-sm text-secondary-700">
+                      <Icon className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                      <span className="text-sm text-secondary-700 dark:text-secondary-200">
                         {isRTL ? cat.nameAr : cat.nameEn}
                       </span>
                     </Link>
@@ -426,7 +429,7 @@ export function Header({ locale, dict }: HeaderProps) {
                 <>
                   <Link
                     href={`/${locale}/account`}
-                    className="btn border border-secondary-300 text-secondary-700 text-center py-3 rounded-lg font-medium flex items-center justify-center gap-2"
+                    className="btn border border-secondary-300 dark:border-secondary-600 text-secondary-700 dark:text-secondary-200 text-center py-3 rounded-lg font-medium flex items-center justify-center gap-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <User className="w-5 h-5" />
@@ -437,7 +440,7 @@ export function Header({ locale, dict }: HeaderProps) {
                       handleLogout()
                       setIsMenuOpen(false)
                     }}
-                    className="btn border border-error-300 text-error-600 text-center py-3 rounded-lg font-medium flex items-center justify-center gap-2"
+                    className="btn border border-error-300 dark:border-error-600 text-error-600 dark:text-error-400 text-center py-3 rounded-lg font-medium flex items-center justify-center gap-2"
                   >
                     <LogOut className="w-5 h-5" />
                     {isRTL ? 'تسجيل الخروج' : 'Logout'}
@@ -446,7 +449,7 @@ export function Header({ locale, dict }: HeaderProps) {
               ) : (
                 <Link
                   href={`/${locale}/login`}
-                  className="btn border border-secondary-300 text-secondary-700 text-center py-3 rounded-lg font-medium"
+                  className="btn border border-secondary-300 dark:border-secondary-600 text-secondary-700 dark:text-secondary-200 text-center py-3 rounded-lg font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {dict.common.login}
@@ -455,13 +458,13 @@ export function Header({ locale, dict }: HeaderProps) {
             </div>
 
             {/* Mobile Contact */}
-            <div className="border-t border-secondary-200 mt-4 pt-4">
-              <a href="tel:+201234567890" className="flex items-center gap-3 text-secondary-600 py-2">
-                <Phone className="w-5 h-5 text-primary-600" />
+            <div className="border-t border-secondary-200 dark:border-secondary-700 mt-4 pt-4">
+              <a href="tel:+201234567890" className="flex items-center gap-3 text-secondary-600 dark:text-secondary-300 py-2">
+                <Phone className="w-5 h-5 text-primary-600 dark:text-primary-400" />
                 <span dir="ltr">+20 123 456 7890</span>
               </a>
-              <a href="mailto:info@alsadara.com" className="flex items-center gap-3 text-secondary-600 py-2">
-                <Mail className="w-5 h-5 text-primary-600" />
+              <a href="mailto:info@alsadara.com" className="flex items-center gap-3 text-secondary-600 dark:text-secondary-300 py-2">
+                <Mail className="w-5 h-5 text-primary-600 dark:text-primary-400" />
                 <span>info@alsadara.com</span>
               </a>
             </div>

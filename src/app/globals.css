@@ -16,8 +16,9 @@
   }
 
   body {
-    @apply bg-white text-secondary-800;
+    @apply bg-white text-secondary-800 dark:bg-secondary-950 dark:text-secondary-100;
     font-feature-settings: 'kern' 1, 'liga' 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* RTL specific styles - Using Tajawal (clearer than Cairo) */
@@ -31,7 +32,7 @@
 
   /* Typography defaults */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-secondary-900;
+    @apply font-bold tracking-tight text-secondary-900 dark:text-white;
   }
 
   h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
@@ -40,12 +41,12 @@
   h4 { @apply text-xl md:text-2xl; }
 
   p {
-    @apply text-secondary-600 leading-relaxed;
+    @apply text-secondary-600 dark:text-secondary-300 leading-relaxed;
   }
 
   /* Focus states for accessibility */
   :focus-visible {
-    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 dark:ring-offset-secondary-900;
   }
 }
 
@@ -70,6 +71,20 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border: 2px solid #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 /* ============================================
@@ -149,12 +164,13 @@
 
   /* Cards - Enhanced */
   .card {
-    @apply bg-white rounded-2xl shadow-card border border-secondary-100/50 overflow-hidden
+    @apply bg-white dark:bg-secondary-800 rounded-2xl shadow-card dark:shadow-none
+           border border-secondary-100/50 dark:border-secondary-700/50 overflow-hidden
            transition-all duration-300;
   }
 
   .card-hover {
-    @apply hover:shadow-card-hover hover:-translate-y-1;
+    @apply hover:shadow-card-hover dark:hover:shadow-lg dark:hover:shadow-secondary-900/50 hover:-translate-y-1;
   }
 
   .card-interactive {
@@ -163,10 +179,12 @@
 
   /* Inputs */
   .input {
-    @apply w-full px-4 py-3 border border-secondary-200 rounded-xl bg-white
+    @apply w-full px-4 py-3 border border-secondary-200 dark:border-secondary-600
+           rounded-xl bg-white dark:bg-secondary-800
            focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500
            outline-none transition-all duration-200
-           placeholder:text-secondary-400;
+           placeholder:text-secondary-400 dark:placeholder:text-secondary-500
+           text-secondary-900 dark:text-secondary-100;
   }
 
   .input-lg {
@@ -179,24 +197,25 @@
   }
 
   .badge-primary {
-    @apply bg-primary-100 text-primary-700;
+    @apply bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300;
   }
 
   .badge-success {
-    @apply bg-success-100 text-success-700;
+    @apply bg-success-100 dark:bg-success-700/30 text-success-700 dark:text-success-500;
   }
 
   .badge-warning {
-    @apply bg-warning-100 text-warning-600;
+    @apply bg-warning-100 dark:bg-warning-600/30 text-warning-600 dark:text-warning-500;
   }
 
   .badge-accent {
-    @apply bg-accent-100 text-accent-700;
+    @apply bg-accent-100 dark:bg-accent-700/30 text-accent-700 dark:text-accent-400;
   }
 
   /* Text utilities */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400
+           dark:from-primary-400 dark:to-primary-300;
   }
 
   .text-balance {
@@ -205,17 +224,17 @@
 
   /* Links */
   .link {
-    @apply text-primary-600 hover:text-primary-700 transition-colors duration-200
-           underline-offset-4 hover:underline;
+    @apply text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300
+           transition-colors duration-200 underline-offset-4 hover:underline;
   }
 
   /* Dividers */
   .divider {
-    @apply border-t border-secondary-200;
+    @apply border-t border-secondary-200 dark:border-secondary-700;
   }
 
   .divider-thick {
-    @apply border-t-2 border-secondary-200;
+    @apply border-t-2 border-secondary-200 dark:border-secondary-700;
   }
 }
 

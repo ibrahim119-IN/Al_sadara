@@ -1,5 +1,6 @@
 'use client'
 
+import { ThemeProvider } from '@/contexts/ThemeContext'
 import { LocaleProvider } from '@/contexts/LocaleContext'
 import { AuthProvider } from '@/lib/auth/AuthContext'
 import { CartProvider } from '@/lib/cart/CartContext'
@@ -18,21 +19,24 @@ interface RootProviderProps {
  * RootProvider - Unified provider component
  *
  * Combines all context providers in the correct order:
- * 1. LocaleProvider - Must be first for i18n access
- * 2. AuthProvider - For authentication state
- * 3. CartProvider - For shopping cart state (may depend on auth)
- * 4. AIAssistantProvider - For AI chat functionality
+ * 1. ThemeProvider - Must be outermost for theme to apply everywhere
+ * 2. LocaleProvider - For i18n access
+ * 3. AuthProvider - For authentication state
+ * 4. CartProvider - For shopping cart state (may depend on auth)
+ * 5. AIAssistantProvider - For AI chat functionality
  */
 export function RootProvider({ locale, dict, children }: RootProviderProps) {
   return (
-    <LocaleProvider locale={locale} dict={dict}>
-      <AuthProvider>
-        <CartProvider>
-          <AIAssistantProvider>
-            {children}
-          </AIAssistantProvider>
-        </CartProvider>
-      </AuthProvider>
-    </LocaleProvider>
+    <ThemeProvider>
+      <LocaleProvider locale={locale} dict={dict}>
+        <AuthProvider>
+          <CartProvider>
+            <AIAssistantProvider>
+              {children}
+            </AIAssistantProvider>
+          </CartProvider>
+        </AuthProvider>
+      </LocaleProvider>
+    </ThemeProvider>
   )
 }

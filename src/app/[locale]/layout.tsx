@@ -121,8 +121,25 @@ export default async function LocaleLayout({
 
   const direction = getDirection(locale)
 
+  // Script to prevent flash of unstyled content for dark mode
+  const themeScript = `
+    (function() {
+      try {
+        const theme = localStorage.getItem('al-sadara-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = theme === 'dark' || (theme === 'system' && systemDark) || (!theme && systemDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  `
+
   return (
-    <html lang={locale} dir={direction} data-scroll-behavior="smooth">
+    <html lang={locale} dir={direction} data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={direction === 'rtl' ? 'font-arabic' : 'font-sans'}>
         {children}
       </body>
