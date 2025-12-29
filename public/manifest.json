@@ -1,0 +1,113 @@
+{
+  "name": "Al Sadara - Smart Building Solutions",
+  "short_name": "Al Sadara",
+  "description": "Al Sadara Holding Group - Leaders in Electronics and Building Management Systems",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#0066CC",
+  "dir": "auto",
+  "lang": "ar",
+  "categories": ["shopping", "business", "electronics"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Home Page"
+    },
+    {
+      "src": "/screenshots/products.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Products Catalog"
+    },
+    {
+      "src": "/screenshots/mobile-home.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Home Page Mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "المنتجات",
+      "short_name": "Products",
+      "description": "Browse our products catalog",
+      "url": "/ar/products",
+      "icons": [{ "src": "/icons/products-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "سلة التسوق",
+      "short_name": "Cart",
+      "description": "View your shopping cart",
+      "url": "/ar/cart",
+      "icons": [{ "src": "/icons/cart-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "حسابي",
+      "short_name": "Account",
+      "description": "Manage your account",
+      "url": "/ar/account",
+      "icons": [{ "src": "/icons/account-icon.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "id": "alsadara-pwa"
+}
