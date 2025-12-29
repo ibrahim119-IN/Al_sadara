@@ -1,0 +1,173 @@
+{
+  "common": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "categories": "الفئات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "cart": "السلة",
+    "account": "حسابي",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "search": "بحث",
+    "searchPlaceholder": "ابحث عن منتجات...",
+    "language": "اللغة",
+    "currency": "جنيه",
+    "addToCart": "أضف للسلة",
+    "buyNow": "اشتري الآن",
+    "viewDetails": "عرض التفاصيل",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "total": "الإجمالي",
+    "checkout": "إتمام الشراء",
+    "continueShopping": "متابعة التسوق",
+    "emptyCart": "السلة فارغة",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "success": "تم بنجاح",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "all": "الكل",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "noResults": "لا توجد نتائج"
+  },
+  "home": {
+    "hero": {
+      "title": "حلول متكاملة لأنظمة المباني الذكية",
+      "subtitle": "كاميرات مراقبة، أنظمة حضور وانصراف، سنترالات، وأنظمة إنذار الحريق",
+      "cta": "تصفح المنتجات"
+    },
+    "featuredProducts": "منتجات مميزة",
+    "shopByCategory": "تسوق حسب الفئة",
+    "whyChooseUs": "لماذا تختارنا؟"
+  },
+  "product": {
+    "specifications": "المواصفات التقنية",
+    "datasheet": "ورقة البيانات",
+    "downloadDatasheet": "تحميل ورقة البيانات",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "lowStock": "كمية محدودة",
+    "sku": "رمز المنتج",
+    "brand": "العلامة التجارية",
+    "category": "الفئة",
+    "relatedProducts": "منتجات ذات صلة",
+    "reviews": "التقييمات",
+    "askQuestion": "اسأل سؤال",
+    "requestQuote": "طلب عرض سعر"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "item": "منتج",
+    "items": "منتجات",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "discount": "الخصم",
+    "orderTotal": "إجمالي الطلب",
+    "updateQuantity": "تحديث الكمية",
+    "remove": "إزالة",
+    "proceedToCheckout": "متابعة الدفع"
+  },
+  "checkout": {
+    "title": "إتمام الطلب",
+    "shippingInfo": "معلومات الشحن",
+    "paymentMethod": "طريقة الدفع",
+    "orderSummary": "ملخص الطلب",
+    "placeOrder": "تأكيد الطلب",
+    "fullName": "الاسم الكامل",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "governorate": "المحافظة",
+    "notes": "ملاحظات",
+    "bankTransfer": "تحويل بنكي",
+    "vodafoneCash": "فودافون كاش",
+    "cashOnDelivery": "الدفع عند الاستلام"
+  },
+  "quote": {
+    "title": "طلب عرض سعر",
+    "description": "للطلبات الكبيرة أو متطلبات خاصة، يمكنك طلب عرض سعر مخصص",
+    "companyName": "اسم الشركة",
+    "requirements": "متطلباتك",
+    "submitRequest": "إرسال الطلب",
+    "success": "تم إرسال طلبك بنجاح! سنتواصل معك قريباً"
+  },
+  "account": {
+    "title": "حسابي",
+    "orders": "طلباتي",
+    "addresses": "عناويني",
+    "profile": "الملف الشخصي",
+    "orderHistory": "سجل الطلبات",
+    "noOrders": "لا توجد طلبات سابقة"
+  },
+  "order": {
+    "orderNumber": "رقم الطلب",
+    "date": "التاريخ",
+    "status": "الحالة",
+    "total": "الإجمالي",
+    "pending": "قيد الانتظار",
+    "confirmed": "مؤكد",
+    "processing": "جاري التجهيز",
+    "shipped": "تم الشحن",
+    "delivered": "تم التوصيل",
+    "cancelled": "ملغي",
+    "trackOrder": "تتبع الطلب"
+  },
+  "footer": {
+    "company": "الشركة",
+    "quickLinks": "روابط سريعة",
+    "customerService": "خدمة العملاء",
+    "contactUs": "تواصل معنا",
+    "followUs": "تابعنا",
+    "copyright": "جميع الحقوق محفوظة © الصدارة"
+  },
+  "ai": {
+    "chatTitle": "مساعد الصدارة",
+    "placeholder": "اكتب سؤالك هنا...",
+    "thinking": "جاري التفكير...",
+    "error": "حدث خطأ، حاول مرة أخرى",
+    "welcome": "مرحباً! أنا مساعد الصدارة الذكي. كيف أقدر أساعدك النهاردة؟",
+    "suggestions": [
+      "عايز جهاز حضور وانصراف لـ 50 موظف",
+      "إيه الفرق بين كاميرا IP و AHD؟",
+      "معايا 50 ألف عايز نظام مراقبة كامل",
+      "ورّيني أجهزة السنترالات"
+    ]
+  },
+  "group": {
+    "name": "مجموعة السيد شحاتة للتجارة والصناعة",
+    "shortName": "مجموعة السيد شحاتة",
+    "slogan": "رواد صناعة وتجارة البلاستيك في الشرق الأوسط",
+    "subsidiaries": "الشركات التابعة",
+    "presence": "تواجدنا الجغرافي",
+    "products": "منتجاتنا",
+    "since": "منذ 2005",
+    "stats": {
+      "companies": "شركات تابعة",
+      "countries": "دول",
+      "years": "سنة خبرة",
+      "clients": "عميل"
+    }
+  },
+  "companies": {
+    "title": "شركاتنا التابعة",
+    "viewDetails": "عرض التفاصيل",
+    "visitWebsite": "زيارة الموقع",
+    "founded": "تأسست",
+    "location": "الموقع",
+    "type": {
+      "plastics": "تجارة خامات بلاستيك",
+      "electronics": "إلكترونيات وأمن",
+      "manufacturing": "تصنيع",
+      "recycling": "تدوير"
+    }
+  }
+}

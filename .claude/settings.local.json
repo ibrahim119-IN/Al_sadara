@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npx create-payload-app@latest . --template blank --db postgres --no-deps)",
+      "Bash(npm install)",
+      "Bash(npm run dev:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(docker --version:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run payload:*)",
+      "Bash(npx tsx:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill /F /PID 36840)",
+      "Bash(taskkill //F //PID 36840)",
+      "Bash(taskkill //F //PID 80332)",
+      "Bash(npx next:*)",
+      "Bash(taskkill:*)",
+      "Bash(timeout /t)",
+      "Bash(python3:*)",
+      "Bash(timeout /t 8 /nobreak)",
+      "Bash(timeout /t 10 /nobreak)",
+      "Bash(file:*)",
+      "Bash(xargs:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker ps:*)",
+      "Bash(cd:*)",
+      "Bash(npx payload generate:types)",
+      "Bash(npx payload:*)",
+      "Bash(timeout /t 20 /nobreak)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

@@ -1,0 +1,477 @@
+/* Custom Payload Admin styles for Al Sadara */
+
+/* =============================================
+   Brand Colors
+   ============================================= */
+:root {
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #f9fafb;
+  --theme-elevation-100: #f3f4f6;
+  --theme-elevation-150: #e5e7eb;
+  --theme-elevation-200: #d1d5db;
+  --theme-elevation-250: #9ca3af;
+  --theme-elevation-300: #6b7280;
+  --theme-elevation-350: #4b5563;
+  --theme-elevation-400: #374151;
+  --theme-elevation-450: #1f2937;
+  --theme-elevation-500: #111827;
+
+  /* Primary Brand Colors - Al Sadara Blue */
+  --theme-success-50: #ecfdf5;
+  --theme-success-100: #d1fae5;
+  --theme-success-500: #10b981;
+  --theme-success-600: #059669;
+
+  --theme-error-50: #fef2f2;
+  --theme-error-100: #fee2e2;
+  --theme-error-500: #ef4444;
+  --theme-error-600: #dc2626;
+
+  --theme-warning-50: #fffbeb;
+  --theme-warning-100: #fef3c7;
+  --theme-warning-500: #f59e0b;
+  --theme-warning-600: #d97706;
+}
+
+/* =============================================
+   Global Styles
+   ============================================= */
+.payload__admin {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =============================================
+   Header Styles
+   ============================================= */
+header.payload-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header.payload-header .step-nav,
+header.payload-header nav {
+  background: transparent !important;
+}
+
+header.payload-header a,
+header.payload-header span {
+  color: #ffffff !important;
+}
+
+header.payload-header button {
+  color: #ffffff !important;
+}
+
+header.payload-header .hamburger span {
+  background-color: #ffffff !important;
+}
+
+/* =============================================
+   Sidebar / Nav Styles
+   ============================================= */
+.nav {
+  background-color: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.nav__link {
+  color: #334155 !important;
+  border-radius: 8px !important;
+  margin: 4px 8px !important;
+  padding: 10px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav__link:hover {
+  background-color: #e2e8f0 !important;
+  color: #1e40af !important;
+}
+
+.nav__link--active,
+.nav__link.active {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+  font-weight: 600 !important;
+}
+
+.nav__link svg {
+  color: #64748b !important;
+}
+
+.nav__link:hover svg,
+.nav__link--active svg,
+.nav__link.active svg {
+  color: #1e40af !important;
+}
+
+/* Nav Group Headers */
+.nav-group__toggle {
+  color: #94a3b8 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 16px 16px 8px !important;
+}
+
+/* =============================================
+   Main Content Area
+   ============================================= */
+.template-default,
+.template-minimal {
+  background-color: #f8fafc !important;
+}
+
+.collection-list,
+.document-fields {
+  background-color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  padding: 24px !important;
+  margin: 16px !important;
+}
+
+/* =============================================
+   Form Styles
+   ============================================= */
+.field-type {
+  margin-bottom: 24px !important;
+}
+
+.field-type label {
+  color: #334155 !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+  background-color: #ffffff !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  outline: none !important;
+}
+
+/* =============================================
+   Button Styles
+   ============================================= */
+.btn {
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn--style-primary {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+.btn--style-primary:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+.btn--style-secondary {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+.btn--style-secondary:hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* =============================================
+   Table Styles
+   ============================================= */
+.table {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.table thead {
+  background-color: #f8fafc !important;
+}
+
+.table th {
+  color: #64748b !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em !important;
+  padding: 16px !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+
+.table td {
+  padding: 16px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+.table tr:hover td {
+  background-color: #f8fafc !important;
+}
+
+/* =============================================
+   Card Styles
+   ============================================= */
+.card {
+  background-color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+}
+
+/* =============================================
+   Dashboard Styles
+   ============================================= */
+.dashboard {
+  padding: 24px !important;
+}
+
+.dashboard__card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  transition: all 0.2s ease !important;
+}
+
+.dashboard__card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+.dashboard__card-title {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 1.125rem !important;
+}
+
+.dashboard__card-count {
+  color: #3b82f6 !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+}
+
+/* =============================================
+   Login Page Styles
+   ============================================= */
+.login {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%) !important;
+  min-height: 100vh !important;
+}
+
+.login__form-wrapper {
+  background-color: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
+  padding: 48px !important;
+}
+
+.login h1 {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+}
+
+.login p {
+  color: #64748b !important;
+}
+
+/* =============================================
+   Pill / Tag Styles
+   ============================================= */
+.pill {
+  border-radius: 20px !important;
+  padding: 4px 12px !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+}
+
+.pill--style-light-gray {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+}
+
+.pill--style-green {
+  background-color: #dcfce7 !important;
+  color: #166534 !important;
+}
+
+.pill--style-red {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+.pill--style-yellow {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+/* =============================================
+   Status Indicators
+   ============================================= */
+.status-indicator {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.status-indicator--published {
+  background-color: #22c55e !important;
+}
+
+.status-indicator--draft {
+  background-color: #f59e0b !important;
+}
+
+/* =============================================
+   Toast / Notification Styles
+   ============================================= */
+.toast {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.toast--success {
+  background-color: #dcfce7 !important;
+  border-left: 4px solid #22c55e !important;
+  color: #166534 !important;
+}
+
+.toast--error {
+  background-color: #fee2e2 !important;
+  border-left: 4px solid #ef4444 !important;
+  color: #991b1b !important;
+}
+
+/* =============================================
+   Modal Styles
+   ============================================= */
+.modal__wrapper {
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25) !important;
+}
+
+.modal__header {
+  background-color: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 20px 24px !important;
+}
+
+.modal__content {
+  padding: 24px !important;
+}
+
+/* =============================================
+   Scrollbar Styles
+   ============================================= */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =============================================
+   RTL Support for Arabic
+   ============================================= */
+[dir="rtl"] .nav__link {
+  text-align: right !important;
+}
+
+[dir="rtl"] .nav__link svg {
+  margin-left: 12px !important;
+  margin-right: 0 !important;
+}
+
+[dir="rtl"] .field-type label {
+  text-align: right !important;
+}
+
+[dir="rtl"] .status-indicator {
+  margin-left: 8px !important;
+  margin-right: 0 !important;
+}
+
+/* =============================================
+   Responsive Adjustments
+   ============================================= */
+@media (max-width: 768px) {
+  .collection-list,
+  .document-fields {
+    margin: 8px !important;
+    padding: 16px !important;
+  }
+
+  .dashboard {
+    padding: 16px !important;
+  }
+
+  .login__form-wrapper {
+    padding: 24px !important;
+    margin: 16px !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* =============================================
+   Animation
+   ============================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.collection-list,
+.document-fields,
+.dashboard__card {
+  animation: fadeIn 0.3s ease-out;
+}

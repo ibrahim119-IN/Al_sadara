@@ -1,0 +1,476 @@
+'use client'
+
+import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import type { Locale } from '@/lib/i18n/config'
+import type { Dictionary } from '@/lib/i18n/dictionaries'
+import { groupInfo } from '@/data/group-data'
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Search,
+  User,
+  Menu,
+  X,
+  ChevronDown,
+  Camera,
+  Shield,
+  Phone as PhoneIcon,
+  Radio,
+  Flame,
+  MapPinned,
+  Layers,
+  HeadphonesIcon,
+  Clock,
+  ArrowRight,
+  LogOut,
+  Package,
+  Settings
+} from 'lucide-react'
+import { CartBadge } from '@/components/cart/CartBadge'
+import { CartDrawer } from '@/components/cart/CartDrawer'
+import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/navigation'
+
+interface HeaderProps {
+  locale: Locale
+  dict: Dictionary
+}
+
+const categories = [
+  {
+    slug: 'cctv',
+    nameEn: 'CCTV Cameras',
+    nameAr: 'كاميرات المراقبة',
+    descEn: 'IP & Analog surveillance systems',
+    descAr: 'أنظمة مراقبة IP وتناظرية',
+    icon: Camera
+  },
+  {
+    slug: 'access-control',
+    nameEn: 'Access Control',
+    nameAr: 'أجهزة الحضور والانصراف',
+    descEn: 'Biometric & Card-based systems',
+    descAr: 'أنظمة بصمة وكارت',
+    icon: Shield
+  },
+  {
+    slug: 'pbx',
+    nameEn: 'PBX Systems',
+    nameAr: 'السنترالات',
+    descEn: 'IP & Digital phone systems',
+    descAr: 'أنظمة هاتف رقمية',
+    icon: PhoneIcon
+  },
+  {
+    slug: 'intercom',
+    nameEn: 'Intercom Systems',
+    nameAr: 'أنظمة الإنتركم',
+    descEn: 'Video & Audio intercoms',
+    descAr: 'إنتركم صوت وصورة',
+    icon: Radio
+  },
+  {
+    slug: 'fire-alarm',
+    nameEn: 'Fire Alarm',
+    nameAr: 'إنذار الحريق',
+    descEn: 'Detection & Alert systems',
+    descAr: 'أنظمة كشف وتنبيه',
+    icon: Flame
+  },
+  {
+    slug: 'gps',
+    nameEn: 'GPS Tracking',
+    nameAr: 'تتبع GPS',
+    descEn: 'Vehicle & Asset tracking',
+    descAr: 'تتبع المركبات والأصول',
+    icon: MapPinned
+  },
+  {
+    slug: 'nurse-call',
+    nameEn: 'Nurse Call',
+    nameAr: 'نداء التمريض',
+    descEn: 'Hospital call systems',
+    descAr: 'أنظمة استدعاء المستشفيات',
+    icon: HeadphonesIcon
+  },
+  {
+    slug: 'raw-materials',
+    nameEn: 'Raw Materials',
+    nameAr: 'الخامات',
+    descEn: 'PP, PE, HDPE & more',
+    descAr: 'بولي بروبلين وغيرها',
+    icon: Layers
+  },
+]
+
+export function Header({ locale, dict }: HeaderProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  const isRTL = locale === 'ar'
+  const router = useRouter()
+  const { customer, isAuthenticated, logout } = useAuth()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleLogout = async () => {
+    await logout()
+    setIsUserMenuOpen(false)
+    router.push(`/${locale}`)
+    router.refresh()
+  }
+
+  const navigation = [
+    { name: dict.common.home, href: `/${locale}` },
+    { name: isRTL ? 'شركاتنا' : 'Our Companies', href: `/${locale}/companies` },
+    { name: dict.common.products, href: `/${locale}/products`, hasMegaMenu: true },
+    { name: dict.common.about, href: `/${locale}/about` },
+    { name: dict.common.contact, href: `/${locale}/contact` },
+  ]
+
+  return (
+    <header className={`sticky top-0 z-50 transition-all duration-500 ${isScrolled ? 'shadow-hard' : ''}`}>
+      {/* Top Bar - Hidden when scrolled */}
+      <div className={`bg-primary-900 text-white transition-all duration-300 ${isScrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-10 opacity-100'}`}>
+        <div className="container-wide">
+          <div className="flex items-center justify-between h-10 text-sm">
+            {/* Contact Info */}
+            <div className="hidden md:flex items-center gap-6">
+              <a href="tel:+201234567890" className="flex items-center gap-2 hover:text-accent-400 transition-colors">
+                <Phone className="w-4 h-4" />
+                <span dir="ltr">+20 123 456 7890</span>
+              </a>
+              <a href="mailto:info@alsadara.com" className="flex items-center gap-2 hover:text-accent-400 transition-colors">
+                <Mail className="w-4 h-4" />
+                <span>info@alsadara.com</span>
+              </a>
+              <span className="flex items-center gap-2 text-primary-200">
+                <Clock className="w-4 h-4" />
+                <span>{isRTL ? 'السبت - الخميس: 9ص - 6م' : 'Sat - Thu: 9AM - 6PM'}</span>
+              </span>
+            </div>
+
+            {/* Right Side */}
+            <div className="flex items-center gap-4 ms-auto">
+              <span className="hidden lg:flex items-center gap-2 text-primary-200">
+                <MapPin className="w-4 h-4" />
+                <span>{isRTL ? 'القاهرة، مصر' : 'Cairo, Egypt'}</span>
+              </span>
+              <div className="h-4 w-px bg-primary-700 hidden lg:block" />
+              <LanguageSwitcher locale={locale} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <div className={`bg-white/95 backdrop-blur-md border-b transition-all duration-300 ${isScrolled ? 'border-secondary-200/50' : 'border-secondary-200'}`}>
+        <div className="container-wide">
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+            {/* Logo */}
+            <Link href={`/${locale}`} className="flex items-center gap-3 group">
+              <div className={`relative overflow-hidden rounded-xl shadow-soft group-hover:shadow-medium transition-all duration-300 bg-white p-1 ${isScrolled ? 'w-14 h-14' : 'w-16 h-16'}`}>
+                <Image
+                  src={groupInfo.logo}
+                  alt={isRTL ? groupInfo.name.ar : groupInfo.name.en}
+                  fill
+                  sizes="64px"
+                  className="object-contain p-1"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className={`font-bold text-secondary-900 group-hover:text-primary-600 transition-all duration-300 ${isScrolled ? 'text-lg' : 'text-xl'}`}>
+                  {isRTL ? groupInfo.name.ar : groupInfo.shortName.en}
+                </span>
+                <span className={`text-xs text-secondary-500 transition-all duration-300 ${isScrolled ? 'hidden' : 'hidden sm:block'}`}>
+                  {isRTL ? 'للتجارة والصناعة' : groupInfo.name.en}
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navigation.map((item) => (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => item.hasMegaMenu && setIsMegaMenuOpen(true)}
+                  onMouseLeave={() => item.hasMegaMenu && setIsMegaMenuOpen(false)}
+                >
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-1 px-4 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all font-medium ${
+                      item.hasMegaMenu && isMegaMenuOpen ? 'text-primary-600 bg-primary-50' : ''
+                    }`}
+                  >
+                    {item.name}
+                    {item.hasMegaMenu && (
+                      <ChevronDown className={`w-4 h-4 transition-transform ${isMegaMenuOpen ? 'rotate-180' : ''}`} />
+                    )}
+                  </Link>
+
+                  {/* Mega Menu */}
+                  {item.hasMegaMenu && isMegaMenuOpen && (
+                    <div className="absolute top-full start-0 pt-2 w-[600px] animate-slide-down">
+                      <div className="bg-white rounded-xl shadow-hard border border-secondary-200 p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="font-bold text-secondary-900">
+                            {isRTL ? 'تصفح الأقسام' : 'Browse Categories'}
+                          </h3>
+                          <Link
+                            href={`/${locale}/products`}
+                            className="text-sm text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                          >
+                            {isRTL ? 'عرض الكل' : 'View All'}
+                            <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                          </Link>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          {categories.map((cat) => {
+                            const Icon = cat.icon
+                            return (
+                              <Link
+                                key={cat.slug}
+                                href={`/${locale}/categories/${cat.slug}`}
+                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-secondary-50 transition-colors group"
+                              >
+                                <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                                  <Icon className="w-5 h-5" />
+                                </div>
+                                <div>
+                                  <span className="font-medium text-secondary-900 group-hover:text-primary-600 transition-colors block">
+                                    {isRTL ? cat.nameAr : cat.nameEn}
+                                  </span>
+                                  <span className="text-xs text-secondary-500">
+                                    {isRTL ? cat.descAr : cat.descEn}
+                                  </span>
+                                </div>
+                              </Link>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center gap-2">
+              {/* Search */}
+              <button className="p-3 text-secondary-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all">
+                <Search className="w-5 h-5" />
+              </button>
+
+              {/* Cart */}
+              <CartBadge locale={locale} />
+
+              {/* Account / Auth */}
+              {isAuthenticated && customer ? (
+                <div className="hidden sm:block relative">
+                  <button
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    onBlur={() => setTimeout(() => setIsUserMenuOpen(false), 200)}
+                    className="flex items-center gap-2 px-3 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all"
+                  >
+                    <User className="w-5 h-5" />
+                    <span className="text-sm font-medium hidden md:block">
+                      {customer.firstName}
+                    </span>
+                    <ChevronDown className={`w-4 h-4 transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* User Dropdown Menu */}
+                  {isUserMenuOpen && (
+                    <div className="absolute top-full end-0 mt-2 w-56 bg-white rounded-xl shadow-hard border border-secondary-200 py-2 animate-slide-down z-50">
+                      <div className="px-4 py-3 border-b border-secondary-200">
+                        <p className="text-sm font-medium text-secondary-900">
+                          {customer.firstName} {customer.lastName}
+                        </p>
+                        <p className="text-xs text-secondary-500 truncate">{customer.email}</p>
+                      </div>
+                      <Link
+                        href={`/${locale}/account`}
+                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        onClick={() => setIsUserMenuOpen(false)}
+                      >
+                        <User className="w-4 h-4" />
+                        <span className="text-sm">{isRTL ? 'حسابي' : 'My Account'}</span>
+                      </Link>
+                      <Link
+                        href={`/${locale}/account/orders`}
+                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        onClick={() => setIsUserMenuOpen(false)}
+                      >
+                        <Package className="w-4 h-4" />
+                        <span className="text-sm">{isRTL ? 'طلباتي' : 'My Orders'}</span>
+                      </Link>
+                      <Link
+                        href={`/${locale}/account/settings`}
+                        className="flex items-center gap-3 px-4 py-2.5 text-secondary-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                        onClick={() => setIsUserMenuOpen(false)}
+                      >
+                        <Settings className="w-4 h-4" />
+                        <span className="text-sm">{isRTL ? 'الإعدادات' : 'Settings'}</span>
+                      </Link>
+                      <div className="border-t border-secondary-200 mt-2 pt-2">
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center gap-3 px-4 py-2.5 text-error-600 hover:bg-error-50 transition-colors w-full"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          <span className="text-sm">{isRTL ? 'تسجيل الخروج' : 'Logout'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href={`/${locale}/login`}
+                  className="hidden sm:flex items-center gap-2 px-4 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all font-medium"
+                >
+                  <User className="w-5 h-5" />
+                  <span className="text-sm hidden md:block">{dict.common.login}</span>
+                </Link>
+              )}
+
+              {/* Quote Request Button */}
+              <Link
+                href={`/${locale}/quote-request`}
+                className="hidden md:flex items-center gap-2 btn bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-soft hover:shadow-medium"
+              >
+                {isRTL ? 'طلب عرض سعر' : 'Get Quote'}
+              </Link>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden p-3 text-secondary-600 hover:bg-secondary-100 rounded-lg transition-all"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-white border-b border-secondary-200 animate-slide-down">
+          <div className="container-custom py-4">
+            {/* Mobile Navigation */}
+            <nav className="flex flex-col gap-1 mb-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center justify-between px-4 py-3 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-all font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                  {item.hasMegaMenu && <ChevronDown className="w-4 h-4" />}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile Categories */}
+            <div className="border-t border-secondary-200 pt-4 mb-4">
+              <h3 className="text-sm font-bold text-secondary-500 uppercase tracking-wider mb-3 px-4">
+                {isRTL ? 'الأقسام' : 'Categories'}
+              </h3>
+              <div className="grid grid-cols-2 gap-2">
+                {categories.slice(0, 6).map((cat) => {
+                  const Icon = cat.icon
+                  return (
+                    <Link
+                      key={cat.slug}
+                      href={`/${locale}/categories/${cat.slug}`}
+                      className="flex items-center gap-2 p-3 rounded-lg hover:bg-secondary-50 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Icon className="w-5 h-5 text-primary-600" />
+                      <span className="text-sm text-secondary-700">
+                        {isRTL ? cat.nameAr : cat.nameEn}
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Mobile CTA */}
+            <div className="flex flex-col gap-2">
+              <Link
+                href={`/${locale}/quote-request`}
+                className="btn bg-primary-600 text-white text-center py-3 rounded-lg font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {isRTL ? 'طلب عرض سعر' : 'Get Quote'}
+              </Link>
+              {isAuthenticated && customer ? (
+                <>
+                  <Link
+                    href={`/${locale}/account`}
+                    className="btn border border-secondary-300 text-secondary-700 text-center py-3 rounded-lg font-medium flex items-center justify-center gap-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <User className="w-5 h-5" />
+                    {isRTL ? 'حسابي' : 'My Account'}
+                  </Link>
+                  <button
+                    onClick={() => {
+                      handleLogout()
+                      setIsMenuOpen(false)
+                    }}
+                    className="btn border border-error-300 text-error-600 text-center py-3 rounded-lg font-medium flex items-center justify-center gap-2"
+                  >
+                    <LogOut className="w-5 h-5" />
+                    {isRTL ? 'تسجيل الخروج' : 'Logout'}
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href={`/${locale}/login`}
+                  className="btn border border-secondary-300 text-secondary-700 text-center py-3 rounded-lg font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {dict.common.login}
+                </Link>
+              )}
+            </div>
+
+            {/* Mobile Contact */}
+            <div className="border-t border-secondary-200 mt-4 pt-4">
+              <a href="tel:+201234567890" className="flex items-center gap-3 text-secondary-600 py-2">
+                <Phone className="w-5 h-5 text-primary-600" />
+                <span dir="ltr">+20 123 456 7890</span>
+              </a>
+              <a href="mailto:info@alsadara.com" className="flex items-center gap-3 text-secondary-600 py-2">
+                <Mail className="w-5 h-5 text-primary-600" />
+                <span>info@alsadara.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cart Drawer */}
+      <CartDrawer locale={locale} dict={dict} />
+    </header>
+  )
+}

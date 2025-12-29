@@ -1,0 +1,173 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "about": "About Us",
+    "contact": "Contact",
+    "cart": "Cart",
+    "account": "My Account",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "search": "Search",
+    "searchPlaceholder": "Search for products...",
+    "language": "Language",
+    "currency": "EGP",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "viewDetails": "View Details",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "emptyCart": "Your cart is empty",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "all": "All",
+    "filter": "Filter",
+    "sort": "Sort",
+    "noResults": "No results found"
+  },
+  "home": {
+    "hero": {
+      "title": "Complete Smart Building Solutions",
+      "subtitle": "CCTV Systems, Access Control, PBX, and Fire Alarm Systems",
+      "cta": "Browse Products"
+    },
+    "featuredProducts": "Featured Products",
+    "shopByCategory": "Shop by Category",
+    "whyChooseUs": "Why Choose Us?"
+  },
+  "product": {
+    "specifications": "Technical Specifications",
+    "datasheet": "Datasheet",
+    "downloadDatasheet": "Download Datasheet",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "lowStock": "Low Stock",
+    "sku": "SKU",
+    "brand": "Brand",
+    "category": "Category",
+    "relatedProducts": "Related Products",
+    "reviews": "Reviews",
+    "askQuestion": "Ask a Question",
+    "requestQuote": "Request Quote"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "item": "item",
+    "items": "items",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "orderTotal": "Order Total",
+    "updateQuantity": "Update Quantity",
+    "remove": "Remove",
+    "proceedToCheckout": "Proceed to Checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shippingInfo": "Shipping Information",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "address": "Address",
+    "city": "City",
+    "governorate": "Governorate",
+    "notes": "Notes",
+    "bankTransfer": "Bank Transfer",
+    "vodafoneCash": "Vodafone Cash",
+    "cashOnDelivery": "Cash on Delivery"
+  },
+  "quote": {
+    "title": "Request Quote",
+    "description": "For bulk orders or special requirements, you can request a custom quote",
+    "companyName": "Company Name",
+    "requirements": "Your Requirements",
+    "submitRequest": "Submit Request",
+    "success": "Your request has been submitted! We'll contact you soon"
+  },
+  "account": {
+    "title": "My Account",
+    "orders": "My Orders",
+    "addresses": "My Addresses",
+    "profile": "Profile",
+    "orderHistory": "Order History",
+    "noOrders": "No orders yet"
+  },
+  "order": {
+    "orderNumber": "Order Number",
+    "date": "Date",
+    "status": "Status",
+    "total": "Total",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "processing": "Processing",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled",
+    "trackOrder": "Track Order"
+  },
+  "footer": {
+    "company": "Company",
+    "quickLinks": "Quick Links",
+    "customerService": "Customer Service",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "copyright": "All rights reserved © Al Sadara"
+  },
+  "ai": {
+    "chatTitle": "Al Sadara Assistant",
+    "placeholder": "Type your question here...",
+    "thinking": "Thinking...",
+    "error": "An error occurred, please try again",
+    "welcome": "Hello! I'm Al Sadara's AI assistant. How can I help you today?",
+    "suggestions": [
+      "I need an attendance device for 50 employees",
+      "What's the difference between IP and AHD cameras?",
+      "I have 50,000 EGP for a complete surveillance system",
+      "Show me PBX systems"
+    ]
+  },
+  "group": {
+    "name": "El Sayed Shehata Group for Trade and Industry",
+    "shortName": "ESS Group",
+    "slogan": "Leaders in Plastics and Building Systems in the Middle East",
+    "subsidiaries": "Our Subsidiaries",
+    "presence": "Our Presence",
+    "products": "Our Products",
+    "since": "Since 2005",
+    "stats": {
+      "companies": "Subsidiaries",
+      "countries": "Countries",
+      "years": "Years Experience",
+      "clients": "Clients"
+    }
+  },
+  "companies": {
+    "title": "Our Subsidiaries",
+    "viewDetails": "View Details",
+    "visitWebsite": "Visit Website",
+    "founded": "Founded",
+    "location": "Location",
+    "type": {
+      "plastics": "Plastics Trading",
+      "electronics": "Electronics & Security",
+      "manufacturing": "Manufacturing",
+      "recycling": "Recycling"
+    }
+  }
+}
