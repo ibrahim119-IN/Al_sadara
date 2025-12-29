@@ -15,6 +15,7 @@ import { Customers } from './collections/Customers'
 import { Orders } from './collections/Orders'
 import { Quotes } from './collections/Quotes'
 import { CartItems } from './collections/CartItems'
+import { Reviews } from './collections/Reviews'
 
 // AI Collections
 import { AIConversations } from './collections/AIConversations'
@@ -48,6 +49,7 @@ export default buildConfig({
     Orders,
     Quotes,
     CartItems,
+    Reviews,
     // AI Collections
     AIConversations,
     AIMessages,
