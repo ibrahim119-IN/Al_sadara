@@ -201,13 +201,24 @@ export const Orders: CollectionConfig = {
       },
       fields: [
         {
+          name: 'provider',
+          type: 'select',
+          options: [
+            { label: 'Paymob', value: 'paymob' },
+            { label: 'Fawry', value: 'fawry' },
+            { label: 'Cash on Delivery', value: 'cash_on_delivery' },
+          ],
+          label: { en: 'Payment Provider', ar: 'مزود الدفع' },
+        },
+        {
           name: 'method',
           type: 'select',
           options: [
-            { label: 'Bank Transfer', value: 'bank-transfer' },
-            { label: 'Vodafone Cash', value: 'vodafone-cash' },
-            { label: 'Card', value: 'card' },
-            { label: 'Cash on Delivery', value: 'cash-on-delivery' },
+            { label: 'Credit/Debit Card', value: 'card' },
+            { label: 'Mobile Wallet', value: 'wallet' },
+            { label: 'Kiosk (Fawry/Aman)', value: 'kiosk' },
+            { label: 'Bank Transfer', value: 'bank_transfer' },
+            { label: 'Cash on Delivery', value: 'cash' },
           ],
           label: { en: 'Payment Method', ar: 'طريقة الدفع' },
         },
@@ -217,9 +228,12 @@ export const Orders: CollectionConfig = {
           defaultValue: 'pending',
           options: [
             { label: 'Pending', value: 'pending' },
-            { label: 'Paid', value: 'paid' },
+            { label: 'Processing', value: 'processing' },
+            { label: 'Completed', value: 'completed' },
             { label: 'Failed', value: 'failed' },
+            { label: 'Cancelled', value: 'cancelled' },
             { label: 'Refunded', value: 'refunded' },
+            { label: 'Expired', value: 'expired' },
           ],
           label: { en: 'Payment Status', ar: 'حالة الدفع' },
         },
@@ -229,9 +243,19 @@ export const Orders: CollectionConfig = {
           label: { en: 'Transaction ID', ar: 'رقم العملية' },
         },
         {
+          name: 'referenceNumber',
+          type: 'text',
+          label: { en: 'Reference Number', ar: 'رقم المرجع' },
+        },
+        {
           name: 'paidAt',
           type: 'date',
           label: { en: 'Paid At', ar: 'تاريخ الدفع' },
+          admin: {
+            date: {
+              displayFormat: 'yyyy-MM-dd HH:mm',
+            },
+          },
         },
       ],
     },
