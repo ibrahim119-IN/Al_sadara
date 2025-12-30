@@ -11,6 +11,7 @@ import GroupProductsSection from '@/components/group/GroupProductsSection'
 import WhyUsSection from '@/components/group/WhyUsSection'
 import InteractiveLeafletMap from '@/components/group/InteractiveLeafletMap'
 import GroupTimeline from '@/components/group/GroupTimeline'
+import PageProgressIndicator, { type PageSection } from '@/components/layout/PageProgressIndicator'
 
 // Company-specific components (for subdomains)
 import HeroSection from '@/components/layout/HeroSection'
@@ -21,6 +22,19 @@ import CTASection from '@/components/sections/CTASection'
 import PartnersSection from '@/components/sections/PartnersSection'
 import FeaturedProductsSection from '@/components/sections/FeaturedProductsSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
+
+// Page sections for progress indicator
+const pageSections: PageSection[] = [
+  { id: 'hero', label: { ar: 'الرئيسية', en: 'Home' } },
+  { id: 'companies', label: { ar: 'شركاتنا', en: 'Our Companies' } },
+  { id: 'stats', label: { ar: 'إحصائيات', en: 'Statistics' } },
+  { id: 'why-us', label: { ar: 'لماذا نحن', en: 'Why Us' } },
+  { id: 'map', label: { ar: 'تواجدنا', en: 'Our Presence' } },
+  { id: 'products', label: { ar: 'منتجاتنا', en: 'Products' } },
+  { id: 'timeline', label: { ar: 'رحلتنا', en: 'Our Journey' } },
+  { id: 'testimonials', label: { ar: 'آراء العملاء', en: 'Testimonials' } },
+  { id: 'cta', label: { ar: 'تواصل معنا', en: 'Contact Us' } },
+]
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://alsadara.org'
 
@@ -149,36 +163,57 @@ export default async function HomePage({
   // Main domain (alsadara.org) - show group portal
   return (
     <div className="overflow-hidden">
+      {/* Page Progress Indicator */}
+      <PageProgressIndicator sections={pageSections} locale={locale} />
+
       {/* Group Hero Section */}
-      <GroupHeroSection locale={locale} />
+      <div id="hero">
+        <GroupHeroSection locale={locale} />
+      </div>
 
       {/* Companies Grid Section */}
-      <CompaniesGridSection locale={locale} />
+      <div id="companies">
+        <CompaniesGridSection locale={locale} />
+      </div>
 
       {/* Group Stats Section */}
-      <GroupStatsSection locale={locale} />
+      <div id="stats">
+        <GroupStatsSection locale={locale} />
+      </div>
 
       {/* Why Us Section */}
-      <WhyUsSection locale={locale} />
+      <div id="why-us">
+        <WhyUsSection locale={locale} />
+      </div>
 
       {/* Interactive Map Section */}
-      <InteractiveLeafletMap locale={locale} />
+      <div id="map">
+        <InteractiveLeafletMap locale={locale} />
+      </div>
 
       {/* Products Overview Section */}
-      <GroupProductsSection locale={locale} />
+      <div id="products">
+        <GroupProductsSection locale={locale} />
+      </div>
 
       {/* Group Timeline */}
-      <GroupTimeline locale={locale} />
+      <div id="timeline">
+        <GroupTimeline locale={locale} />
+      </div>
 
       {/* Testimonials Section */}
-      <TestimonialsSection locale={locale} />
+      <div id="testimonials">
+        <TestimonialsSection locale={locale} />
+      </div>
 
       {/* CTA Section */}
-      <CTASection
-        locale={locale}
-        contactLabel={dict.common.contact}
-        quoteLabel={dict.quote.title}
-      />
+      <div id="cta">
+        <CTASection
+          locale={locale}
+          contactLabel={dict.common.contact}
+          quoteLabel={dict.quote.title}
+        />
+      </div>
     </div>
   )
 }

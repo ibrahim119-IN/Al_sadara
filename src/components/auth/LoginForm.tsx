@@ -14,7 +14,7 @@ interface LoginFormProps {
   redirectTo?: string
 }
 
-export function LoginForm({ locale, dict, redirectTo = `/${locale}/account` }: LoginFormProps) {
+export function LoginForm({ locale, dict, redirectTo }: LoginFormProps) {
   const router = useRouter()
   const { login, isLoading, error, clearError } = useAuth()
   const isRTL = locale === 'ar'
@@ -27,10 +27,16 @@ export function LoginForm({ locale, dict, redirectTo = `/${locale}/account` }: L
     clearError()
 
     try {
-      await login(formData.email, formData.password)
-      router.push(redirectTo)
+      // Login returns the appropriate redirect path based on user type
+      const result = await login(formData.email, formData.password)
+
+      // Use provided redirectTo if specified, otherwise use the auto-determined path
+      // For customers: /account, for admins: /dashboard
+      const finalRedirect = redirectTo || `/${locale}${result.redirectTo}`
+
+      router.push(finalRedirect)
       router.refresh()
-    } catch (err) {
+    } catch {
       // Error handled by context
     }
   }

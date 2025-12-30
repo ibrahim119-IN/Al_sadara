@@ -124,20 +124,17 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
   return (
     <section
       ref={ref}
-      className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
+      className="section bg-gradient-to-br from-amber-50/80 via-white to-orange-50/60 relative overflow-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+      {/* Stronger decorative elements */}
+      <div className="absolute top-0 end-0 w-[600px] h-[600px] bg-amber-300/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 start-0 w-[500px] h-[500px] bg-primary-300/15 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" aria-hidden="true" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      {/* Decorative line */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent" aria-hidden="true" />
+
+      <div className="container-xl relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -167,7 +164,8 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
                 className="group relative"
               >
                 <div
-                  className={`${feature.bgColor} rounded-2xl p-6 h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-gray-200`}
+                  className={`${feature.bgColor} rounded-2xl p-6 h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-s-4 border-s-current shadow-md`}
+                  style={{ borderColor: `var(--tw-gradient-from)` }}
                 >
                   {/* Icon */}
                   <div

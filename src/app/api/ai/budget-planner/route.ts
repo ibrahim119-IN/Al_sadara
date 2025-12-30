@@ -71,7 +71,6 @@ export async function POST(request: NextRequest) {
       budget,
       requirements,
       priority,
-      locale,
     })
 
     if (!result.success) {

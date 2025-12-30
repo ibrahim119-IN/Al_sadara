@@ -64,8 +64,17 @@ export default function TestimonialsSection({ locale }: TestimonialsSectionProps
   }, [])
 
   return (
-    <section ref={sectionRef} className="section bg-white">
-      <div className="container-wide">
+    <section ref={sectionRef} className="section bg-gradient-to-br from-violet-50/80 via-white to-primary-50/60 relative overflow-hidden">
+      {/* Stronger decorative elements */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-violet-300 to-transparent" aria-hidden="true" />
+      <div className="absolute top-0 start-0 w-[500px] h-[500px] bg-violet-200/25 rounded-full blur-3xl -translate-y-1/4 -translate-x-1/4 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 end-0 w-[450px] h-[450px] bg-primary-200/20 rounded-full blur-3xl translate-y-1/4 translate-x-1/4 pointer-events-none" aria-hidden="true" />
+
+      {/* Large quote decorations - more visible */}
+      <div className="absolute top-32 start-8 text-[180px] font-serif text-violet-200/40 leading-none pointer-events-none select-none hidden lg:block" aria-hidden="true">&ldquo;</div>
+      <div className="absolute bottom-32 end-8 text-[180px] font-serif text-violet-200/40 leading-none pointer-events-none select-none hidden lg:block" aria-hidden="true">&rdquo;</div>
+
+      <div className="container-xl relative z-10">
         {/* Section Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${
@@ -90,7 +99,7 @@ export default function TestimonialsSection({ locale }: TestimonialsSectionProps
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`group bg-secondary-50 hover:bg-white rounded-3xl p-8 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-2 border border-transparent hover:border-secondary-100 ${
+              className={`group bg-white rounded-3xl p-8 transition-all duration-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 border-2 border-violet-100 hover:border-violet-200 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}

@@ -196,7 +196,7 @@ async function seedProducts() {
       },
     ]
 
-    const categoryIds: Record<string, string> = {}
+    const categoryIds: Record<string, number> = {}
 
     for (const catData of categories) {
       const existing = await payload.find({

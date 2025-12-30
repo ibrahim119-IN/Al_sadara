@@ -36,9 +36,9 @@ export async function POST(
       collection: 'orders',
       where: {
         or: [
-          { paymentTransactionId: { equals: callback.transactionId } },
-          { paymentReferenceNumber: { equals: callback.transactionId } },
-          { id: { equals: callback.orderId } },
+          { 'payment.transactionId': { equals: callback.transactionId } },
+          { 'payment.referenceNumber': { equals: callback.transactionId } },
+          { id: { equals: Number(callback.orderId) || 0 } },
         ],
       },
       limit: 1,
@@ -53,13 +53,13 @@ export async function POST(
     const order = orders.docs[0]
 
     // Map payment status to order status
-    const orderStatusMap: Record<PaymentStatus, string> = {
+    const orderStatusMap: Record<PaymentStatus, 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled'> = {
       completed: 'processing',
       pending: 'pending',
       processing: 'pending',
       failed: 'cancelled',
       cancelled: 'cancelled',
-      refunded: 'refunded',
+      refunded: 'cancelled',
       expired: 'cancelled',
     }
 
@@ -70,9 +70,12 @@ export async function POST(
       collection: 'orders',
       id: order.id,
       data: {
-        paymentStatus: callback.status,
+        payment: {
+          ...order.payment,
+          status: callback.status as 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'refunded' | 'expired',
+          paidAt: callback.status === 'completed' ? new Date().toISOString() : undefined,
+        },
         status: newOrderStatus,
-        paidAt: callback.status === 'completed' ? new Date().toISOString() : undefined,
       },
     })
 

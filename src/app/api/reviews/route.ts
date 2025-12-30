@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getCachedPayload } from '@/lib/payload-client'
+import type { Where } from 'payload'
 
 // GET /api/reviews - Get reviews for a product
 export async function GET(request: NextRequest) {
@@ -21,18 +22,18 @@ export async function GET(request: NextRequest) {
 
     const payload = await getCachedPayload()
 
-    const where: Record<string, unknown> = {
+    const where: Where = {
       product: { equals: productId },
       status: { equals: status },
     }
 
     if (rating) {
-      where.rating = { equals: parseInt(rating) }
+      (where as Record<string, unknown>).rating = { equals: parseInt(rating) }
     }
 
     const reviews = await payload.find({
       collection: 'reviews',
-      where,
+      where: where as Where,
       sort,
       page,
       limit,
@@ -130,9 +131,9 @@ export async function POST(request: NextRequest) {
 
     let verifiedPurchase = false
     for (const order of orders.docs) {
-      const items = order.items as Array<{ product: { id: string } | string }>
+      const items = order.items
       if (items?.some((item) => {
-        const itemProductId = typeof item.product === 'object' ? item.product.id : item.product
+        const itemProductId = typeof item.product === 'object' ? String(item.product.id) : String(item.product)
         return itemProductId === productId
       })) {
         verifiedPurchase = true

@@ -278,15 +278,4 @@ export const Reviews: CollectionConfig = {
     },
   ],
   timestamps: true,
-  indexes: [
-    {
-      name: 'product_status',
-      fields: { product: 1, status: 1 },
-    },
-    {
-      name: 'customer_product',
-      fields: { customer: 1, product: 1 },
-      unique: true,
-    },
-  ],
 }

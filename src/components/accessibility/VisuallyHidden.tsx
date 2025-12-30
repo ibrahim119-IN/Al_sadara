@@ -4,7 +4,7 @@ import React from 'react'
 
 interface VisuallyHiddenProps {
   children: React.ReactNode
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
   focusable?: boolean
   id?: string
   className?: string

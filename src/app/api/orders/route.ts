@@ -23,6 +23,13 @@ interface CreateOrderRequest {
   customerId?: number
 }
 
+// Map incoming payment methods to database values
+const paymentMethodMap: Record<string, 'card' | 'wallet' | 'kiosk' | 'bank_transfer' | 'cash'> = {
+  'bank-transfer': 'bank_transfer',
+  'vodafone-cash': 'wallet',
+  'cash-on-delivery': 'cash',
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: CreateOrderRequest = await request.json()
@@ -155,7 +162,7 @@ export async function POST(request: NextRequest) {
         total,
         shippingAddress,
         payment: {
-          method: paymentMethod,
+          method: paymentMethodMap[paymentMethod] || 'cash',
           status: 'pending',
         },
         status: 'pending',

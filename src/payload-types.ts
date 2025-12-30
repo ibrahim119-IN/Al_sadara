@@ -77,10 +77,15 @@ export interface Config {
     orders: Order;
     quotes: Quote;
     'cart-items': CartItem;
+    reviews: Review;
     'ai-conversations': AiConversation;
     'ai-messages': AiMessage;
     'product-embeddings': ProductEmbedding;
     'knowledge-base': KnowledgeBase;
+    pages: Page;
+    banners: Banner;
+    testimonials: Testimonial;
+    faqs: Faq;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -97,10 +102,15 @@ export interface Config {
     orders: OrdersSelect<false> | OrdersSelect<true>;
     quotes: QuotesSelect<false> | QuotesSelect<true>;
     'cart-items': CartItemsSelect<false> | CartItemsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     'ai-conversations': AiConversationsSelect<false> | AiConversationsSelect<true>;
     'ai-messages': AiMessagesSelect<false> | AiMessagesSelect<true>;
     'product-embeddings': ProductEmbeddingsSelect<false> | ProductEmbeddingsSelect<true>;
     'knowledge-base': KnowledgeBaseSelect<false> | KnowledgeBaseSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    banners: BannersSelect<false> | BannersSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -112,9 +122,17 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'group-settings': GroupSetting;
+    homepage: Homepage;
+    navigation: Navigation;
+    footer: Footer;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     'group-settings': GroupSettingsSelect<false> | GroupSettingsSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   user:
@@ -435,10 +453,6 @@ export interface Product {
   stock?: number | null;
   lowStockThreshold?: number | null;
   trackInventory?: boolean | null;
-  /**
-   * Select which company this product belongs to
-   */
-  company: number | Company;
   category: number | Category;
   brand?: string | null;
   tags?:
@@ -566,9 +580,11 @@ export interface Order {
     governorate: string;
   };
   payment?: {
-    method?: ('bank-transfer' | 'vodafone-cash' | 'card' | 'cash-on-delivery') | null;
-    status?: ('pending' | 'paid' | 'failed' | 'refunded') | null;
+    provider?: ('paymob' | 'fawry' | 'cash_on_delivery') | null;
+    method?: ('card' | 'wallet' | 'kiosk' | 'bank_transfer' | 'cash') | null;
+    status?: ('pending' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'refunded' | 'expired') | null;
     transactionId?: string | null;
+    referenceNumber?: string | null;
     paidAt?: string | null;
   };
   status: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
@@ -618,6 +634,56 @@ export interface CartItem {
   sessionId?: string | null;
   product: number | Product;
   quantity: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  /**
+   * The product being reviewed
+   */
+  product: number | Product;
+  customer: number | Customer;
+  /**
+   * Rating from 1 to 5 stars
+   */
+  rating: number;
+  title: string;
+  content: string;
+  pros?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  cons?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  images?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Whether the customer has purchased this product
+   */
+  verifiedPurchase?: boolean | null;
+  helpfulVotes?: number | null;
+  notHelpfulVotes?: number | null;
+  status: 'pending' | 'approved' | 'rejected';
+  /**
+   * Optional reply from the store admin
+   */
+  adminReply?: string | null;
+  adminReplyDate?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -833,6 +899,502 @@ export interface KnowledgeBase {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  titleAr: string;
+  /**
+   * URL-friendly identifier (e.g., about-us, privacy-policy)
+   */
+  slug: string;
+  showHero?: boolean | null;
+  hero?: {
+    title?: string | null;
+    titleAr?: string | null;
+    subtitle?: string | null;
+    subtitleAr?: string | null;
+    backgroundImage?: (number | null) | Media;
+    size?: ('small' | 'medium' | 'large') | null;
+    showBreadcrumbs?: boolean | null;
+  };
+  content?:
+    | (
+        | {
+            type: 'image' | 'video' | 'slider';
+            title: string;
+            titleAr: string;
+            subtitle?: string | null;
+            subtitleAr?: string | null;
+            backgroundImage?: (number | null) | Media;
+            videoUrl?: string | null;
+            slides?:
+              | {
+                  image: number | Media;
+                  title?: string | null;
+                  titleAr?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaButton?: {
+              show?: boolean | null;
+              text?: string | null;
+              textAr?: string | null;
+              link?: string | null;
+            };
+            overlay?: ('none' | 'light' | 'medium' | 'dark') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('manual' | 'latest' | 'bestsellers' | 'featured') | null;
+            products?: (number | Product)[] | null;
+            limit?: number | null;
+            columns?: ('2' | '3' | '4' | '5') | null;
+            showViewAll?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featured-products';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('all' | 'selected' | 'top') | null;
+            categories?: (number | Category)[] | null;
+            layout?: ('grid' | 'carousel' | 'masonry') | null;
+            columns?: ('2' | '3' | '4' | '6') | null;
+            showProductCount?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'categories-grid';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            subtitle?: string | null;
+            subtitleAr?: string | null;
+            companies?: (number | Company)[] | null;
+            layout?: ('cards' | 'logos' | 'featured') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'companies-showcase';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('all' | 'selected' | 'latest') | null;
+            testimonials?: (number | Testimonial)[] | null;
+            limit?: number | null;
+            layout?: ('carousel' | 'grid' | 'masonry') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            items: {
+              value: string;
+              /**
+               * e.g., +, %, K
+               */
+              suffix?: string | null;
+              label: string;
+              labelAr: string;
+              /**
+               * Lucide icon name (e.g., users, building, globe)
+               */
+              icon?: string | null;
+              id?: string | null;
+            }[];
+            backgroundColor?: ('primary' | 'secondary' | 'white' | 'dark') | null;
+            animate?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            title: string;
+            titleAr: string;
+            description?: string | null;
+            descriptionAr?: string | null;
+            primaryButton?: {
+              text?: string | null;
+              textAr?: string | null;
+              link?: string | null;
+            };
+            secondaryButton?: {
+              text?: string | null;
+              textAr?: string | null;
+              link?: string | null;
+            };
+            backgroundImage?: (number | null) | Media;
+            style?: ('centered' | 'left' | 'with-image') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            description?: string | null;
+            descriptionAr?: string | null;
+            buttonText?: string | null;
+            buttonTextAr?: string | null;
+            style?: ('inline' | 'stacked' | 'card') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletter';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            contentAr?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            alignment?: ('left' | 'center' | 'right') | null;
+            maxWidth?: ('full' | 'large' | 'medium' | 'small') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text-content';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            images: {
+              image: number | Media;
+              caption?: string | null;
+              captionAr?: string | null;
+              id?: string | null;
+            }[];
+            layout?: ('grid' | 'masonry' | 'carousel') | null;
+            columns?: ('2' | '3' | '4') | null;
+            lightbox?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-gallery';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            source: 'youtube' | 'vimeo' | 'self';
+            url: string;
+            thumbnail?: (number | null) | Media;
+            aspectRatio?: ('16:9' | '4:3' | '1:1' | '9:16') | null;
+            autoplay?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('all' | 'selected' | 'category') | null;
+            faqs?: (number | Faq)[] | null;
+            category?: string | null;
+            limit?: number | null;
+            style?: ('accordion' | 'list') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            items: {
+              /**
+               * Lucide icon name
+               */
+              icon?: string | null;
+              title: string;
+              titleAr: string;
+              description?: string | null;
+              descriptionAr?: string | null;
+              id?: string | null;
+            }[];
+            columns?: ('2' | '3' | '4') | null;
+            style?: ('cards' | 'icons' | 'list') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            partners: {
+              name: string;
+              logo: number | Media;
+              url?: string | null;
+              id?: string | null;
+            }[];
+            layout?: ('scroll' | 'grid') | null;
+            grayscale?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'partners';
+          }
+        | {
+            size: 'xs' | 'sm' | 'medium' | 'lg' | 'xl';
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'spacer';
+          }
+        | {
+            style?: ('solid' | 'dashed' | 'dotted' | 'gradient') | null;
+            width?: ('full' | '3/4' | '1/2' | '1/4') | null;
+            spacing?: ('sm' | 'medium' | 'lg') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'divider';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            description?: string | null;
+            descriptionAr?: string | null;
+            fields?: ('name' | 'email' | 'phone' | 'company' | 'subject' | 'message')[] | null;
+            submitButtonText?: string | null;
+            submitButtonTextAr?: string | null;
+            recipientEmail?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact-form';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            items: {
+              year: string;
+              title: string;
+              titleAr: string;
+              description?: string | null;
+              descriptionAr?: string | null;
+              image?: (number | null) | Media;
+              id?: string | null;
+            }[];
+            layout?: ('vertical' | 'horizontal') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'timeline';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            /**
+             * Paste the iframe embed code from Google Maps
+             */
+            embedCode?: string | null;
+            height?: ('small' | 'medium' | 'large') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'map';
+          }
+      )[]
+    | null;
+  /**
+   * Leave empty to use page title
+   */
+  metaTitle?: string | null;
+  metaTitleAr?: string | null;
+  metaDescription?: string | null;
+  metaDescriptionAr?: string | null;
+  ogImage?: (number | null) | Media;
+  noIndex?: boolean | null;
+  status: 'draft' | 'published';
+  template?: ('default' | 'full-width' | 'sidebar' | 'landing') | null;
+  /**
+   * Optional: Set parent page for hierarchical structure
+   */
+  parent?: (number | null) | Page;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  name: string;
+  company?: string | null;
+  position?: string | null;
+  positionAr?: string | null;
+  avatar?: (number | null) | Media;
+  rating: number;
+  content: string;
+  contentAr?: string | null;
+  /**
+   * Optional: Link to a specific company in the group
+   */
+  relatedCompany?: (number | null) | Company;
+  relatedProducts?: (number | Product)[] | null;
+  isApproved?: boolean | null;
+  isFeatured?: boolean | null;
+  sourceType?: ('manual' | 'google' | 'facebook' | 'other') | null;
+  sourceUrl?: string | null;
+  date?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  questionAr: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  answerAr?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category: 'general' | 'ordering' | 'shipping' | 'payment' | 'returns' | 'products' | 'account' | 'technical';
+  /**
+   * Optional: If this FAQ is specific to a company
+   */
+  relatedCompany?: (number | null) | Company;
+  relatedProducts?: (number | Product)[] | null;
+  relatedCategories?: (number | Category)[] | null;
+  order?: number | null;
+  isActive?: boolean | null;
+  isFeatured?: boolean | null;
+  /**
+   * Tracks how helpful users find this FAQ
+   */
+  helpfulness?: {
+    helpfulCount?: number | null;
+    notHelpfulCount?: number | null;
+  };
+  /**
+   * Comma-separated keywords to help with search
+   */
+  keywords?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banners".
+ */
+export interface Banner {
+  id: number;
+  /**
+   * Used for admin reference only
+   */
+  title: string;
+  placement:
+    | 'header'
+    | 'homepage-hero'
+    | 'homepage-section'
+    | 'sidebar'
+    | 'product-page'
+    | 'category-page'
+    | 'checkout'
+    | 'popup'
+    | 'footer';
+  type: 'image' | 'text' | 'html';
+  image?: (number | null) | Media;
+  mobileImage?: (number | null) | Media;
+  textContent?: {
+    heading?: string | null;
+    headingAr?: string | null;
+    subheading?: string | null;
+    subheadingAr?: string | null;
+    textColor?: ('white' | 'black' | 'primary') | null;
+  };
+  htmlContent?: string | null;
+  cta?: {
+    show?: boolean | null;
+    text?: string | null;
+    textAr?: string | null;
+    link?: string | null;
+    openInNewTab?: boolean | null;
+    style?: ('primary' | 'secondary' | 'outline' | 'white') | null;
+  };
+  isActive?: boolean | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  /**
+   * Higher number = higher priority when multiple banners match
+   */
+  priority?: number | null;
+  targetPages?: ('all' | 'specific' | 'categories') | null;
+  pages?: (number | Page)[] | null;
+  categories?: (number | Category)[] | null;
+  targetDevices?: ('all' | 'desktop' | 'mobile') | null;
+  showToLoggedIn?: ('all' | 'logged-in' | 'guests') | null;
+  popupSettings?: {
+    trigger?: ('time' | 'exit' | 'scroll') | null;
+    delay?: number | null;
+    scrollPercentage?: number | null;
+    frequency?: ('session' | 'day' | 'once' | 'always') | null;
+    closable?: boolean | null;
+  };
+  trackClicks?: boolean | null;
+  clickCount?: number | null;
+  impressionCount?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -892,6 +1454,10 @@ export interface PayloadLockedDocument {
         value: number | CartItem;
       } | null)
     | ({
+        relationTo: 'reviews';
+        value: number | Review;
+      } | null)
+    | ({
         relationTo: 'ai-conversations';
         value: number | AiConversation;
       } | null)
@@ -906,6 +1472,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'knowledge-base';
         value: number | KnowledgeBase;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'banners';
+        value: number | Banner;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
       } | null);
   globalSlug?: string | null;
   user:
@@ -1186,7 +1768,6 @@ export interface ProductsSelect<T extends boolean = true> {
   stock?: T;
   lowStockThreshold?: T;
   trackInventory?: T;
-  company?: T;
   category?: T;
   brand?: T;
   tags?:
@@ -1320,9 +1901,11 @@ export interface OrdersSelect<T extends boolean = true> {
   payment?:
     | T
     | {
+        provider?: T;
         method?: T;
         status?: T;
         transactionId?: T;
+        referenceNumber?: T;
         paidAt?: T;
       };
   status?: T;
@@ -1367,6 +1950,43 @@ export interface CartItemsSelect<T extends boolean = true> {
   sessionId?: T;
   product?: T;
   quantity?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  product?: T;
+  customer?: T;
+  rating?: T;
+  title?: T;
+  content?: T;
+  pros?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  cons?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  verifiedPurchase?: T;
+  helpfulVotes?: T;
+  notHelpfulVotes?: T;
+  status?: T;
+  adminReply?: T;
+  adminReplyDate?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1432,6 +2052,439 @@ export interface KnowledgeBaseSelect<T extends boolean = true> {
   locale?: T;
   metadata?: T;
   isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  titleAr?: T;
+  slug?: T;
+  showHero?: T;
+  hero?:
+    | T
+    | {
+        title?: T;
+        titleAr?: T;
+        subtitle?: T;
+        subtitleAr?: T;
+        backgroundImage?: T;
+        size?: T;
+        showBreadcrumbs?: T;
+      };
+  content?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              type?: T;
+              title?: T;
+              titleAr?: T;
+              subtitle?: T;
+              subtitleAr?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              slides?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    titleAr?: T;
+                    id?: T;
+                  };
+              ctaButton?:
+                | T
+                | {
+                    show?: T;
+                    text?: T;
+                    textAr?: T;
+                    link?: T;
+                  };
+              overlay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'featured-products'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              products?: T;
+              limit?: T;
+              columns?: T;
+              showViewAll?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'categories-grid'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              categories?: T;
+              layout?: T;
+              columns?: T;
+              showProductCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'companies-showcase'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              subtitle?: T;
+              subtitleAr?: T;
+              companies?: T;
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              testimonials?: T;
+              limit?: T;
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    suffix?: T;
+                    label?: T;
+                    labelAr?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              backgroundColor?: T;
+              animate?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              description?: T;
+              descriptionAr?: T;
+              primaryButton?:
+                | T
+                | {
+                    text?: T;
+                    textAr?: T;
+                    link?: T;
+                  };
+              secondaryButton?:
+                | T
+                | {
+                    text?: T;
+                    textAr?: T;
+                    link?: T;
+                  };
+              backgroundImage?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletter?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              description?: T;
+              descriptionAr?: T;
+              buttonText?: T;
+              buttonTextAr?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'text-content'?:
+          | T
+          | {
+              content?: T;
+              contentAr?: T;
+              alignment?: T;
+              maxWidth?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'image-gallery'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    captionAr?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              columns?: T;
+              lightbox?: T;
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              source?: T;
+              url?: T;
+              thumbnail?: T;
+              aspectRatio?: T;
+              autoplay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              faqs?: T;
+              category?: T;
+              limit?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    titleAr?: T;
+                    description?: T;
+                    descriptionAr?: T;
+                    id?: T;
+                  };
+              columns?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        partners?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              partners?:
+                | T
+                | {
+                    name?: T;
+                    logo?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              grayscale?: T;
+              id?: T;
+              blockName?: T;
+            };
+        spacer?:
+          | T
+          | {
+              size?: T;
+              id?: T;
+              blockName?: T;
+            };
+        divider?:
+          | T
+          | {
+              style?: T;
+              width?: T;
+              spacing?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'contact-form'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              description?: T;
+              descriptionAr?: T;
+              fields?: T;
+              submitButtonText?: T;
+              submitButtonTextAr?: T;
+              recipientEmail?: T;
+              id?: T;
+              blockName?: T;
+            };
+        timeline?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              items?:
+                | T
+                | {
+                    year?: T;
+                    title?: T;
+                    titleAr?: T;
+                    description?: T;
+                    descriptionAr?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        map?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              embedCode?: T;
+              height?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  metaTitle?: T;
+  metaTitleAr?: T;
+  metaDescription?: T;
+  metaDescriptionAr?: T;
+  ogImage?: T;
+  noIndex?: T;
+  status?: T;
+  template?: T;
+  parent?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banners_select".
+ */
+export interface BannersSelect<T extends boolean = true> {
+  title?: T;
+  placement?: T;
+  type?: T;
+  image?: T;
+  mobileImage?: T;
+  textContent?:
+    | T
+    | {
+        heading?: T;
+        headingAr?: T;
+        subheading?: T;
+        subheadingAr?: T;
+        textColor?: T;
+      };
+  htmlContent?: T;
+  cta?:
+    | T
+    | {
+        show?: T;
+        text?: T;
+        textAr?: T;
+        link?: T;
+        openInNewTab?: T;
+        style?: T;
+      };
+  isActive?: T;
+  startDate?: T;
+  endDate?: T;
+  priority?: T;
+  targetPages?: T;
+  pages?: T;
+  categories?: T;
+  targetDevices?: T;
+  showToLoggedIn?: T;
+  popupSettings?:
+    | T
+    | {
+        trigger?: T;
+        delay?: T;
+        scrollPercentage?: T;
+        frequency?: T;
+        closable?: T;
+      };
+  trackClicks?: T;
+  clickCount?: T;
+  impressionCount?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  company?: T;
+  position?: T;
+  positionAr?: T;
+  avatar?: T;
+  rating?: T;
+  content?: T;
+  contentAr?: T;
+  relatedCompany?: T;
+  relatedProducts?: T;
+  isApproved?: T;
+  isFeatured?: T;
+  sourceType?: T;
+  sourceUrl?: T;
+  date?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  questionAr?: T;
+  answer?: T;
+  answerAr?: T;
+  category?: T;
+  relatedCompany?: T;
+  relatedProducts?: T;
+  relatedCategories?: T;
+  order?: T;
+  isActive?: T;
+  isFeatured?: T;
+  helpfulness?:
+    | T
+    | {
+        helpfulCount?: T;
+        notHelpfulCount?: T;
+      };
+  keywords?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1542,6 +2595,652 @@ export interface GroupSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  heroType: 'image' | 'video' | 'slider';
+  heroTitle?: string | null;
+  heroTitleAr?: string | null;
+  heroSubtitle?: string | null;
+  heroSubtitleAr?: string | null;
+  heroBackgroundImage?: (number | null) | Media;
+  heroVideoUrl?: string | null;
+  heroSlides?:
+    | {
+        image: number | Media;
+        title?: string | null;
+        titleAr?: string | null;
+        subtitle?: string | null;
+        subtitleAr?: string | null;
+        ctaButton?: {
+          show?: boolean | null;
+          text?: string | null;
+          textAr?: string | null;
+          link?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  heroCTA?: {
+    show?: boolean | null;
+    text?: string | null;
+    textAr?: string | null;
+    link?: string | null;
+  };
+  heroOverlay?: ('none' | 'light' | 'medium' | 'dark') | null;
+  heroHeight?: ('full' | '80vh' | '60vh' | 'medium') | null;
+  /**
+   * Add and arrange sections for the homepage
+   */
+  sections?:
+    | (
+        | {
+            type: 'image' | 'video' | 'slider';
+            title: string;
+            titleAr: string;
+            subtitle?: string | null;
+            subtitleAr?: string | null;
+            backgroundImage?: (number | null) | Media;
+            videoUrl?: string | null;
+            slides?:
+              | {
+                  image: number | Media;
+                  title?: string | null;
+                  titleAr?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaButton?: {
+              show?: boolean | null;
+              text?: string | null;
+              textAr?: string | null;
+              link?: string | null;
+            };
+            overlay?: ('none' | 'light' | 'medium' | 'dark') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('manual' | 'latest' | 'bestsellers' | 'featured') | null;
+            products?: (number | Product)[] | null;
+            limit?: number | null;
+            columns?: ('2' | '3' | '4' | '5') | null;
+            showViewAll?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featured-products';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('all' | 'selected' | 'top') | null;
+            categories?: (number | Category)[] | null;
+            layout?: ('grid' | 'carousel' | 'masonry') | null;
+            columns?: ('2' | '3' | '4' | '6') | null;
+            showProductCount?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'categories-grid';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            subtitle?: string | null;
+            subtitleAr?: string | null;
+            companies?: (number | Company)[] | null;
+            layout?: ('cards' | 'logos' | 'featured') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'companies-showcase';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('all' | 'selected' | 'latest') | null;
+            testimonials?: (number | Testimonial)[] | null;
+            limit?: number | null;
+            layout?: ('carousel' | 'grid' | 'masonry') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            items: {
+              value: string;
+              /**
+               * e.g., +, %, K
+               */
+              suffix?: string | null;
+              label: string;
+              labelAr: string;
+              /**
+               * Lucide icon name (e.g., users, building, globe)
+               */
+              icon?: string | null;
+              id?: string | null;
+            }[];
+            backgroundColor?: ('primary' | 'secondary' | 'white' | 'dark') | null;
+            animate?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            title: string;
+            titleAr: string;
+            description?: string | null;
+            descriptionAr?: string | null;
+            primaryButton?: {
+              text?: string | null;
+              textAr?: string | null;
+              link?: string | null;
+            };
+            secondaryButton?: {
+              text?: string | null;
+              textAr?: string | null;
+              link?: string | null;
+            };
+            backgroundImage?: (number | null) | Media;
+            style?: ('centered' | 'left' | 'with-image') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            description?: string | null;
+            descriptionAr?: string | null;
+            buttonText?: string | null;
+            buttonTextAr?: string | null;
+            style?: ('inline' | 'stacked' | 'card') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletter';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            contentAr?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            alignment?: ('left' | 'center' | 'right') | null;
+            maxWidth?: ('full' | 'large' | 'medium' | 'small') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text-content';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            images: {
+              image: number | Media;
+              caption?: string | null;
+              captionAr?: string | null;
+              id?: string | null;
+            }[];
+            layout?: ('grid' | 'masonry' | 'carousel') | null;
+            columns?: ('2' | '3' | '4') | null;
+            lightbox?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-gallery';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            source: 'youtube' | 'vimeo' | 'self';
+            url: string;
+            thumbnail?: (number | null) | Media;
+            aspectRatio?: ('16:9' | '4:3' | '1:1' | '9:16') | null;
+            autoplay?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            displayType?: ('all' | 'selected' | 'category') | null;
+            faqs?: (number | Faq)[] | null;
+            category?: string | null;
+            limit?: number | null;
+            style?: ('accordion' | 'list') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            items: {
+              /**
+               * Lucide icon name
+               */
+              icon?: string | null;
+              title: string;
+              titleAr: string;
+              description?: string | null;
+              descriptionAr?: string | null;
+              id?: string | null;
+            }[];
+            columns?: ('2' | '3' | '4') | null;
+            style?: ('cards' | 'icons' | 'list') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            partners: {
+              name: string;
+              logo: number | Media;
+              url?: string | null;
+              id?: string | null;
+            }[];
+            layout?: ('scroll' | 'grid') | null;
+            grayscale?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'partners';
+          }
+        | {
+            size: 'xs' | 'sm' | 'medium' | 'lg' | 'xl';
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'spacer';
+          }
+        | {
+            style?: ('solid' | 'dashed' | 'dotted' | 'gradient') | null;
+            width?: ('full' | '3/4' | '1/2' | '1/4') | null;
+            spacing?: ('sm' | 'medium' | 'lg') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'divider';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            description?: string | null;
+            descriptionAr?: string | null;
+            fields?: ('name' | 'email' | 'phone' | 'company' | 'subject' | 'message')[] | null;
+            submitButtonText?: string | null;
+            submitButtonTextAr?: string | null;
+            recipientEmail?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact-form';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            items: {
+              year: string;
+              title: string;
+              titleAr: string;
+              description?: string | null;
+              descriptionAr?: string | null;
+              image?: (number | null) | Media;
+              id?: string | null;
+            }[];
+            layout?: ('vertical' | 'horizontal') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'timeline';
+          }
+        | {
+            title?: string | null;
+            titleAr?: string | null;
+            /**
+             * Paste the iframe embed code from Google Maps
+             */
+            embedCode?: string | null;
+            height?: ('small' | 'medium' | 'large') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'map';
+          }
+      )[]
+    | null;
+  showFeaturesBar?: boolean | null;
+  features?:
+    | {
+        /**
+         * Lucide icon name (e.g., truck, shield-check, headphones)
+         */
+        icon?: string | null;
+        title: string;
+        titleAr: string;
+        description?: string | null;
+        descriptionAr?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  metaTitle?: string | null;
+  metaTitleAr?: string | null;
+  metaDescription?: string | null;
+  metaDescriptionAr?: string | null;
+  ogImage?: (number | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  showTopBar?: boolean | null;
+  topBarContent?: {
+    message?: string | null;
+    messageAr?: string | null;
+    showContactInfo?: boolean | null;
+    phone?: string | null;
+    email?: string | null;
+    showLanguageSwitcher?: boolean | null;
+    showSocialIcons?: boolean | null;
+  };
+  menuItems?:
+    | {
+        label: string;
+        labelAr: string;
+        type: 'link' | 'dropdown' | 'megamenu';
+        link?: string | null;
+        openInNewTab?: boolean | null;
+        dropdownItems?:
+          | {
+              label: string;
+              labelAr: string;
+              link: string;
+              icon?: string | null;
+              description?: string | null;
+              descriptionAr?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        megaMenuColumns?:
+          | {
+              heading?: string | null;
+              headingAr?: string | null;
+              items?:
+                | {
+                    label: string;
+                    labelAr: string;
+                    link: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              featuredImage?: (number | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        highlight?: boolean | null;
+        /**
+         * e.g., "New", "Sale", "Hot"
+         */
+        highlightText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  showCTAButton?: boolean | null;
+  ctaButton?: {
+    text?: string | null;
+    textAr?: string | null;
+    link?: string | null;
+    style?: ('primary' | 'secondary' | 'outline') | null;
+  };
+  sticky?: boolean | null;
+  transparent?: boolean | null;
+  showSearch?: boolean | null;
+  showCart?: boolean | null;
+  showAccount?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  showFeaturesBar?: boolean | null;
+  features?:
+    | {
+        /**
+         * Lucide icon name
+         */
+        icon?: string | null;
+        title: string;
+        titleAr: string;
+        description?: string | null;
+        descriptionAr?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  columns?:
+    | {
+        heading: string;
+        headingAr: string;
+        type?: ('links' | 'contact' | 'text') | null;
+        links?:
+          | {
+              label: string;
+              labelAr: string;
+              link: string;
+              openInNewTab?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        contactInfo?: {
+          address?: string | null;
+          addressAr?: string | null;
+          phone?: string | null;
+          email?: string | null;
+          workingHours?: string | null;
+          workingHoursAr?: string | null;
+        };
+        textContent?: {
+          text?: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          } | null;
+          textAr?: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          } | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  showNewsletter?: boolean | null;
+  newsletter?: {
+    title?: string | null;
+    titleAr?: string | null;
+    description?: string | null;
+    descriptionAr?: string | null;
+    buttonText?: string | null;
+    buttonTextAr?: string | null;
+  };
+  showSocialLinks?: boolean | null;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube' | 'tiktok' | 'whatsapp' | 'telegram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  copyrightText?: string | null;
+  copyrightTextAr?: string | null;
+  legalLinks?:
+    | {
+        label: string;
+        labelAr: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  paymentMethods?:
+    | {
+        name: string;
+        icon?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('dark' | 'light' | 'primary') | null;
+  showBackToTop?: boolean | null;
+  showLogo?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteName: string;
+  siteNameAr: string;
+  tagline?: string | null;
+  taglineAr?: string | null;
+  logo?: (number | null) | Media;
+  logoDark?: (number | null) | Media;
+  favicon?: (number | null) | Media;
+  defaultLocale?: ('ar' | 'en') | null;
+  maintenanceMode?: boolean | null;
+  maintenanceMessage?: {
+    title?: string | null;
+    titleAr?: string | null;
+    message?: string | null;
+    messageAr?: string | null;
+  };
+  maintenanceAllowedIPs?:
+    | {
+        ip: string;
+        id?: string | null;
+      }[]
+    | null;
+  features?: {
+    enableReviews?: boolean | null;
+    enableWishlist?: boolean | null;
+    enableCompare?: boolean | null;
+    enableQuickView?: boolean | null;
+    enableGuestCheckout?: boolean | null;
+    enableAIChat?: boolean | null;
+    enableNewsletter?: boolean | null;
+  };
+  currency?: {
+    code?: ('EGP' | 'SAR' | 'USD' | 'AED') | null;
+    symbol?: string | null;
+    symbolPosition?: ('before' | 'after') | null;
+    decimalPlaces?: number | null;
+  };
+  tax?: {
+    enableTax?: boolean | null;
+    taxRate?: number | null;
+    taxIncludedInPrice?: boolean | null;
+  };
+  stock?: {
+    lowStockThreshold?: number | null;
+    outOfStockVisibility?: ('show' | 'hide') | null;
+    allowBackorders?: boolean | null;
+  };
+  shipping?: {
+    /**
+     * Set to 0 to disable free shipping
+     */
+    freeShippingThreshold?: number | null;
+    defaultShippingCost?: number | null;
+    estimatedDeliveryDays?: {
+      min?: number | null;
+      max?: number | null;
+    };
+  };
+  shippingZones?:
+    | {
+        name: string;
+        nameAr: string;
+        governorates?: string | null;
+        cost: number;
+        freeAbove?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  notifications?: {
+    adminEmail?: string | null;
+    orderConfirmation?: boolean | null;
+    shippingNotification?: boolean | null;
+    lowStockAlert?: boolean | null;
+  };
+  analytics?: {
+    /**
+     * e.g., G-XXXXXXXXXX
+     */
+    googleAnalyticsId?: string | null;
+    facebookPixelId?: string | null;
+    /**
+     * e.g., GTM-XXXXXXX
+     */
+    googleTagManagerId?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "group-settings_select".
  */
 export interface GroupSettingsSelect<T extends boolean = true> {
@@ -1602,6 +3301,630 @@ export interface GroupSettingsSelect<T extends boolean = true> {
   ogImage?: T;
   keywords?: T;
   keywordsAr?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  heroType?: T;
+  heroTitle?: T;
+  heroTitleAr?: T;
+  heroSubtitle?: T;
+  heroSubtitleAr?: T;
+  heroBackgroundImage?: T;
+  heroVideoUrl?: T;
+  heroSlides?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        titleAr?: T;
+        subtitle?: T;
+        subtitleAr?: T;
+        ctaButton?:
+          | T
+          | {
+              show?: T;
+              text?: T;
+              textAr?: T;
+              link?: T;
+            };
+        id?: T;
+      };
+  heroCTA?:
+    | T
+    | {
+        show?: T;
+        text?: T;
+        textAr?: T;
+        link?: T;
+      };
+  heroOverlay?: T;
+  heroHeight?: T;
+  sections?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              type?: T;
+              title?: T;
+              titleAr?: T;
+              subtitle?: T;
+              subtitleAr?: T;
+              backgroundImage?: T;
+              videoUrl?: T;
+              slides?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    titleAr?: T;
+                    id?: T;
+                  };
+              ctaButton?:
+                | T
+                | {
+                    show?: T;
+                    text?: T;
+                    textAr?: T;
+                    link?: T;
+                  };
+              overlay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'featured-products'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              products?: T;
+              limit?: T;
+              columns?: T;
+              showViewAll?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'categories-grid'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              categories?: T;
+              layout?: T;
+              columns?: T;
+              showProductCount?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'companies-showcase'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              subtitle?: T;
+              subtitleAr?: T;
+              companies?: T;
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              testimonials?: T;
+              limit?: T;
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              items?:
+                | T
+                | {
+                    value?: T;
+                    suffix?: T;
+                    label?: T;
+                    labelAr?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              backgroundColor?: T;
+              animate?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              description?: T;
+              descriptionAr?: T;
+              primaryButton?:
+                | T
+                | {
+                    text?: T;
+                    textAr?: T;
+                    link?: T;
+                  };
+              secondaryButton?:
+                | T
+                | {
+                    text?: T;
+                    textAr?: T;
+                    link?: T;
+                  };
+              backgroundImage?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        newsletter?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              description?: T;
+              descriptionAr?: T;
+              buttonText?: T;
+              buttonTextAr?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'text-content'?:
+          | T
+          | {
+              content?: T;
+              contentAr?: T;
+              alignment?: T;
+              maxWidth?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'image-gallery'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    captionAr?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              columns?: T;
+              lightbox?: T;
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              source?: T;
+              url?: T;
+              thumbnail?: T;
+              aspectRatio?: T;
+              autoplay?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              displayType?: T;
+              faqs?: T;
+              category?: T;
+              limit?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    titleAr?: T;
+                    description?: T;
+                    descriptionAr?: T;
+                    id?: T;
+                  };
+              columns?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        partners?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              partners?:
+                | T
+                | {
+                    name?: T;
+                    logo?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              grayscale?: T;
+              id?: T;
+              blockName?: T;
+            };
+        spacer?:
+          | T
+          | {
+              size?: T;
+              id?: T;
+              blockName?: T;
+            };
+        divider?:
+          | T
+          | {
+              style?: T;
+              width?: T;
+              spacing?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'contact-form'?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              description?: T;
+              descriptionAr?: T;
+              fields?: T;
+              submitButtonText?: T;
+              submitButtonTextAr?: T;
+              recipientEmail?: T;
+              id?: T;
+              blockName?: T;
+            };
+        timeline?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              items?:
+                | T
+                | {
+                    year?: T;
+                    title?: T;
+                    titleAr?: T;
+                    description?: T;
+                    descriptionAr?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              layout?: T;
+              id?: T;
+              blockName?: T;
+            };
+        map?:
+          | T
+          | {
+              title?: T;
+              titleAr?: T;
+              embedCode?: T;
+              height?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  showFeaturesBar?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        titleAr?: T;
+        description?: T;
+        descriptionAr?: T;
+        id?: T;
+      };
+  metaTitle?: T;
+  metaTitleAr?: T;
+  metaDescription?: T;
+  metaDescriptionAr?: T;
+  ogImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  showTopBar?: T;
+  topBarContent?:
+    | T
+    | {
+        message?: T;
+        messageAr?: T;
+        showContactInfo?: T;
+        phone?: T;
+        email?: T;
+        showLanguageSwitcher?: T;
+        showSocialIcons?: T;
+      };
+  menuItems?:
+    | T
+    | {
+        label?: T;
+        labelAr?: T;
+        type?: T;
+        link?: T;
+        openInNewTab?: T;
+        dropdownItems?:
+          | T
+          | {
+              label?: T;
+              labelAr?: T;
+              link?: T;
+              icon?: T;
+              description?: T;
+              descriptionAr?: T;
+              id?: T;
+            };
+        megaMenuColumns?:
+          | T
+          | {
+              heading?: T;
+              headingAr?: T;
+              items?:
+                | T
+                | {
+                    label?: T;
+                    labelAr?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              featuredImage?: T;
+              id?: T;
+            };
+        highlight?: T;
+        highlightText?: T;
+        id?: T;
+      };
+  showCTAButton?: T;
+  ctaButton?:
+    | T
+    | {
+        text?: T;
+        textAr?: T;
+        link?: T;
+        style?: T;
+      };
+  sticky?: T;
+  transparent?: T;
+  showSearch?: T;
+  showCart?: T;
+  showAccount?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  showFeaturesBar?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        titleAr?: T;
+        description?: T;
+        descriptionAr?: T;
+        id?: T;
+      };
+  columns?:
+    | T
+    | {
+        heading?: T;
+        headingAr?: T;
+        type?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              labelAr?: T;
+              link?: T;
+              openInNewTab?: T;
+              id?: T;
+            };
+        contactInfo?:
+          | T
+          | {
+              address?: T;
+              addressAr?: T;
+              phone?: T;
+              email?: T;
+              workingHours?: T;
+              workingHoursAr?: T;
+            };
+        textContent?:
+          | T
+          | {
+              text?: T;
+              textAr?: T;
+            };
+        id?: T;
+      };
+  showNewsletter?: T;
+  newsletter?:
+    | T
+    | {
+        title?: T;
+        titleAr?: T;
+        description?: T;
+        descriptionAr?: T;
+        buttonText?: T;
+        buttonTextAr?: T;
+      };
+  showSocialLinks?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  copyrightText?: T;
+  copyrightTextAr?: T;
+  legalLinks?:
+    | T
+    | {
+        label?: T;
+        labelAr?: T;
+        link?: T;
+        id?: T;
+      };
+  paymentMethods?:
+    | T
+    | {
+        name?: T;
+        icon?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  showBackToTop?: T;
+  showLogo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteName?: T;
+  siteNameAr?: T;
+  tagline?: T;
+  taglineAr?: T;
+  logo?: T;
+  logoDark?: T;
+  favicon?: T;
+  defaultLocale?: T;
+  maintenanceMode?: T;
+  maintenanceMessage?:
+    | T
+    | {
+        title?: T;
+        titleAr?: T;
+        message?: T;
+        messageAr?: T;
+      };
+  maintenanceAllowedIPs?:
+    | T
+    | {
+        ip?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        enableReviews?: T;
+        enableWishlist?: T;
+        enableCompare?: T;
+        enableQuickView?: T;
+        enableGuestCheckout?: T;
+        enableAIChat?: T;
+        enableNewsletter?: T;
+      };
+  currency?:
+    | T
+    | {
+        code?: T;
+        symbol?: T;
+        symbolPosition?: T;
+        decimalPlaces?: T;
+      };
+  tax?:
+    | T
+    | {
+        enableTax?: T;
+        taxRate?: T;
+        taxIncludedInPrice?: T;
+      };
+  stock?:
+    | T
+    | {
+        lowStockThreshold?: T;
+        outOfStockVisibility?: T;
+        allowBackorders?: T;
+      };
+  shipping?:
+    | T
+    | {
+        freeShippingThreshold?: T;
+        defaultShippingCost?: T;
+        estimatedDeliveryDays?:
+          | T
+          | {
+              min?: T;
+              max?: T;
+            };
+      };
+  shippingZones?:
+    | T
+    | {
+        name?: T;
+        nameAr?: T;
+        governorates?: T;
+        cost?: T;
+        freeAbove?: T;
+        id?: T;
+      };
+  notifications?:
+    | T
+    | {
+        adminEmail?: T;
+        orderConfirmation?: T;
+        shippingNotification?: T;
+        lowStockAlert?: T;
+      };
+  analytics?:
+    | T
+    | {
+        googleAnalyticsId?: T;
+        facebookPixelId?: T;
+        googleTagManagerId?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

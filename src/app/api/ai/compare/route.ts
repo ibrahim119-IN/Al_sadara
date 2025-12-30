@@ -55,7 +55,6 @@ export async function POST(request: NextRequest) {
     const result = await executeCompareProducts({
       productIds,
       aspects,
-      locale,
     })
 
     if (!result.success) {

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { beforeKnowledgeChange } from './hooks/knowledge-indexing-hooks'
 
 export const KnowledgeBase: CollectionConfig = {
   slug: 'knowledge-base',
@@ -26,6 +27,9 @@ export const KnowledgeBase: CollectionConfig = {
       // Only admins can delete knowledge base entries
       return user?.collection === 'users'
     },
+  },
+  hooks: {
+    beforeChange: [beforeKnowledgeChange],
   },
   fields: [
     {

@@ -129,9 +129,10 @@ export function BudgetSolution({
         <div className="divide-y divide-gray-200">
           {items.map((item, index) => {
             const name = locale === 'ar' ? item.product.nameAr : item.product.name
+            const firstImage = item.product.images?.[0]
             const imageUrl =
-              typeof item.product.images?.[0] === 'object' && item.product.images[0]?.url
-                ? item.product.images[0].url
+              typeof firstImage === 'object' && typeof firstImage?.image === 'object' && firstImage?.image?.url
+                ? firstImage.image.url
                 : '/placeholder-product.jpg'
 
             return (

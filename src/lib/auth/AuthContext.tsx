@@ -2,7 +2,10 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, useMemo, type ReactNode } from 'react'
 
-// Customer type from Payload
+// User roles for admin dashboard
+export type UserRole = 'super-admin' | 'admin' | 'manager' | 'staff'
+
+// Customer type from Payload (Customers collection)
 export interface Customer {
   id: number
   email: string
@@ -25,6 +28,21 @@ export interface Customer {
   updatedAt: string
 }
 
+// Admin user type from Payload (Users collection)
+export interface AdminUser {
+  id: number
+  email: string
+  name: string
+  role: UserRole
+  createdAt: string
+  updatedAt: string
+}
+
+// Union type for authenticated user
+export type AuthenticatedUser =
+  | (Customer & { userType: 'customer' })
+  | (AdminUser & { userType: 'admin' })
+
 export interface RegisterData {
   email: string
   password: string
@@ -43,22 +61,37 @@ export interface UpdateProfileData {
   addresses?: Customer['addresses']
 }
 
+// Login result with redirect info
+export interface LoginResult {
+  success: boolean
+  userType: 'customer' | 'admin'
+  redirectTo: string
+  user: AuthenticatedUser
+}
+
 interface AuthContextType {
-  customer: Customer | null
+  user: AuthenticatedUser | null
+  customer: Customer | null // Backwards compatibility
   isAuthenticated: boolean
   isLoading: boolean
   error: string | null
-  login: (email: string, password: string) => Promise<void>
+  userType: 'customer' | 'admin' | null
+  role: UserRole | null // For admin users
+  login: (email: string, password: string) => Promise<LoginResult>
   register: (data: RegisterData) => Promise<void>
   logout: () => Promise<void>
   updateProfile: (data: UpdateProfileData) => Promise<void>
   clearError: () => void
   refetch: () => Promise<void>
+  // Helper methods
+  isAdmin: () => boolean
+  hasRole: (roles: UserRole[]) => boolean
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
 
 const TOKEN_KEY = 'alsadara_auth_token'
+const USER_TYPE_KEY = 'alsadara_user_type'
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || ''
 
 interface AuthProviderProps {
@@ -66,7 +99,7 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [customer, setCustomer] = useState<Customer | null>(null)
+  const [user, setUser] = useState<AuthenticatedUser | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -78,31 +111,47 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return null
   }, [])
 
-  // Save token to localStorage
-  const saveToken = useCallback((token: string) => {
+  // Get user type from localStorage
+  const getUserType = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(USER_TYPE_KEY) as 'customer' | 'admin' | null
+    }
+    return null
+  }, [])
+
+  // Save token and user type to localStorage
+  const saveAuth = useCallback((token: string, userType: 'customer' | 'admin') => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(TOKEN_KEY, token)
+      localStorage.setItem(USER_TYPE_KEY, userType)
     }
   }, [])
 
-  // Clear token from localStorage
-  const clearToken = useCallback(() => {
+  // Clear auth from localStorage
+  const clearAuth = useCallback(() => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem(TOKEN_KEY)
+      localStorage.removeItem(USER_TYPE_KEY)
     }
   }, [])
 
-  // Fetch current customer data
+  // Fetch current user data based on user type
   const fetchMe = useCallback(async () => {
     const token = getToken()
-    if (!token) {
-      setCustomer(null)
+    const userType = getUserType()
+
+    if (!token || !userType) {
+      setUser(null)
       setIsLoading(false)
       return
     }
 
     try {
-      const response = await fetch(`${API_BASE}/api/customers/me`, {
+      const endpoint = userType === 'customer'
+        ? `${API_BASE}/api/customers/me`
+        : `${API_BASE}/api/users/me`
+
+      const response = await fetch(endpoint, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -113,26 +162,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (!response.ok) {
         if (response.status === 401) {
-          // Token expired or invalid
-          clearToken()
-          setCustomer(null)
+          clearAuth()
+          setUser(null)
           return
         }
-        throw new Error('Failed to fetch customer data')
+        throw new Error('Failed to fetch user data')
       }
 
       const data = await response.json()
-      setCustomer(data.user || data)
+      const userData = data.user || data
+
+      setUser({ ...userData, userType })
     } catch (err) {
       console.error('fetchMe error:', err)
-      clearToken()
-      setCustomer(null)
+      clearAuth()
+      setUser(null)
     } finally {
       setIsLoading(false)
     }
-  }, [getToken, clearToken])
+  }, [getToken, getUserType, clearAuth])
 
-  // Auto-fetch customer on mount
+  // Auto-fetch user on mount
   useEffect(() => {
     fetchMe()
   }, [fetchMe])
@@ -148,58 +198,92 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const guestCart = JSON.parse(guestCartStr)
       if (!Array.isArray(guestCart) || guestCart.length === 0) return
 
-      // Trigger a custom event to notify CartContext about the migration
       window.dispatchEvent(new CustomEvent('cart-migrate', { detail: { items: guestCart } }))
-
-      // Clear guest cart from localStorage after migration
       localStorage.removeItem('alsadara_cart')
     } catch (error) {
       console.error('Error migrating guest cart:', error)
     }
   }, [])
 
-  // Login
-  const login = useCallback(async (email: string, password: string) => {
+  // Unified Login - tries customers first, then users
+  const login = useCallback(async (email: string, password: string): Promise<LoginResult> => {
     setIsLoading(true)
     setError(null)
 
+    // Try customer login first
     try {
-      const response = await fetch(`${API_BASE}/api/customers/login`, {
+      const customerResponse = await fetch(`${API_BASE}/api/customers/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ email, password }),
       })
 
-      const data = await response.json()
+      if (customerResponse.ok) {
+        const data = await customerResponse.json()
 
-      if (!response.ok) {
-        throw new Error(data.message || data.errors?.[0]?.message || 'Login failed')
+        if (data.token) {
+          saveAuth(data.token, 'customer')
+        }
+
+        const customerUser: AuthenticatedUser = { ...data.user, userType: 'customer' }
+        setUser(customerUser)
+        setError(null)
+        migrateGuestCart()
+        setIsLoading(false)
+
+        return {
+          success: true,
+          userType: 'customer',
+          redirectTo: '/account',
+          user: customerUser,
+        }
+      }
+    } catch {
+      // Customer login failed, try admin login
+    }
+
+    // Try admin/user login
+    try {
+      const userResponse = await fetch(`${API_BASE}/api/users/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password }),
+      })
+
+      if (userResponse.ok) {
+        const data = await userResponse.json()
+
+        if (data.token) {
+          saveAuth(data.token, 'admin')
+        }
+
+        const adminUser: AuthenticatedUser = { ...data.user, userType: 'admin' }
+        setUser(adminUser)
+        setError(null)
+        setIsLoading(false)
+
+        return {
+          success: true,
+          userType: 'admin',
+          redirectTo: '/dashboard',
+          user: adminUser,
+        }
       }
 
-      // Save token
-      if (data.token) {
-        saveToken(data.token)
-      }
-
-      // Set customer data
-      setCustomer(data.user)
-      setError(null)
-
-      // Migrate guest cart to authenticated user
-      migrateGuestCart()
+      // Both failed
+      const errorData = await userResponse.json()
+      throw new Error(errorData.message || errorData.errors?.[0]?.message || 'Invalid email or password')
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Login failed'
       setError(errorMessage)
-      throw err
-    } finally {
       setIsLoading(false)
+      throw err
     }
-  }, [saveToken, migrateGuestCart])
+  }, [saveAuth, migrateGuestCart])
 
-  // Register
+  // Register (customers only)
   const register = useCallback(async (data: RegisterData) => {
     setIsLoading(true)
     setError(null)
@@ -207,9 +291,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const response = await fetch(`${API_BASE}/api/customers`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({
           ...data,
@@ -238,11 +320,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const logout = useCallback(async () => {
     setIsLoading(true)
     const token = getToken()
+    const userType = getUserType()
 
     try {
-      // Call logout endpoint if we have a token
       if (token) {
-        await fetch(`${API_BASE}/api/customers/logout`, {
+        const endpoint = userType === 'customer'
+          ? `${API_BASE}/api/customers/logout`
+          : `${API_BASE}/api/users/logout`
+
+        await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -254,26 +340,25 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } catch (err) {
       console.error('Logout error:', err)
     } finally {
-      // Clear local state regardless of API result
-      clearToken()
-      setCustomer(null)
+      clearAuth()
+      setUser(null)
       setError(null)
       setIsLoading(false)
     }
-  }, [getToken, clearToken])
+  }, [getToken, getUserType, clearAuth])
 
-  // Update profile
+  // Update profile (customers only)
   const updateProfile = useCallback(async (data: UpdateProfileData) => {
     const token = getToken()
-    if (!token || !customer) {
-      throw new Error('Not authenticated')
+    if (!token || !user || user.userType !== 'customer') {
+      throw new Error('Not authenticated as customer')
     }
 
     setIsLoading(true)
     setError(null)
 
     try {
-      const response = await fetch(`${API_BASE}/api/customers/${customer.id}`, {
+      const response = await fetch(`${API_BASE}/api/customers/${user.id}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -289,8 +374,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         throw new Error(result.message || result.errors?.[0]?.message || 'Update failed')
       }
 
-      // Update local customer data
-      setCustomer(result.doc || result)
+      const updatedUser = result.doc || result
+      setUser({ ...updatedUser, userType: 'customer' })
       setError(null)
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Update failed'
@@ -299,33 +384,58 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } finally {
       setIsLoading(false)
     }
-  }, [getToken, customer])
+  }, [getToken, user])
 
   // Clear error
   const clearError = useCallback(() => {
     setError(null)
   }, [])
 
-  // Refetch customer data
+  // Refetch user data
   const refetch = useCallback(async () => {
     setIsLoading(true)
     await fetchMe()
   }, [fetchMe])
 
+  // Helper: Check if user is admin
+  const isAdmin = useCallback(() => {
+    return user?.userType === 'admin'
+  }, [user])
+
+  // Helper: Check if user has specific role(s)
+  const hasRole = useCallback((roles: UserRole[]) => {
+    if (!user || user.userType !== 'admin') return false
+    return roles.includes(user.role)
+  }, [user])
+
+  // Backwards compatibility: customer property
+  const customer = useMemo(() => {
+    if (user?.userType === 'customer') {
+      const { userType, ...customerData } = user
+      return customerData as Customer
+    }
+    return null
+  }, [user])
+
   const value = useMemo(
     () => ({
-      customer,
-      isAuthenticated: !!customer,
+      user,
+      customer, // Backwards compatibility
+      isAuthenticated: !!user,
       isLoading,
       error,
+      userType: user?.userType || null,
+      role: user?.userType === 'admin' ? user.role : null,
       login,
       register,
       logout,
       updateProfile,
       clearError,
       refetch,
+      isAdmin,
+      hasRole,
     }),
-    [customer, isLoading, error, login, register, logout, updateProfile, clearError, refetch]
+    [user, customer, isLoading, error, login, register, logout, updateProfile, clearError, refetch, isAdmin, hasRole]
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

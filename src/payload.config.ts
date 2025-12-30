@@ -23,8 +23,18 @@ import { AIMessages } from './collections/AIMessages'
 import { ProductEmbeddings } from './collections/ProductEmbeddings'
 import { KnowledgeBase } from './collections/KnowledgeBase'
 
+// Content Collections (Phase 2)
+import { Pages } from './collections/Pages'
+import { Banners } from './collections/Banners'
+import { Testimonials } from './collections/Testimonials'
+import { FAQs } from './collections/FAQs'
+
 // Globals
 import { GroupSettings } from './globals/GroupSettings'
+import { Homepage } from './globals/Homepage'
+import { Navigation } from './globals/Navigation'
+import { Footer } from './globals/Footer'
+import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -55,9 +65,18 @@ export default buildConfig({
     AIMessages,
     ProductEmbeddings,
     KnowledgeBase,
+    // Content Collections (Phase 2)
+    Pages,
+    Banners,
+    Testimonials,
+    FAQs,
   ],
   globals: [
     GroupSettings,
+    Homepage,
+    Navigation,
+    Footer,
+    SiteSettings,
   ],
   editor: lexicalEditor(),
   secret: (() => {

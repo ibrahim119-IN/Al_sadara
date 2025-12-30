@@ -47,8 +47,15 @@ export default function CompaniesGridSection({ locale }: CompaniesGridSectionPro
   const t = content[locale]
 
   return (
-    <section ref={sectionRef} className="section bg-white">
-      <div className="container-wide">
+    <section ref={sectionRef} className="section bg-gradient-to-br from-secondary-50 via-white to-secondary-100/50 relative overflow-hidden">
+      {/* More visible decorative blobs */}
+      <div className="absolute top-0 end-0 w-[500px] h-[500px] bg-primary-400/20 rounded-full blur-3xl -translate-y-1/4 translate-x-1/4" aria-hidden="true" />
+      <div className="absolute bottom-0 start-0 w-[400px] h-[400px] bg-accent-400/15 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4" aria-hidden="true" />
+
+      {/* Top decorative line */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" aria-hidden="true" />
+
+      <div className="container-xl relative z-10">
         {/* Section Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${

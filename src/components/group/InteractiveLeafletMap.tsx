@@ -232,10 +232,15 @@ export default function InteractiveLeafletMap({ locale }: InteractiveLeafletMapP
 
   return (
     <section
-      className="py-20 bg-white relative overflow-hidden"
+      className="section bg-gradient-to-br from-sky-50/80 via-blue-50/40 to-cyan-50/60 relative overflow-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-4">
+      {/* Stronger decorative elements */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-sky-400 to-transparent" aria-hidden="true" />
+      <div className="absolute top-0 start-0 w-[500px] h-[500px] bg-sky-300/20 rounded-full blur-3xl -translate-y-1/4 -translate-x-1/4 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 end-0 w-[400px] h-[400px] bg-blue-300/15 rounded-full blur-3xl translate-y-1/4 translate-x-1/4 pointer-events-none" aria-hidden="true" />
+
+      <div className="container-xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
@@ -248,7 +253,7 @@ export default function InteractiveLeafletMap({ locale }: InteractiveLeafletMapP
         </div>
 
         {/* Map Container */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-sky-200 ring-4 ring-sky-100/50">
           {/* Loading Placeholder */}
           {!isMapLoaded && (
             <div className="absolute inset-0 bg-gray-100 flex items-center justify-center z-10">
@@ -315,7 +320,7 @@ export default function InteractiveLeafletMap({ locale }: InteractiveLeafletMapP
             return (
               <div
                 key={country}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 border border-gray-100"
+                className="bg-white rounded-xl p-6 border-2 border-sky-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <span className="text-4xl">{countryFlags[country]}</span>

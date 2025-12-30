@@ -328,12 +328,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <div className="space-y-4 mb-8">
                   <AddToCartButton
                     product={{
-                      id: product.id,
+                      id: String(product.id),
                       name: product.name,
-                      nameAr: product.nameAr,
+                      nameAr: product.nameAr || '',
+                      slug: product.slug,
                       price: product.price,
-                      image: product.images?.[0]?.image?.url,
-                      stock: product.stock,
+                      images: product.images?.map((img: { image: { url?: string } | number; alt?: string | null }) => ({
+                        image: { url: typeof img.image === 'object' ? img.image?.url || '' : '' },
+                        alt: img.alt || undefined,
+                      })),
+                      stock: product.stock ?? 0,
                     }}
                     label={dict.common.addToCart}
                     disabled={stockStatus === 'out'}

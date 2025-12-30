@@ -1,23 +1,34 @@
-import { GoogleGenerativeAI, type GenerativeModel, type ChatSession } from '@google/generative-ai'
+/**
+ * Legacy Gemini Client - Redirects to New SDK
+ *
+ * This file provides backward compatibility for code that uses the old GeminiClient class.
+ * It now uses the new @google/genai SDK internally.
+ *
+ * For new code, please use:
+ * - import { getGeminiClient, generateEmbedding, streamChatResponse } from '@/lib/gemini'
+ */
+
+import {
+  getGeminiClient as getNewGeminiClient,
+  generateEmbedding as newGenerateEmbedding,
+  streamChatResponse,
+  generateChatResponse,
+  MODELS,
+  isGeminiConfigured,
+} from '@/lib/gemini'
+import type { ChatMessage, ChatOptions, StreamChunk } from '@/lib/gemini'
 import type {
   Message,
   FunctionDeclaration,
   GeminiChatOptions,
   GeminiStreamChunk,
   EmbeddingVector,
-  GeminiAPIError,
 } from '../types'
 
 /**
- * Gemini API Client
- * Handles all interactions with Google's Gemini API including:
- * - Chat completion with streaming
- * - Function calling
- * - Embeddings generation
- * - Error handling and retry logic
+ * @deprecated Use the new Gemini SDK from '@/lib/gemini' instead
  */
 export class GeminiClient {
-  private genAI: GoogleGenerativeAI
   private model: string
   private embeddingModel: string
   private temperature: number
@@ -29,58 +40,15 @@ export class GeminiClient {
       throw new Error('GEMINI_API_KEY environment variable is required')
     }
 
-    this.genAI = new GoogleGenerativeAI(apiKey)
-    this.model = process.env.GEMINI_MODEL || 'gemini-1.5-pro'
-    this.embeddingModel = process.env.GEMINI_EMBEDDING_MODEL || 'text-embedding-004'
+    this.model = MODELS.CHAT
+    this.embeddingModel = MODELS.EMBEDDING
     this.temperature = parseFloat(process.env.GEMINI_TEMPERATURE || '0.7')
     this.maxTokens = parseInt(process.env.GEMINI_MAX_TOKENS || '2048')
   }
 
   /**
-   * Initialize a chat session with message history
-   */
-  private createChatSession(
-    history: Message[],
-    functions?: FunctionDeclaration[],
-    options?: GeminiChatOptions,
-    systemInstruction?: string
-  ): ChatSession {
-    const model = this.genAI.getGenerativeModel({
-      model: this.model,
-      systemInstruction: systemInstruction,
-      generationConfig: {
-        temperature: options?.temperature ?? this.temperature,
-        maxOutputTokens: options?.maxOutputTokens ?? this.maxTokens,
-        topK: options?.topK,
-        topP: options?.topP,
-        stopSequences: options?.stopSequences,
-      },
-      tools: functions
-        ? [
-            {
-              functionDeclarations: functions,
-            },
-          ]
-        : undefined,
-    })
-
-    // Convert our message format to Gemini format
-    // Filter out system messages as they're handled by systemInstruction
-    const geminiHistory = history
-      .slice(0, -1)
-      .filter((msg) => msg.role !== 'system')
-      .map((msg) => ({
-        role: msg.role === 'assistant' ? 'model' : msg.role,
-        parts: [{ text: msg.content }],
-      }))
-
-    return model.startChat({
-      history: geminiHistory,
-    })
-  }
-
-  /**
    * Send a chat message and get streaming response
+   * @deprecated Use streamChatResponse from '@/lib/gemini' instead
    */
   async *chatStream(
     messages: Message[],
@@ -99,33 +67,28 @@ export class GeminiClient {
         systemInstruction = systemMessage?.content
       }
 
-      // Filter out system messages
-      const filteredMessages = messages.filter((msg) => msg.role !== 'system')
+      // Convert message format
+      const chatMessages: ChatMessage[] = messages
+        .filter((msg) => msg.role !== 'system')
+        .map((msg) => ({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          content: msg.content,
+        }))
 
-      const chat = this.createChatSession(
-        filteredMessages.slice(0, -1),
-        functions,
-        options,
-        systemInstruction
-      )
-      const lastMessage = filteredMessages[filteredMessages.length - 1]
+      const generator = streamChatResponse(chatMessages, {
+        systemPrompt: systemInstruction,
+        enableFunctions: !!functions,
+      })
 
-      const result = await chat.sendMessageStream(lastMessage.content)
-
-      for await (const chunk of result.stream) {
-        const text = chunk.text()
-        const functionCalls = chunk.functionCalls()
-
-        if (text) {
+      for await (const chunk of generator) {
+        if (chunk.type === 'text' && typeof chunk.data === 'string') {
           yield {
-            text,
-            metadata: {
-              model: this.model,
-            },
+            text: chunk.data,
+            metadata: { model: this.model },
           }
         }
-
-        if (functionCalls && functionCalls.length > 0) {
+        if (chunk.type === 'function_call') {
+          const functionCalls = Array.isArray(chunk.data) ? chunk.data : [chunk.data]
           yield {
             functionCalls: functionCalls.map((fc) => ({
               name: fc.name,
@@ -135,17 +98,11 @@ export class GeminiClient {
         }
       }
 
-      // Get final response with finish reason
-      const response = await result.response
-      const finishReason = response.candidates?.[0]?.finishReason
-
       yield {
-        finishReason: finishReason as any,
-        metadata: {
-          model: this.model,
-        },
+        finishReason: 'STOP',
+        metadata: { model: this.model },
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('[GeminiClient] Chat stream error:', error)
       throw this.handleError(error)
     }
@@ -153,6 +110,7 @@ export class GeminiClient {
 
   /**
    * Send a chat message and get complete response (non-streaming)
+   * @deprecated Use generateChatResponse from '@/lib/gemini' instead
    */
   async chat(
     messages: Message[],
@@ -161,8 +119,8 @@ export class GeminiClient {
     systemInstruction?: string
   ): Promise<{
     content: string
-    functionCalls?: any[]
-    metadata?: Record<string, any>
+    functionCalls?: Array<{ name: string; arguments: unknown }>
+    metadata?: Record<string, unknown>
   }> {
     try {
       if (messages.length === 0) {
@@ -175,29 +133,31 @@ export class GeminiClient {
         systemInstruction = systemMessage?.content
       }
 
-      // Filter out system messages
-      const filteredMessages = messages.filter((msg) => msg.role !== 'system')
+      // Convert message format
+      const chatMessages: ChatMessage[] = messages
+        .filter((msg) => msg.role !== 'system')
+        .map((msg) => ({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          content: msg.content,
+        }))
 
-      const chat = this.createChatSession(
-        filteredMessages.slice(0, -1),
-        functions,
-        options,
-        systemInstruction
-      )
-      const lastMessage = filteredMessages[filteredMessages.length - 1]
-
-      const result = await chat.sendMessage(lastMessage.content)
-      const response = result.response
+      const response = await generateChatResponse(chatMessages, {
+        systemPrompt: systemInstruction,
+        enableFunctions: !!functions,
+      })
 
       return {
-        content: response.text(),
-        functionCalls: response.functionCalls(),
+        content: response.text,
+        functionCalls: response.functionCalls?.map((fc) => ({
+          name: fc.name,
+          arguments: fc.args,
+        })),
         metadata: {
           model: this.model,
-          finishReason: response.candidates?.[0]?.finishReason,
+          finishReason: 'STOP',
         },
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('[GeminiClient] Chat error:', error)
       throw this.handleError(error)
     }
@@ -205,6 +165,7 @@ export class GeminiClient {
 
   /**
    * Generate embeddings for text
+   * @deprecated Use generateEmbedding from '@/lib/gemini' instead
    */
   async generateEmbedding(text: string): Promise<EmbeddingVector> {
     try {
@@ -212,18 +173,13 @@ export class GeminiClient {
         throw new Error('Text cannot be empty for embedding generation')
       }
 
-      const model = this.genAI.getGenerativeModel({
-        model: this.embeddingModel,
-      })
-
-      const result = await model.embedContent(text)
-      const values = result.embedding.values
+      const values = await newGenerateEmbedding(text)
 
       return {
         values,
         dimension: values.length,
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('[GeminiClient] Embedding generation error:', error)
       throw this.handleError(error)
     }
@@ -231,6 +187,7 @@ export class GeminiClient {
 
   /**
    * Generate embeddings for multiple texts in batch
+   * @deprecated Use generateBatchEmbeddings from '@/lib/gemini' instead
    */
   async generateEmbeddingsBatch(texts: string[]): Promise<EmbeddingVector[]> {
     try {
@@ -238,23 +195,15 @@ export class GeminiClient {
         return []
       }
 
-      // Process in batches to avoid rate limits
-      const batchSize = 10
       const results: EmbeddingVector[] = []
 
-      for (let i = 0; i < texts.length; i += batchSize) {
-        const batch = texts.slice(i, i + batchSize)
-        const batchResults = await Promise.all(batch.map((text) => this.generateEmbedding(text)))
-        results.push(...batchResults)
-
-        // Small delay between batches to avoid rate limiting
-        if (i + batchSize < texts.length) {
-          await new Promise((resolve) => setTimeout(resolve, 1000))
-        }
+      for (const text of texts) {
+        const embedding = await this.generateEmbedding(text)
+        results.push(embedding)
       }
 
       return results
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('[GeminiClient] Batch embedding generation error:', error)
       throw this.handleError(error)
     }
@@ -263,33 +212,30 @@ export class GeminiClient {
   /**
    * Handle and transform Gemini API errors
    */
-  private handleError(error: any): Error {
-    // Check if it's already our custom error
-    if (error.name === 'GeminiAPIError') {
-      return error
+  private handleError(error: unknown): Error {
+    if (error instanceof Error) {
+      if (error.name === 'GeminiAPIError') {
+        return error
+      }
+
+      const message = error.message || 'Unknown Gemini API error'
+
+      if (message.includes('quota') || message.includes('rate limit')) {
+        return new Error(`Gemini API rate limit exceeded: ${message}`)
+      }
+
+      if (message.includes('API key') || message.includes('unauthorized')) {
+        return new Error(`Gemini API authentication failed: ${message}`)
+      }
+
+      if (message.includes('safety') || message.includes('blocked')) {
+        return new Error(`Content blocked by safety filters: ${message}`)
+      }
+
+      return new Error(`Gemini API error: ${message}`)
     }
 
-    // Transform Gemini API errors
-    const message = error?.message || 'Unknown Gemini API error'
-    const code = error?.status || error?.code || 'UNKNOWN'
-
-    // Rate limiting
-    if (code === 429 || message.includes('quota') || message.includes('rate limit')) {
-      return new Error(`Gemini API rate limit exceeded: ${message}`)
-    }
-
-    // Authentication errors
-    if (code === 401 || code === 403 || message.includes('API key')) {
-      return new Error(`Gemini API authentication failed: ${message}`)
-    }
-
-    // Safety/content filtering
-    if (message.includes('safety') || message.includes('blocked')) {
-      return new Error(`Content blocked by safety filters: ${message}`)
-    }
-
-    // Generic API error
-    return new Error(`Gemini API error: ${message}`)
+    return new Error('Unknown Gemini API error')
   }
 
   /**
@@ -297,12 +243,7 @@ export class GeminiClient {
    */
   async testConnection(): Promise<boolean> {
     try {
-      await this.chat([
-        {
-          role: 'user',
-          content: 'Hello',
-        },
-      ])
+      await this.chat([{ role: 'user', content: 'Hello' }])
       return true
     } catch (error) {
       console.error('[GeminiClient] Connection test failed:', error)
@@ -328,6 +269,7 @@ let geminiClientInstance: GeminiClient | null = null
 
 /**
  * Get or create the Gemini client instance
+ * @deprecated Use getGeminiClient from '@/lib/gemini' instead
  */
 export function getGeminiClient(): GeminiClient {
   if (!geminiClientInstance) {

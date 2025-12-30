@@ -22,9 +22,10 @@ export function AIProductCard({ product, locale, onAddToCart, similarity }: AIPr
   const description = locale === 'ar' ? product.descriptionAr : product.description
 
   // Get first image
+  const firstImage = product.images?.[0]
   const imageUrl =
-    typeof product.images?.[0] === 'object' && product.images[0]?.url
-      ? product.images[0].url
+    typeof firstImage === 'object' && typeof firstImage?.image === 'object' && firstImage?.image?.url
+      ? firstImage.image.url
       : '/placeholder-product.jpg'
 
   // Format price

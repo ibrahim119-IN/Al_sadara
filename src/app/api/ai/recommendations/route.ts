@@ -43,7 +43,6 @@ export async function POST(request: NextRequest) {
       category,
       budget,
       limit,
-      locale,
     })
 
     if (!result.success) {

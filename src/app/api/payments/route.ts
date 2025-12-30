@@ -33,7 +33,6 @@ export async function POST(request: NextRequest) {
       orderId,
       provider,
       method,
-      customerId,
       returnUrl,
       cancelUrl,
     } = body
@@ -64,7 +63,7 @@ export async function POST(request: NextRequest) {
     // Get customer details
     const customer = typeof order.customer === 'object'
       ? order.customer
-      : await payload.findByID({ collection: 'customers', id: order.customer as string })
+      : await payload.findByID({ collection: 'customers', id: order.customer as number })
 
     if (!customer) {
       return NextResponse.json(
@@ -73,46 +72,41 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Build payment request
-    const items = (order.items as Array<{
-      product: { id: string; name?: string; nameAr?: string } | string
-      quantity: number
-      unitPrice: number
-      totalPrice: number
-    }>).map((item, index) => {
-      const product = typeof item.product === 'object' ? item.product : { id: item.product }
+    // Build payment request items
+    const items = order.items.map((item, index) => {
+      const product = typeof item.product === 'object' ? item.product : null
       return {
-        id: product.id || `item-${index}`,
-        name: (product as { name?: string }).name || `Product ${index + 1}`,
-        nameAr: (product as { nameAr?: string }).nameAr,
+        id: String(product?.id || `item-${index}`),
+        name: product?.name || `Product ${index + 1}`,
+        nameAr: product?.nameAr,
         quantity: item.quantity,
-        unitPrice: item.unitPrice,
-        totalPrice: item.totalPrice,
+        unitPrice: item.priceAtTime,
+        totalPrice: item.subtotal,
       }
     })
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
+    // Build address from shipping address
+    const shippingAddr = order.shippingAddress
+    const paymentAddress = {
+      street: shippingAddr?.address || '',
+      city: shippingAddr?.city || '',
+      state: shippingAddr?.governorate,
+      country: 'Egypt',
+    }
+
     const paymentResult = await createPayment(provider as PaymentProvider, {
-      orderId: order.id,
-      amount: order.total as number,
+      orderId: String(order.id),
+      amount: order.total,
       currency: 'EGP',
       customer: {
-        id: customer.id,
-        email: customer.email as string,
-        firstName: (customer.name as string)?.split(' ')[0] || 'Customer',
-        lastName: (customer.name as string)?.split(' ').slice(1).join(' ') || '',
-        phone: customer.phone as string || '',
-        address: order.shippingAddress as {
-          street: string
-          building?: string
-          floor?: string
-          apartment?: string
-          city: string
-          state?: string
-          country: string
-          postalCode?: string
-        },
+        id: String(customer.id),
+        email: customer.email,
+        firstName: customer.firstName || 'Customer',
+        lastName: customer.lastName || '',
+        phone: customer.phone || '',
+        address: paymentAddress,
       },
       items,
       method: method as PaymentMethod,
@@ -122,16 +116,18 @@ export async function POST(request: NextRequest) {
     })
 
     if (paymentResult.success) {
-      // Update order with payment info
+      // Update order with payment info (using nested payment group)
       await payload.update({
         collection: 'orders',
         id: orderId,
         data: {
-          paymentProvider: provider,
-          paymentMethod: method,
-          paymentStatus: 'pending',
-          paymentTransactionId: paymentResult.transactionId,
-          paymentReferenceNumber: paymentResult.referenceNumber,
+          payment: {
+            provider: provider as 'paymob' | 'fawry' | 'cash_on_delivery',
+            method: method as 'card' | 'wallet' | 'kiosk' | 'bank_transfer' | 'cash',
+            status: 'pending',
+            transactionId: paymentResult.transactionId,
+            referenceNumber: paymentResult.referenceNumber,
+          },
         },
       })
     }

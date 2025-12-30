@@ -31,10 +31,10 @@ export async function POST(request: NextRequest) {
 
       console.log('[EmbeddingsAPI] Indexing complete:', result)
 
+      const responseData = typeof result === 'object' ? { ...result, success: true } : { data: result, success: true }
       return NextResponse.json({
-        success: true,
         message: 'تم فهرسة جميع المنتجات بنجاح',
-        ...result,
+        ...responseData,
       })
     } else if (action === 'index_one') {
       if (!productId) {
@@ -53,10 +53,10 @@ export async function POST(request: NextRequest) {
 
       console.log('[EmbeddingsAPI] Product indexed:', result)
 
+      const responseData = typeof result === 'object' ? { ...result, success: true } : { data: result, success: true }
       return NextResponse.json({
-        success: true,
         message: 'تم فهرسة المنتج بنجاح',
-        ...result,
+        ...responseData,
       })
     } else {
       return NextResponse.json(

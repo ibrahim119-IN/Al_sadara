@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Building2, Globe2, Users, Award, TrendingUp, Package } from 'lucide-react'
+import { AnimatedCounterCSS, parseStatValue } from '@/components/animations'
 
 interface GroupStatsSectionProps {
   locale: 'ar' | 'en'
@@ -49,8 +50,16 @@ export default function GroupStatsSection({ locale }: GroupStatsSectionProps) {
       ]
 
   return (
-    <section ref={sectionRef} className="section bg-gradient-to-br from-secondary-50 to-primary-50">
-      <div className="container-wide">
+    <section ref={sectionRef} className="section bg-gradient-to-br from-primary-100/80 via-white to-amber-50/60 relative overflow-hidden">
+      {/* Stronger decorative elements */}
+      <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-400" aria-hidden="true" />
+      <div className="absolute bottom-0 inset-x-0 h-1.5 bg-gradient-to-r from-accent-400 via-accent-500 to-accent-400" aria-hidden="true" />
+
+      {/* Side decorative accents */}
+      <div className="absolute top-1/2 -translate-y-1/2 start-0 w-32 h-64 bg-gradient-to-r from-primary-200/50 to-transparent rounded-e-full" aria-hidden="true" />
+      <div className="absolute top-1/2 -translate-y-1/2 end-0 w-32 h-64 bg-gradient-to-l from-accent-200/50 to-transparent rounded-s-full" aria-hidden="true" />
+
+      <div className="container-xl relative z-10">
         {/* Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${
@@ -82,16 +91,26 @@ export default function GroupStatsSection({ locale }: GroupStatsSectionProps) {
                 }`}
                 style={{ transitionDelay: `${(index + 1) * 100}ms` }}
               >
-                {/* Icon */}
+                {/* Icon - Bigger with stronger shadow */}
                 <div
-                  className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                  className={`w-20 h-20 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-xl`}
                 >
-                  <Icon className="w-8 h-8 text-white" />
+                  <Icon className="w-10 h-10 text-white" />
                 </div>
 
-                {/* Value */}
+                {/* Value - Animated Counter */}
                 <div className="text-3xl md:text-4xl font-bold text-secondary-900 mb-2">
-                  {stat.value}
+                  {(() => {
+                    const parsed = parseStatValue(stat.value)
+                    return (
+                      <AnimatedCounterCSS
+                        value={parsed.numericValue}
+                        prefix={parsed.prefix}
+                        suffix={parsed.suffix}
+                        duration={2000}
+                      />
+                    )
+                  })()}
                 </div>
 
                 {/* Label */}

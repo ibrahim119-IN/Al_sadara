@@ -43,9 +43,10 @@ export function ProductComparison({ products, locale, comparisonAspects }: Produ
                 </th>
                 {displayProducts.map((product) => {
                   const name = locale === 'ar' ? product.nameAr : product.name
+                  const firstImage = product.images?.[0]
                   const imageUrl =
-                    typeof product.images?.[0] === 'object' && product.images[0]?.url
-                      ? product.images[0].url
+                    typeof firstImage === 'object' && typeof firstImage?.image === 'object' && firstImage?.image?.url
+                      ? firstImage.image.url
                       : '/placeholder-product.jpg'
 
                   return (

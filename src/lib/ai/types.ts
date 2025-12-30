@@ -1,4 +1,8 @@
-import type { AIConversation, AIMessage, Customer, Product } from '@/payload-types'
+import type { AiConversation, AiMessage, Customer, Product } from '@/payload-types'
+
+// Type aliases for backward compatibility
+type AIConversation = AiConversation
+type AIMessage = AiMessage
 
 // ==================== MESSAGE TYPES ====================
 

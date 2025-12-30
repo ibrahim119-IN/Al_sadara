@@ -471,6 +471,38 @@ export async function getGeographicStats(range: DateRange): Promise<GeographicSt
     .sort((a, b) => b.revenue - a.revenue)
 }
 
+// Get Recent Orders for Dashboard
+export async function getRecentOrders(limit: number = 10): Promise<Array<{
+  id: string
+  orderNumber: string
+  customer: string
+  total: number
+  status: string
+  date: string
+}>> {
+  const payload = await getCachedPayload()
+
+  const orders = await payload.find({
+    collection: 'orders',
+    limit,
+    sort: '-createdAt',
+    depth: 1,
+  })
+
+  return orders.docs.map((order) => {
+    const customer = order.customer as { name?: string; email?: string } | null
+    const orderId = String(order.id)
+    return {
+      id: orderId,
+      orderNumber: (order.orderNumber as string) || `#${orderId.slice(-6).toUpperCase()}`,
+      customer: customer?.name || customer?.email || 'Guest',
+      total: (order.total as number) || 0,
+      status: (order.status as string) || 'pending',
+      date: (order.createdAt as string) || new Date().toISOString(),
+    }
+  })
+}
+
 // Get Full Dashboard Data
 export async function getDashboardData(period: Period, customRange?: DateRange): Promise<DashboardData> {
   const range = getDateRange(period, customRange)

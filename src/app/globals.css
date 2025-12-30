@@ -105,6 +105,16 @@
     @apply max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-8;
   }
 
+  /* NEW: Extra-wide container for larger screens */
+  .container-xl {
+    @apply max-w-[1600px] mx-auto px-5 sm:px-6 lg:px-8 xl:px-12;
+  }
+
+  /* NEW: Full-width with inner contained content */
+  .container-full-inner {
+    @apply max-w-[1600px] mx-auto px-5 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
   /* Section spacing */
   .section {
     @apply py-16 md:py-24 lg:py-32;
@@ -136,7 +146,18 @@
     @apply bg-primary-600 text-white shadow-btn
            hover:bg-primary-700 hover:shadow-btn-hover hover:-translate-y-0.5
            active:translate-y-0
-           focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+           focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
+           relative overflow-hidden;
+  }
+
+  /* Button shine effect on hover */
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-white/20 -translate-x-full skew-x-12 transition-transform duration-500;
+  }
+
+  .btn-primary:hover::before {
+    @apply translate-x-full;
   }
 
   .btn-secondary {
@@ -294,6 +315,69 @@
   .skeleton {
     @apply bg-gradient-to-r from-secondary-200 via-secondary-100 to-secondary-200
            bg-[length:200%_100%] animate-shimmer;
+  }
+
+  /* ============================================
+     SECTION BACKGROUNDS
+     ============================================ */
+
+  /* Section background variants */
+  .section-white {
+    @apply bg-white dark:bg-secondary-950;
+  }
+
+  .section-light {
+    @apply bg-secondary-50 dark:bg-secondary-900;
+  }
+
+  .section-brand-light {
+    @apply bg-gradient-to-br from-primary-50/50 via-white to-secondary-50/30;
+  }
+
+  .section-brand-medium {
+    @apply bg-gradient-to-br from-primary-100/40 via-primary-50/60 to-secondary-50/40;
+  }
+
+  .section-dark {
+    @apply bg-secondary-900 text-white;
+  }
+
+  .section-dark-gradient {
+    @apply bg-gradient-to-br from-secondary-800 via-secondary-900 to-primary-950;
+  }
+
+  /* ============================================
+     DECORATIVE PATTERNS
+     ============================================ */
+
+  /* Subtle dot pattern - 5% opacity */
+  .bg-pattern-dots {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%230066CC' fill-opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  .dark .bg-pattern-dots {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  /* Grid pattern - 2% opacity */
+  .bg-pattern-grid {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1v38h38V1H1z' fill='%230066CC' fill-opacity='0.02'/%3E%3C/svg%3E");
+  }
+
+  .dark .bg-pattern-grid {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1v38h38V1H1z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E");
+  }
+
+  /* Diagonal lines pattern - 3% opacity */
+  .bg-pattern-diagonal {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40' fill='%23475569' fill-opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  /* Gradient mesh - for premium sections */
+  .bg-gradient-mesh {
+    background:
+      radial-gradient(at 0% 0%, rgba(0, 102, 204, 0.08) 0%, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.05) 0%, transparent 50%);
   }
 }
 
@@ -499,5 +583,143 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+/* ============================================
+   MICRO-INTERACTIONS
+   ============================================ */
+
+/* Icon hover animations */
+.icon-hover-scale {
+  @apply transition-transform duration-300;
+}
+
+.icon-hover-scale:hover {
+  @apply scale-110;
+}
+
+.group:hover .icon-group-scale {
+  @apply scale-110;
+}
+
+.icon-hover-wiggle {
+  @apply transition-transform duration-300;
+}
+
+.icon-hover-wiggle:hover {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+.group:hover .icon-group-wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Arrow slide effect for links/buttons */
+.arrow-hover {
+  @apply transition-transform duration-300;
+}
+
+.group:hover .arrow-hover {
+  @apply translate-x-1;
+}
+
+[dir="rtl"] .group:hover .arrow-hover {
+  @apply -translate-x-1;
+}
+
+/* Card with gradient border on hover */
+.card-gradient-border {
+  @apply relative overflow-hidden;
+}
+
+.card-gradient-border::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(217, 119, 6, 0.1));
+  z-index: -1;
+}
+
+.card-gradient-border:hover::before {
+  @apply opacity-100;
+}
+
+/* Card lift with colored shadow */
+.card-lift-colored {
+  @apply transition-all duration-300;
+}
+
+.card-lift-colored:hover {
+  @apply -translate-y-2;
+  box-shadow: 0 20px 40px -10px rgba(0, 102, 204, 0.15);
+}
+
+/* Enhanced button with ripple placeholder */
+.btn-ripple {
+  @apply relative overflow-hidden;
+}
+
+/* Link with underline grow effect */
+.link-grow-underline {
+  @apply relative inline-block;
+}
+
+.link-grow-underline::after {
+  content: '';
+  @apply absolute bottom-0 start-0 w-0 h-0.5 bg-primary-500 transition-all duration-300;
+}
+
+.link-grow-underline:hover::after {
+  @apply w-full;
+}
+
+/* Floating label effect for inputs */
+.input-floating-label {
+  @apply relative;
+}
+
+.input-floating-label input:focus + label,
+.input-floating-label input:not(:placeholder-shown) + label {
+  @apply -translate-y-6 text-xs text-primary-600;
+}
+
+/* Pulse ring effect for notifications/badges */
+.pulse-ring {
+  @apply relative;
+}
+
+.pulse-ring::before {
+  content: '';
+  @apply absolute inset-0 rounded-full bg-current opacity-75 animate-ping;
+}
+
+/* Smooth text reveal */
+.text-reveal {
+  @apply overflow-hidden;
+}
+
+.text-reveal span {
+  @apply inline-block transform translate-y-full transition-transform duration-500;
+}
+
+.text-reveal.is-visible span {
+  @apply translate-y-0;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

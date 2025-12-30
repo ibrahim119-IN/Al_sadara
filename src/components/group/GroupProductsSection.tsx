@@ -137,8 +137,8 @@ export default function GroupProductsSection({ locale }: GroupProductsSectionPro
   const t = content[locale]
 
   return (
-    <section ref={sectionRef} className="section bg-white">
-      <div className="container-wide">
+    <section ref={sectionRef} className="section bg-white relative">
+      <div className="container-xl">
         {/* Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-12 transition-all duration-700 ${

@@ -34,9 +34,9 @@ export async function GET(
       collection: 'orders',
       where: {
         or: [
-          { paymentTransactionId: { equals: transactionId } },
-          { paymentReferenceNumber: { equals: transactionId } },
-          { id: { equals: callback.orderId } },
+          { 'payment.transactionId': { equals: transactionId } },
+          { 'payment.referenceNumber': { equals: transactionId } },
+          { id: { equals: Number(callback.orderId) || 0 } },
         ],
       },
       limit: 1,
@@ -47,13 +47,16 @@ export async function GET(
       order = orders.docs[0]
 
       // Update payment status if changed
-      if (order.paymentStatus !== callback.status) {
+      if (order.payment?.status !== callback.status) {
         await payload.update({
           collection: 'orders',
           id: order.id,
           data: {
-            paymentStatus: callback.status,
-            paidAt: callback.status === 'completed' ? new Date().toISOString() : undefined,
+            payment: {
+              ...order.payment,
+              status: callback.status as 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'refunded' | 'expired',
+              paidAt: callback.status === 'completed' ? new Date().toISOString() : undefined,
+            },
           },
         })
       }

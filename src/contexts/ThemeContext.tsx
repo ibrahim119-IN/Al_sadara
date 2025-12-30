@@ -110,10 +110,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function useTheme() {
+// Default values for when context is unavailable
+const defaultThemeValue: ThemeContextType = {
+  theme: 'system',
+  resolvedTheme: 'light',
+  setTheme: () => {},
+  toggleTheme: () => {},
+}
+
+export function useTheme(): ThemeContextType {
   const context = useContext(ThemeContext)
+
+  // Return safe defaults when context is unavailable
+  // This handles: SSR, error boundaries, and components outside provider
   if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
+    return defaultThemeValue
   }
+
   return context
 }

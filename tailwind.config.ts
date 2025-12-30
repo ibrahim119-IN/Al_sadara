@@ -10,6 +10,16 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      // Extended screen sizes for large monitors
+      screens: {
+        '3xl': '1920px',
+      },
+      // Extended max-widths
+      maxWidth: {
+        '8xl': '88rem',   // 1408px
+        '9xl': '96rem',   // 1536px
+        '10xl': '100rem', // 1600px
+      },
       colors: {
         // Corporate Deep Blue - Professional & Trustworthy
         primary: {
@@ -146,6 +156,17 @@ const config: Config = {
         'infinite-scroll': 'infiniteScroll 40s linear infinite',
         'marquee': 'marquee 25s linear infinite',
         'marquee-rtl': 'marqueeRtl 25s linear infinite',
+        // NEW: Enhanced animations for UI improvements
+        'reveal-up': 'revealUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'reveal-down': 'revealDown 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'reveal-left': 'revealLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'reveal-right': 'revealRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'float-gentle': 'floatGentle 8s ease-in-out infinite',
+        'float-reverse': 'floatReverse 7s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+        'rotate-slow': 'rotateSlow 30s linear infinite',
+        'counter': 'counter 2s ease-out forwards',
+        'bounce-slow': 'bounceSlow 4s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -212,6 +233,43 @@ const config: Config = {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0)' },
         },
+        // NEW: Enhanced keyframes for UI improvements
+        revealUp: {
+          '0%': { opacity: '0', transform: 'translateY(40px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        revealDown: {
+          '0%': { opacity: '0', transform: 'translateY(-40px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        revealLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-40px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        revealRight: {
+          '0%': { opacity: '0', transform: 'translateX(40px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        floatGentle: {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-15px) rotate(2deg)' },
+        },
+        floatReverse: {
+          '0%, 100%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(0)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+          '50%': { opacity: '0.5', transform: 'scale(1.05)' },
+        },
+        rotateSlow: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        bounceSlow: {
+          '0%, 100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+          '50%': { transform: 'translateY(-25px) scale(1.05)', opacity: '0.9' },
+        },
       },
       transitionDuration: {
         '400': '400ms',
@@ -226,6 +284,11 @@ const config: Config = {
         'gradient-primary': 'linear-gradient(135deg, #0066CC 0%, #004080 100%)',
         'gradient-dark': 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
         'gradient-hero': 'linear-gradient(180deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 64, 128, 0.95) 100%)',
+        // NEW: Decorative gradients
+        'gradient-subtle': 'linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, rgba(217, 119, 6, 0.02) 100%)',
+        'gradient-mesh-light': 'radial-gradient(at 0% 0%, rgba(0, 102, 204, 0.1) 0%, transparent 50%), radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.08) 0%, transparent 50%)',
+        'gradient-section': 'linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f8fafc 100%)',
+        'gradient-card-shine': 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%)',
       },
     },
   },

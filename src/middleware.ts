@@ -110,6 +110,9 @@ const publicPaths = [
 // Protected routes that require authentication
 const protectedRoutes = ['/account']
 
+// Dashboard routes that require admin authentication
+const dashboardRoutes = ['/dashboard']
+
 // Auth routes that should redirect authenticated users
 const authRoutes = ['/login', '/register']
 
@@ -336,6 +339,20 @@ export function middleware(request: NextRequest) {
       accountUrl.searchParams.set('subdomain', devSubdomain)
     }
     return NextResponse.redirect(accountUrl)
+  }
+
+  // Dashboard route protection
+  const isDashboardRoute = dashboardRoutes.some((route) => pathWithoutLocale.startsWith(route))
+
+  // If it's a dashboard route, check authentication
+  // User will be redirected to unified /login page
+  if (isDashboardRoute && !isAuthenticated) {
+    const loginUrl = new URL(`/${locale}/login`, request.url)
+    loginUrl.searchParams.set('redirect', pathname)
+    if (devSubdomain) {
+      loginUrl.searchParams.set('subdomain', devSubdomain)
+    }
+    return NextResponse.redirect(loginUrl)
   }
 
   // Create response with headers

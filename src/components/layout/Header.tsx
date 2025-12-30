@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
 import type { Locale } from '@/lib/i18n/config'
@@ -29,12 +29,14 @@ import {
   ArrowRight,
   LogOut,
   Package,
-  Settings
+  Settings,
+  Mic,
 } from 'lucide-react'
 import { CartBadge } from '@/components/cart/CartBadge'
 import { CartDrawer } from '@/components/cart/CartDrawer'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
+import { VoiceSearch } from '@/components/ai/VoiceSearch'
 
 interface HeaderProps {
   locale: Locale
@@ -113,9 +115,26 @@ export function Header({ locale, dict }: HeaderProps) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   const isRTL = locale === 'ar'
   const router = useRouter()
   const { customer, isAuthenticated, logout } = useAuth()
+
+  // Handle voice search result
+  const handleVoiceSearchResult = useCallback((text: string) => {
+    setSearchQuery(text)
+  }, [])
+
+  // Handle search submit
+  const handleSearch = useCallback((query?: string) => {
+    const searchText = query || searchQuery
+    if (searchText.trim()) {
+      router.push(`/${locale}/products?q=${encodeURIComponent(searchText.trim())}`)
+      setIsSearchOpen(false)
+      setSearchQuery('')
+    }
+  }, [locale, router, searchQuery])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -274,7 +293,11 @@ export function Header({ locale, dict }: HeaderProps) {
             {/* Actions */}
             <div className="flex items-center gap-2">
               {/* Search */}
-              <button className="p-3 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all">
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="p-3 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all"
+                aria-label={isRTL ? 'بحث' : 'Search'}
+              >
                 <Search className="w-5 h-5" />
               </button>
 
@@ -474,6 +497,94 @@ export function Header({ locale, dict }: HeaderProps) {
 
       {/* Cart Drawer */}
       <CartDrawer locale={locale} dict={dict} />
+
+      {/* Search Modal */}
+      {isSearchOpen && (
+        <div
+          className="fixed inset-0 z-[60] flex items-start justify-center pt-20 bg-black/50 backdrop-blur-sm"
+          onClick={() => setIsSearchOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-secondary-800 rounded-2xl shadow-2xl w-full max-w-2xl mx-4 overflow-hidden animate-slide-down"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Search Input */}
+            <div className="p-4 border-b border-secondary-200 dark:border-secondary-700">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  handleSearch()
+                }}
+                className="flex items-center gap-3"
+              >
+                <div className="flex-1 relative">
+                  <Search className="absolute start-4 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary-400" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder={isRTL ? 'ابحث عن المنتجات...' : 'Search products...'}
+                    className="w-full ps-12 pe-4 py-3 bg-secondary-100 dark:bg-secondary-700 border-0 rounded-xl text-secondary-900 dark:text-white placeholder:text-secondary-400 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                    autoFocus
+                  />
+                </div>
+
+                {/* Voice Search Button */}
+                <VoiceSearch
+                  variant="button"
+                  onResult={handleVoiceSearchResult}
+                  onSearch={handleSearch}
+                />
+
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsSearchOpen(false)}
+                  className="p-3 text-secondary-500 hover:text-secondary-700 dark:hover:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-700 rounded-lg transition-colors"
+                  aria-label={isRTL ? 'إغلاق' : 'Close'}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </form>
+            </div>
+
+            {/* Quick Links */}
+            <div className="p-4">
+              <h3 className="text-sm font-medium text-secondary-500 dark:text-secondary-400 mb-3">
+                {isRTL ? 'تصفح سريع' : 'Quick Links'}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {categories.slice(0, 6).map((cat) => {
+                  const Icon = cat.icon
+                  return (
+                    <Link
+                      key={cat.slug}
+                      href={`/${locale}/categories/${cat.slug}`}
+                      className="flex items-center gap-2 px-3 py-2 bg-secondary-100 dark:bg-secondary-700 hover:bg-primary-100 dark:hover:bg-primary-900/30 rounded-lg transition-colors"
+                      onClick={() => setIsSearchOpen(false)}
+                    >
+                      <Icon className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                      <span className="text-sm text-secondary-700 dark:text-secondary-200">
+                        {isRTL ? cat.nameAr : cat.nameEn}
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+
+              {/* Voice Search Hint */}
+              <div className="mt-4 p-3 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center gap-3">
+                <Mic className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                <p className="text-sm text-primary-700 dark:text-primary-300">
+                  {isRTL
+                    ? 'اضغط على أيقونة الميكروفون للبحث صوتياً'
+                    : 'Click the microphone icon to search by voice'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   )
 }

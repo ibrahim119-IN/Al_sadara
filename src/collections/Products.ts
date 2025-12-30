@@ -1,10 +1,11 @@
 import type { CollectionConfig } from 'payload'
+import { afterProductChange, afterProductDelete } from './hooks/product-indexing-hooks'
 
 export const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'company', 'category', 'price', 'stock', 'status'],
+    defaultColumns: ['name', 'category', 'price', 'stock', 'status'],
     group: 'Shop',
   },
   labels: {
@@ -19,6 +20,10 @@ export const Products: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [afterProductChange],
+    afterDelete: [afterProductDelete],
   },
   fields: [
     // Basic Info
@@ -118,7 +123,8 @@ export const Products: CollectionConfig = {
           },
           access: {
             read: ({ req: { user } }) => {
-              return user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'manager'
+              if (!user || user.collection !== 'users') return false
+              return user.role === 'super-admin' || user.role === 'admin' || user.role === 'manager'
             },
           },
         },
@@ -161,20 +167,7 @@ export const Products: CollectionConfig = {
       ],
     },
 
-    // Company & Categorization
-    {
-      name: 'company',
-      type: 'relationship',
-      relationTo: 'companies',
-      required: true,
-      label: {
-        en: 'Company',
-        ar: 'الشركة',
-      },
-      admin: {
-        description: 'Select which company this product belongs to',
-      },
-    },
+    // Categorization (company field removed - column doesn't exist in database)
     {
       name: 'category',
       type: 'relationship',

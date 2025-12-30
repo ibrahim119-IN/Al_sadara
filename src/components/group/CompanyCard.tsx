@@ -32,10 +32,10 @@ export function CompanyCard({ company, locale }: CompanyCardProps) {
   const countryName = countryNames[company.location.country]
 
   return (
-    <div className="group bg-white rounded-3xl border border-secondary-100 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-      {/* Color Bar */}
+    <div className="group bg-white rounded-3xl border-2 border-secondary-200 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary-300">
+      {/* Color Bar - thicker */}
       <div
-        className="h-2 w-full"
+        className="h-3 w-full"
         style={{ backgroundColor: company.color }}
       />
 
@@ -44,8 +44,8 @@ export function CompanyCard({ company, locale }: CompanyCardProps) {
         {/* Header with Logo */}
         <div className="flex items-start gap-4 mb-6">
           <div
-            className="relative w-16 h-16 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300 overflow-hidden"
-            style={{ backgroundColor: `${company.color}15` }}
+            className="relative w-16 h-16 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-2 shadow-md"
+            style={{ backgroundColor: `${company.color}15`, borderColor: `${company.color}40` }}
           >
             <Image
               src={company.logo}
@@ -143,11 +143,11 @@ export function CompanyCardCompact({ company, locale }: CompanyCardProps) {
   return (
     <Link
       href={`/${locale}/companies/${company.slug}`}
-      className="group flex items-center gap-4 p-4 bg-white rounded-2xl border border-secondary-100 hover:border-primary-200 hover:shadow-lg transition-all"
+      className="group flex items-center gap-4 p-4 bg-white rounded-2xl border-2 border-secondary-200 hover:border-primary-300 shadow-md hover:shadow-lg transition-all"
     >
       <div
-        className="relative w-12 h-12 rounded-xl flex-shrink-0 overflow-hidden"
-        style={{ backgroundColor: `${company.color}15` }}
+        className="relative w-12 h-12 rounded-xl flex-shrink-0 overflow-hidden border-2 shadow-sm"
+        style={{ backgroundColor: `${company.color}15`, borderColor: `${company.color}40` }}
       >
         <Image
           src={company.logo}

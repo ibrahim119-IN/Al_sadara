@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, ChevronLeft, ChevronRight, Play, Pause, Building2, Globe2, Briefcase } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react'
 import { companies } from '@/data/group-data'
 
 interface GroupHeroSectionProps {
@@ -169,16 +169,84 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
         }} />
       </div>
 
-      {/* Floating Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 start-10 animate-float-slow opacity-20">
-          <Building2 className="w-24 h-24 text-white" />
+      {/* Floating Company Logos - White, subtle, no circles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
+        {/* Sadara Logo - Top Left */}
+        <div
+          className="absolute top-16 start-[5%] w-12 h-12 xl:w-16 xl:h-16 animate-float-gentle"
+          style={{ animationDelay: '0s' }}
+        >
+          <Image
+            src="/images/sadara-logo.png"
+            alt=""
+            fill
+            className="object-contain brightness-0 invert opacity-[0.45]"
+          />
         </div>
-        <div className="absolute top-1/3 end-20 animate-float opacity-20" style={{ animationDelay: '1s' }}>
-          <Globe2 className="w-32 h-32 text-primary-400" />
+
+        {/* Polymers Logo - Top Right */}
+        <div
+          className="absolute top-[10%] end-[8%] w-14 h-14 xl:w-20 xl:h-20 animate-float-gentle"
+          style={{ animationDelay: '1s' }}
+        >
+          <Image
+            src="/images/polymers-logo.png"
+            alt=""
+            fill
+            className="object-contain brightness-0 invert opacity-40"
+          />
         </div>
-        <div className="absolute bottom-1/4 start-1/4 animate-float-slow opacity-20" style={{ animationDelay: '2s' }}>
-          <Briefcase className="w-20 h-20 text-accent-400" />
+
+        {/* Qaysar Logo - Middle Left */}
+        <div
+          className="absolute top-[38%] start-[2%] w-10 h-10 xl:w-14 xl:h-14 animate-float-gentle"
+          style={{ animationDelay: '2s' }}
+        >
+          <Image
+            src="/images/qaysar-logo.png"
+            alt=""
+            fill
+            className="object-contain brightness-0 invert opacity-[0.45]"
+          />
+        </div>
+
+        {/* Talah Logo - Middle Right */}
+        <div
+          className="absolute top-[32%] end-[7%] w-12 h-12 xl:w-16 xl:h-16 animate-float-gentle"
+          style={{ animationDelay: '3s' }}
+        >
+          <Image
+            src="/images/talah-logo.png"
+            alt=""
+            fill
+            className="object-contain brightness-0 invert opacity-40"
+          />
+        </div>
+
+        {/* SAM Logo - Lower Right */}
+        <div
+          className="absolute top-[58%] end-[10%] w-10 h-10 xl:w-12 xl:h-12 animate-float-gentle"
+          style={{ animationDelay: '4s' }}
+        >
+          <Image
+            src="/images/sam-logo.png"
+            alt=""
+            fill
+            className="object-contain brightness-0 invert opacity-[0.45]"
+          />
+        </div>
+
+        {/* Coderatech Logo - Lower Left */}
+        <div
+          className="absolute bottom-[35%] start-[4%] w-11 h-11 xl:w-14 xl:h-14 animate-float-gentle"
+          style={{ animationDelay: '5s' }}
+        >
+          <Image
+            src="/images/coderatech-logo.png"
+            alt=""
+            fill
+            className="object-contain brightness-0 invert opacity-40"
+          />
         </div>
       </div>
 
@@ -238,7 +306,7 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
       </button>
 
       {/* Content */}
-      <div className="relative z-10 container-wide py-16 md:py-20">
+      <div className="relative z-10 container-xl py-16 md:py-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div

@@ -34,23 +34,30 @@ export const Users: CollectionConfig = {
       },
       access: {
         update: ({ req: { user } }) => {
-          return user?.role === 'super-admin'
+          if (!user || user.collection !== 'users') return false
+          return user.role === 'super-admin'
         },
       },
     },
   ],
   access: {
     read: ({ req: { user } }) => {
-      if (!user) return false
+      if (!user || user.collection !== 'users') return false
       if (user.role === 'super-admin' || user.role === 'admin') return true
       return { id: { equals: user.id } }
     },
-    create: ({ req: { user } }) => user?.role === 'super-admin',
+    create: ({ req: { user } }) => {
+      if (!user || user.collection !== 'users') return false
+      return user.role === 'super-admin'
+    },
     update: ({ req: { user } }) => {
-      if (!user) return false
+      if (!user || user.collection !== 'users') return false
       if (user.role === 'super-admin' || user.role === 'admin') return true
       return { id: { equals: user.id } }
     },
-    delete: ({ req: { user } }) => user?.role === 'super-admin',
+    delete: ({ req: { user } }) => {
+      if (!user || user.collection !== 'users') return false
+      return user.role === 'super-admin'
+    },
   },
 }
