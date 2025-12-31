@@ -167,6 +167,7 @@ const config: Config = {
         'rotate-slow': 'rotateSlow 30s linear infinite',
         'counter': 'counter 2s ease-out forwards',
         'bounce-slow': 'bounceSlow 4s ease-in-out infinite',
+        'scale-x-in': 'scaleXIn 0.8s ease-out forwards',
       },
       keyframes: {
         fadeIn: {
@@ -269,6 +270,10 @@ const config: Config = {
         bounceSlow: {
           '0%, 100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
           '50%': { transform: 'translateY(-25px) scale(1.05)', opacity: '0.9' },
+        },
+        scaleXIn: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
         },
       },
       transitionDuration: {

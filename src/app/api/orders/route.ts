@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPayload } from 'payload'
+import { getPayload, type Where } from 'payload'
 import config from '@/payload.config'
 
 interface OrderItem {
@@ -218,18 +218,104 @@ async function getAuthenticatedCustomer(request: NextRequest) {
   }
 }
 
-// Get orders for current customer (SECURED)
+// Helper function to get authenticated admin user from Payload token
+async function getAuthenticatedAdmin(request: NextRequest) {
+  const token = request.cookies.get('payload-token')?.value
+  if (!token) return null
+
+  try {
+    const payload = await getPayload({ config })
+    // Use Payload's built-in auth verification
+    const result = await payload.auth({ headers: request.headers })
+    // Check if user is from users collection (admin users)
+    if (result.user && 'collection' in result && result.user.collection === 'users') {
+      return result.user as { id: number; email: string; role?: string }
+    }
+    return null
+  } catch {
+    return null
+  }
+}
+
+// Get orders - supports both admin (all orders) and customer (own orders)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const orderNumber = searchParams.get('orderNumber')
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '10')
+    const status = searchParams.get('status')
+    const search = searchParams.get('search')
 
     const payload = await getPayload({ config })
+
+    // Check for admin user first
+    const authenticatedAdmin = await getAuthenticatedAdmin(request)
+
+    // If admin user, return all orders with pagination and filters
+    if (authenticatedAdmin) {
+      // Build where clause for filtering
+      const whereClause: Record<string, unknown> = {}
+
+      if (status && status !== 'all') {
+        whereClause.status = { equals: status }
+      }
+
+      if (search) {
+        whereClause.or = [
+          { orderNumber: { contains: search } },
+          { 'shippingAddress.fullName': { contains: search } },
+          { 'shippingAddress.phone': { contains: search } },
+        ]
+      }
+
+      const orders = await payload.find({
+        collection: 'orders',
+        where: Object.keys(whereClause).length > 0 ? (whereClause as Where) : undefined,
+        sort: '-createdAt',
+        page,
+        limit,
+        depth: 2,
+      })
+
+      // Transform orders for dashboard display
+      const transformedOrders = orders.docs.map((order) => {
+        const customer = typeof order.customer === 'object' && order.customer
+          ? order.customer
+          : null
+
+        return {
+          id: String(order.id),
+          orderNumber: order.orderNumber || `ORD-${order.id}`,
+          customer: customer ? {
+            name: `${customer.firstName || ''} ${customer.lastName || ''}`.trim() || 'Guest',
+            email: customer.email || '',
+          } : {
+            name: order.shippingAddress?.fullName || 'Guest',
+            email: '',
+          },
+          total: order.total || 0,
+          status: order.status || 'pending',
+          paymentStatus: order.payment?.status || 'pending',
+          createdAt: order.createdAt,
+          itemsCount: order.items?.length || 0,
+        }
+      })
+
+      return NextResponse.json({
+        docs: transformedOrders,
+        totalDocs: orders.totalDocs,
+        totalPages: orders.totalPages,
+        page: orders.page,
+        hasNextPage: orders.hasNextPage,
+        hasPrevPage: orders.hasPrevPage,
+      })
+    }
 
     // Try to get authenticated customer
     const authenticatedCustomer = await getAuthenticatedCustomer(request)
 
-    // If authenticated, return only their orders
+    // If customer authenticated, return only their orders
     if (authenticatedCustomer) {
       const orders = await payload.find({
         collection: 'orders',

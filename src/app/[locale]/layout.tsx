@@ -104,6 +104,38 @@ export async function generateMetadata({
   }
 }
 
+// Client component to update HTML attributes
+function LocaleHtmlUpdater({ locale, direction }: { locale: string; direction: 'rtl' | 'ltr' }) {
+  // This will run on client to update the html element
+  const script = `
+    (function() {
+      try {
+        // Update HTML attributes
+        document.documentElement.lang = '${locale}';
+        document.documentElement.dir = '${direction}';
+        document.documentElement.setAttribute('data-scroll-behavior', 'smooth');
+
+        // Update body class for fonts
+        document.body.className = '${direction === 'rtl' ? 'font-arabic' : 'font-sans'}';
+
+        // Theme handling
+        const theme = localStorage.getItem('al-sadara-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = theme === 'dark' || (theme === 'system' && systemDark) || (!theme && systemDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        console.error('Locale setup error:', e);
+      }
+    })();
+  `
+
+  return <script dangerouslySetInnerHTML={{ __html: script }} />
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -121,28 +153,16 @@ export default async function LocaleLayout({
 
   const direction = getDirection(locale)
 
-  // Script to prevent flash of unstyled content for dark mode
-  const themeScript = `
-    (function() {
-      try {
-        const theme = localStorage.getItem('al-sadara-theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = theme === 'dark' || (theme === 'system' && systemDark) || (!theme && systemDark);
-        if (isDark) {
-          document.documentElement.classList.add('dark');
-        }
-      } catch (e) {}
-    })();
-  `
-
   return (
-    <html lang={locale} dir={direction} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
-      <body className={direction === 'rtl' ? 'font-arabic' : 'font-sans'}>
+    <>
+      <LocaleHtmlUpdater locale={locale} direction={direction} />
+      <div
+        className={direction === 'rtl' ? 'font-arabic' : 'font-sans'}
+        data-locale={locale}
+        data-direction={direction}
+      >
         {children}
-      </body>
-    </html>
+      </div>
+    </>
   )
 }

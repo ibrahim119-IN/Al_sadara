@@ -105,6 +105,7 @@ const publicPaths = [
   '/fonts',
   '/uploads',
   '/favicon.ico',
+  '/offline', // Offline page
 ]
 
 // Protected routes that require authentication
