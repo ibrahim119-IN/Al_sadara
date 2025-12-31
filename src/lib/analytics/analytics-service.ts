@@ -15,6 +15,25 @@ import {
   Period,
 } from './types'
 
+// Performance constants
+const MAX_RECORDS = 1000 // Reduced from 10000 for better performance
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes cache
+
+// Simple in-memory cache
+const cache = new Map<string, { data: unknown; timestamp: number }>()
+
+function getCached<T>(key: string): T | null {
+  const cached = cache.get(key)
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return cached.data as T
+  }
+  return null
+}
+
+function setCache(key: string, data: unknown): void {
+  cache.set(key, { data, timestamp: Date.now() })
+}
+
 // Helper to get date range based on period
 export function getDateRange(period: Period, customRange?: DateRange): DateRange {
   const now = new Date()
@@ -65,10 +84,14 @@ function calculateGrowth(current: number, previous: number): number {
 
 // Get Sales Metrics
 export async function getSalesMetrics(range: DateRange): Promise<SalesMetrics> {
+  const cacheKey = `sales_${range.from.toISOString()}_${range.to.toISOString()}`
+  const cached = getCached<SalesMetrics>(cacheKey)
+  if (cached) return cached
+
   const payload = await getCachedPayload()
   const previousRange = getPreviousPeriod(range)
 
-  // Current period orders
+  // Current period orders - only fetch needed fields
   const currentOrders = await payload.find({
     collection: 'orders',
     where: {
@@ -76,7 +99,8 @@ export async function getSalesMetrics(range: DateRange): Promise<SalesMetrics> {
       and: [{ createdAt: { less_than_equal: range.to.toISOString() } }],
       status: { not_equals: 'cancelled' },
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
+    depth: 0, // Don't populate relations for better performance
   })
 
   // Previous period orders
@@ -87,29 +111,38 @@ export async function getSalesMetrics(range: DateRange): Promise<SalesMetrics> {
       and: [{ createdAt: { less_than_equal: previousRange.to.toISOString() } }],
       status: { not_equals: 'cancelled' },
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
+    depth: 0,
   })
 
   const totalRevenue = currentOrders.docs.reduce((sum, order) => sum + ((order.total as number) || 0), 0)
   const previousRevenue = previousOrders.docs.reduce((sum, order) => sum + ((order.total as number) || 0), 0)
 
-  return {
+  const result: SalesMetrics = {
     totalRevenue,
     totalOrders: currentOrders.totalDocs,
     averageOrderValue: currentOrders.totalDocs > 0 ? totalRevenue / currentOrders.totalDocs : 0,
     revenueGrowth: calculateGrowth(totalRevenue, previousRevenue),
     ordersGrowth: calculateGrowth(currentOrders.totalDocs, previousOrders.totalDocs),
   }
+
+  setCache(cacheKey, result)
+  return result
 }
 
 // Get Product Metrics
 export async function getProductMetrics(range: DateRange): Promise<ProductMetrics> {
+  const cacheKey = `products_${range.from.toISOString()}_${range.to.toISOString()}`
+  const cached = getCached<ProductMetrics>(cacheKey)
+  if (cached) return cached
+
   const payload = await getCachedPayload()
 
-  // All products
+  // All products - only needed fields
   const allProducts = await payload.find({
     collection: 'products',
-    limit: 10000,
+    limit: MAX_RECORDS,
+    depth: 0,
   })
 
   const activeProducts = allProducts.docs.filter((p) => p.status === 'active').length
@@ -128,7 +161,7 @@ export async function getProductMetrics(range: DateRange): Promise<ProductMetric
       status: { not_equals: 'cancelled' },
     },
     depth: 2,
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   const productSales: Record<string, { totalSold: number; revenue: number; product: unknown }> = {}
@@ -165,24 +198,32 @@ export async function getProductMetrics(range: DateRange): Promise<ProductMetric
       }
     })
 
-  return {
+  const result: ProductMetrics = {
     totalProducts: allProducts.totalDocs,
     activeProducts,
     outOfStock,
     lowStock,
     topSelling,
   }
+
+  setCache(cacheKey, result)
+  return result
 }
 
 // Get Customer Metrics
 export async function getCustomerMetrics(range: DateRange): Promise<CustomerMetrics> {
+  const cacheKey = `customers_${range.from.toISOString()}_${range.to.toISOString()}`
+  const cached = getCached<CustomerMetrics>(cacheKey)
+  if (cached) return cached
+
   const payload = await getCachedPayload()
   const previousRange = getPreviousPeriod(range)
 
   // All customers
   const allCustomers = await payload.find({
     collection: 'customers',
-    limit: 10000,
+    limit: MAX_RECORDS,
+    depth: 0,
   })
 
   // New customers in range
@@ -192,7 +233,7 @@ export async function getCustomerMetrics(range: DateRange): Promise<CustomerMetr
       createdAt: { greater_than_equal: range.from.toISOString() },
       and: [{ createdAt: { less_than_equal: range.to.toISOString() } }],
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   // New customers in previous period
@@ -202,7 +243,7 @@ export async function getCustomerMetrics(range: DateRange): Promise<CustomerMetr
       createdAt: { greater_than_equal: previousRange.from.toISOString() },
       and: [{ createdAt: { less_than_equal: previousRange.to.toISOString() } }],
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   // Get orders to find top customers
@@ -214,7 +255,7 @@ export async function getCustomerMetrics(range: DateRange): Promise<CustomerMetr
       status: { not_equals: 'cancelled' },
     },
     depth: 1,
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   const customerStats: Record<string, { orders: number; spent: number; customer: unknown }> = {}
@@ -248,17 +289,24 @@ export async function getCustomerMetrics(range: DateRange): Promise<CustomerMetr
       }
     })
 
-  return {
+  const result: CustomerMetrics = {
     totalCustomers: allCustomers.totalDocs,
     newCustomers: newCustomers.totalDocs,
     returningCustomers: returningCustomerIds.size,
     customerGrowth: calculateGrowth(newCustomers.totalDocs, previousNewCustomers.totalDocs),
     topCustomers,
   }
+
+  setCache(cacheKey, result)
+  return result
 }
 
 // Get Order Metrics
 export async function getOrderMetrics(range: DateRange): Promise<OrderMetrics> {
+  const cacheKey = `orders_${range.from.toISOString()}_${range.to.toISOString()}`
+  const cached = getCached<OrderMetrics>(cacheKey)
+  if (cached) return cached
+
   const payload = await getCachedPayload()
 
   const orders = await payload.find({
@@ -267,7 +315,8 @@ export async function getOrderMetrics(range: DateRange): Promise<OrderMetrics> {
       createdAt: { greater_than_equal: range.from.toISOString() },
       and: [{ createdAt: { less_than_equal: range.to.toISOString() } }],
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
+    depth: 0,
   })
 
   const statusCounts = {
@@ -290,14 +339,21 @@ export async function getOrderMetrics(range: DateRange): Promise<OrderMetrics> {
     }
   })
 
-  return {
+  const result: OrderMetrics = {
     ...statusCounts,
     totalValue,
   }
+
+  setCache(cacheKey, result)
+  return result
 }
 
 // Get Time Series Data
 export async function getTimeSeriesData(range: DateRange): Promise<TimeSeriesData[]> {
+  const cacheKey = `timeseries_${range.from.toISOString()}_${range.to.toISOString()}`
+  const cached = getCached<TimeSeriesData[]>(cacheKey)
+  if (cached) return cached
+
   const payload = await getCachedPayload()
 
   const orders = await payload.find({
@@ -307,7 +363,8 @@ export async function getTimeSeriesData(range: DateRange): Promise<TimeSeriesDat
       and: [{ createdAt: { less_than_equal: range.to.toISOString() } }],
       status: { not_equals: 'cancelled' },
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
+    depth: 0,
   })
 
   // Group by date
@@ -336,6 +393,7 @@ export async function getTimeSeriesData(range: DateRange): Promise<TimeSeriesDat
     currentDate.setDate(currentDate.getDate() + 1)
   }
 
+  setCache(cacheKey, result)
   return result
 }
 
@@ -351,7 +409,7 @@ export async function getCategorySales(range: DateRange): Promise<CategorySales[
       status: { not_equals: 'cancelled' },
     },
     depth: 3,
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   const categorySales: Record<string, { name: string; nameAr?: string; revenue: number; orders: Set<string> }> = {}
@@ -407,7 +465,7 @@ export async function getPaymentStats(range: DateRange): Promise<PaymentMethodSt
       and: [{ createdAt: { less_than_equal: range.to.toISOString() } }],
       status: { not_equals: 'cancelled' },
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   const paymentStats: Record<string, { count: number; amount: number }> = {}
@@ -446,7 +504,7 @@ export async function getGeographicStats(range: DateRange): Promise<GeographicSt
       and: [{ createdAt: { less_than_equal: range.to.toISOString() } }],
       status: { not_equals: 'cancelled' },
     },
-    limit: 10000,
+    limit: MAX_RECORDS,
   })
 
   const geoStats: Record<string, { orderCount: number; revenue: number }> = {}

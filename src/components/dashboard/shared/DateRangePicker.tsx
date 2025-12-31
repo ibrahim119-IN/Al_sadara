@@ -121,14 +121,27 @@ const getDefaultPresets = (t: typeof defaultDictionary) => [
   },
 ]
 
-// Month names
-const monthNames = [
+// Month names (English)
+const monthNamesEn = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
 ]
 
-// Day names
-const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+// Month names (Arabic)
+const monthNamesAr = [
+  'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+  'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
+]
+
+// Day names (English)
+const dayNamesEn = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+
+// Day names (Arabic)
+const dayNamesAr = ['أحد', 'إثن', 'ثلا', 'أرب', 'خمي', 'جمع', 'سبت']
+
+// Get localized names
+const getMonthNames = (locale: string) => locale === 'ar' ? monthNamesAr : monthNamesEn
+const getDayNames = (locale: string) => locale === 'ar' ? dayNamesAr : dayNamesEn
 
 export function DateRangePicker({
   value,
@@ -153,6 +166,8 @@ export function DateRangePicker({
   const containerRef = useRef<HTMLDivElement>(null)
 
   const effectivePresets = presets || getDefaultPresets(t)
+  const monthNames = getMonthNames(locale)
+  const dayNames = getDayNames(locale)
 
   // Close on outside click
   useEffect(() => {

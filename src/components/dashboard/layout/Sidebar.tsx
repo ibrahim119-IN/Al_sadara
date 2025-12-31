@@ -26,6 +26,11 @@ import {
   Navigation,
   PanelBottom,
   X,
+  Database,
+  ExternalLink,
+  Images,
+  MessageSquare,
+  HelpCircle,
 } from 'lucide-react'
 import { useDashboardAuth } from '@/lib/dashboard/auth'
 import { hasPermission, type Permission } from '@/lib/dashboard/permissions'
@@ -53,6 +58,14 @@ interface SidebarDictionary {
   general: string
   collapse: string
   expand: string
+  // Payload Admin
+  payloadAdmin?: string
+  manageProducts?: string
+  manageOrders?: string
+  manageCustomers?: string
+  manageMedia?: string
+  manageFaqs?: string
+  manageTestimonials?: string
 }
 
 interface SidebarProps {
@@ -70,6 +83,7 @@ interface NavItem {
   icon: React.ElementType
   permission?: Permission
   children?: NavItem[]
+  external?: boolean // For external links like Payload Admin
 }
 
 export function Sidebar({
@@ -200,6 +214,52 @@ export function Sidebar({
         },
       ],
     },
+    // Payload Admin Section - External Links
+    {
+      label: t.payloadAdmin || (locale === 'ar' ? 'إدارة المحتوى' : 'Content Admin'),
+      href: '/admin',
+      icon: Database,
+      permission: 'settings.view',
+      external: true,
+      children: [
+        {
+          label: t.manageProducts || (locale === 'ar' ? 'إدارة المنتجات' : 'Manage Products'),
+          href: '/admin/collections/products',
+          icon: Package,
+          external: true,
+        },
+        {
+          label: t.manageOrders || (locale === 'ar' ? 'إدارة الطلبات' : 'Manage Orders'),
+          href: '/admin/collections/orders',
+          icon: ShoppingCart,
+          external: true,
+        },
+        {
+          label: t.manageCustomers || (locale === 'ar' ? 'إدارة العملاء' : 'Manage Customers'),
+          href: '/admin/collections/customers',
+          icon: Users,
+          external: true,
+        },
+        {
+          label: t.manageMedia || (locale === 'ar' ? 'الوسائط' : 'Media'),
+          href: '/admin/collections/media',
+          icon: Images,
+          external: true,
+        },
+        {
+          label: t.manageFaqs || (locale === 'ar' ? 'الأسئلة الشائعة' : 'FAQs'),
+          href: '/admin/collections/faqs',
+          icon: HelpCircle,
+          external: true,
+        },
+        {
+          label: t.manageTestimonials || (locale === 'ar' ? 'آراء العملاء' : 'Testimonials'),
+          href: '/admin/collections/testimonials',
+          icon: MessageSquare,
+          external: true,
+        },
+      ],
+    },
   ]
 
   // Filter items based on permissions
@@ -268,6 +328,34 @@ export function Sidebar({
             </div>
           )}
         </div>
+      )
+    }
+
+    // For external links (like Payload Admin)
+    if (item.external) {
+      return (
+        <a
+          key={item.href}
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => isOpen && onClose()}
+          className={cn(
+            'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+            'text-secondary-600 dark:text-secondary-400 hover:bg-secondary-100 dark:hover:bg-secondary-700/50',
+            isCollapsed && 'justify-center px-2',
+            isChild && 'py-2'
+          )}
+          title={isCollapsed ? item.label : undefined}
+        >
+          <Icon className={cn('w-5 h-5 flex-shrink-0', isChild && 'w-4 h-4')} />
+          {!isCollapsed && (
+            <>
+              <span className="flex-1">{item.label}</span>
+              <ExternalLink className="w-3 h-3 text-secondary-400" />
+            </>
+          )}
+        </a>
       )
     }
 

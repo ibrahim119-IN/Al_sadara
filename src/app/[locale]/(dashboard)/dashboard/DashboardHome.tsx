@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import {
   TrendingUp,
@@ -12,6 +12,8 @@ import {
   AlertTriangle,
   Clock,
   ArrowRight,
+  RefreshCw,
+  AlertCircle,
 } from 'lucide-react'
 import { useDashboardAuth } from '@/lib/dashboard/auth'
 import { cn } from '@/lib/utils/cn'
@@ -77,54 +79,44 @@ export function DashboardHome({ locale, dictionary: t }: Props) {
   const [error, setError] = useState<string | null>(null)
 
   // Fetch dashboard stats
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        setIsLoading(true)
-        const response = await fetch('/api/analytics?period=month', {
-          credentials: 'include',
-        })
+  const fetchStats = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
+      const response = await fetch('/api/analytics?period=month', {
+        credentials: 'include',
+      })
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch stats')
-        }
-
-        const data = await response.json()
-
-        // Transform analytics data to dashboard stats
-        setStats({
-          totalRevenue: data.salesMetrics?.totalRevenue || 0,
-          totalOrders: data.salesMetrics?.totalOrders || 0,
-          newCustomers: data.customerMetrics?.newCustomers || 0,
-          avgOrderValue: data.salesMetrics?.averageOrderValue || 0,
-          pendingOrders: data.orderMetrics?.byStatus?.pending || 0,
-          lowStockProducts: data.productMetrics?.lowStockProducts || 0,
-          recentOrders: data.recentOrders || [],
-          revenueGrowth: data.salesMetrics?.revenueGrowth || 0,
-          ordersGrowth: data.salesMetrics?.ordersGrowth || 0,
-        })
-      } catch (err) {
-        console.error('Error fetching stats:', err)
-        setError('Failed to load dashboard data')
-        // Set mock data for demo
-        setStats({
-          totalRevenue: 0,
-          totalOrders: 0,
-          newCustomers: 0,
-          avgOrderValue: 0,
-          pendingOrders: 0,
-          lowStockProducts: 0,
-          recentOrders: [],
-          revenueGrowth: 0,
-          ordersGrowth: 0,
-        })
-      } finally {
-        setIsLoading(false)
+      if (!response.ok) {
+        throw new Error('Failed to fetch stats')
       }
-    }
 
+      const data = await response.json()
+
+      // Transform analytics data to dashboard stats
+      setStats({
+        totalRevenue: data.salesMetrics?.totalRevenue || 0,
+        totalOrders: data.salesMetrics?.totalOrders || 0,
+        newCustomers: data.customerMetrics?.newCustomers || 0,
+        avgOrderValue: data.salesMetrics?.averageOrderValue || 0,
+        pendingOrders: data.orderMetrics?.byStatus?.pending || 0,
+        lowStockProducts: data.productMetrics?.lowStockProducts || 0,
+        recentOrders: data.recentOrders || [],
+        revenueGrowth: data.salesMetrics?.revenueGrowth || 0,
+        ordersGrowth: data.salesMetrics?.ordersGrowth || 0,
+      })
+    } catch (err) {
+      console.error('Error fetching stats:', err)
+      setError(locale === 'ar' ? 'فشل تحميل البيانات' : 'Failed to load dashboard data')
+      setStats(null)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [locale])
+
+  useEffect(() => {
     fetchStats()
-  }, [])
+  }, [fetchStats])
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat(locale === 'ar' ? 'ar-EG' : 'en-EG', {
@@ -393,10 +385,27 @@ export function DashboardHome({ locale, dictionary: t }: Props) {
         )}
       </div>
 
-      {error && (
-        <p className="text-sm text-yellow-600 dark:text-yellow-400 text-center">
-          {error}
-        </p>
+      {/* Error State with Retry */}
+      {error && !stats && (
+        <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-8 text-center border border-red-200 dark:border-red-800">
+          <AlertCircle className="w-12 h-12 mx-auto text-red-500 mb-4" />
+          <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+            {error}
+          </h3>
+          <p className="text-sm text-red-600 dark:text-red-300 mb-4">
+            {locale === 'ar'
+              ? 'تأكد من اتصالك بالإنترنت وحاول مرة أخرى'
+              : 'Please check your connection and try again'}
+          </p>
+          <button
+            onClick={fetchStats}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+          >
+            <RefreshCw className={cn('w-4 h-4', isLoading && 'animate-spin')} />
+            <span>{locale === 'ar' ? 'إعادة المحاولة' : 'Retry'}</span>
+          </button>
+        </div>
       )}
     </div>
   )

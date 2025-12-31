@@ -41,6 +41,7 @@ const generateId = () => `toast-${Date.now()}-${Math.random().toString(36).subst
 // Toast Provider
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([])
+  const [isInitialized, setIsInitialized] = useState(false)
 
   const addToast = useCallback((toast: Omit<Toast, 'id'>) => {
     const id = generateId()
@@ -91,6 +92,23 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     },
     [addToast]
   )
+
+  // Initialize global toast function
+  useEffect(() => {
+    if (!isInitialized) {
+      initializeToast({
+        toasts,
+        addToast,
+        removeToast,
+        clearToasts,
+        success,
+        error,
+        warning,
+        info,
+      })
+      setIsInitialized(true)
+    }
+  }, [isInitialized, toasts, addToast, removeToast, clearToasts, success, error, warning, info])
 
   return (
     <ToastContext.Provider

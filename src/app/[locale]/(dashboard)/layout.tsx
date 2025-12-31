@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import { DashboardAuthProvider } from '@/lib/dashboard/auth'
 import { DashboardLayout } from '@/components/dashboard/layout'
 import { ProtectedRoute } from '@/components/dashboard/auth'
+import { ErrorBoundary } from '@/components/dashboard/shared/ErrorBoundary'
 
 // Get dashboard dictionary directly from JSON
 import arDict from '@/dictionaries/ar.json'
@@ -25,7 +26,9 @@ export default async function DashboardRootLayout({ children, params }: Props) {
     <DashboardAuthProvider>
       <ProtectedRoute locale={validLocale}>
         <DashboardLayout locale={validLocale} dictionary={dashboardDict}>
-          {children}
+          <ErrorBoundary locale={validLocale}>
+            {children}
+          </ErrorBoundary>
         </DashboardLayout>
       </ProtectedRoute>
     </DashboardAuthProvider>
