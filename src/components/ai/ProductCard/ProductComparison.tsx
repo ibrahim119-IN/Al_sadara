@@ -137,7 +137,7 @@ export function ProductComparison({ products, locale, comparisonAspects }: Produ
                 </td>
                 {displayProducts.map((product) => (
                   <td key={product.id} className="px-4 py-3 text-center text-sm text-gray-700">
-                    {product.model || '-'}
+                    {(product as unknown as { model?: string }).model || '-'}
                   </td>
                 ))}
               </tr>
