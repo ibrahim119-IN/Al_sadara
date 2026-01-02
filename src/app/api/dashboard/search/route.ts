@@ -40,12 +40,13 @@ export async function GET(request: NextRequest) {
         limit: 5,
         depth: 0,
       }),
-      // Search Customers by name or email
+      // Search Customers by firstName, lastName, email or phone
       payload.find({
         collection: 'customers',
         where: {
           or: [
-            { name: { contains: query } },
+            { firstName: { contains: query } },
+            { lastName: { contains: query } },
             { email: { contains: query } },
             { phone: { contains: query } },
           ],
@@ -76,7 +77,7 @@ export async function GET(request: NextRequest) {
       customers: customers.docs.map((customer) => ({
         id: customer.id,
         type: 'customer' as const,
-        title: (customer.name as string) || 'Unknown',
+        title: `${(customer.firstName as string) || ''} ${(customer.lastName as string) || ''}`.trim() || 'Unknown',
         subtitle: customer.email as string,
         href: `/dashboard/customers/${customer.id}`,
       })),
