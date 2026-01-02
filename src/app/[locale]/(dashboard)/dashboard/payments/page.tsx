@@ -24,7 +24,10 @@ interface Payment {
   createdAt: string
 }
 
-const methodConfig: Record<string, { icon: React.ElementType; label: string; labelAr: string }> = {
+type PaymentMethodKey = 'card' | 'wallet' | 'bank_transfer' | 'cash' | 'kiosk'
+type PaymentStatusKey = 'pending' | 'completed' | 'failed' | 'refunded'
+
+const methodConfig: Record<PaymentMethodKey, { icon: React.ComponentType<{ className?: string }>; label: string; labelAr: string }> = {
   card: { icon: CreditCard, label: 'Card', labelAr: 'بطاقة' },
   wallet: { icon: Wallet, label: 'Wallet', labelAr: 'محفظة' },
   bank_transfer: { icon: Banknote, label: 'Bank Transfer', labelAr: 'تحويل بنكي' },
@@ -32,7 +35,7 @@ const methodConfig: Record<string, { icon: React.ElementType; label: string; lab
   kiosk: { icon: CreditCard, label: 'Kiosk', labelAr: 'كيوسك' },
 }
 
-const statusConfig: Record<string, { color: string; label: string; labelAr: string; icon: React.ElementType }> = {
+const statusConfig: Record<PaymentStatusKey, { color: string; label: string; labelAr: string; icon: React.ComponentType<{ className?: string }> }> = {
   pending: { color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400', label: 'Pending', labelAr: 'قيد الانتظار', icon: Clock },
   completed: { color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400', label: 'Completed', labelAr: 'مكتمل', icon: CheckCircle },
   failed: { color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400', label: 'Failed', labelAr: 'فشل', icon: XCircle },
@@ -144,8 +147,10 @@ export default function PaymentsPage() {
               </thead>
               <tbody className="divide-y divide-secondary-200 dark:divide-secondary-700">
                 {payments.map((payment) => {
-                  const method = methodConfig[payment.method] || methodConfig.cash
-                  const status = statusConfig[payment.status] || statusConfig.pending
+                  const methodKey = (payment.method as PaymentMethodKey) || 'cash'
+                  const statusKey = (payment.status as PaymentStatusKey) || 'pending'
+                  const method = methodConfig[methodKey] || methodConfig.cash
+                  const status = statusConfig[statusKey] || statusConfig.pending
                   const MethodIcon = method.icon
                   const StatusIcon = status.icon
                   return (

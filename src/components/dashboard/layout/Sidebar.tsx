@@ -80,7 +80,7 @@ interface SidebarProps {
 interface NavItem {
   label: string
   href: string
-  icon: React.ElementType
+  icon: React.ComponentType<{ className?: string }>
   permission?: Permission
   children?: NavItem[]
   external?: boolean // For external links like Payload Admin

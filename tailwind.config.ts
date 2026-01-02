@@ -154,8 +154,8 @@ const config: Config = {
         'scroll-ltr': 'scrollLtr 35s linear infinite',
         'scroll-rtl': 'scrollRtl 35s linear infinite',
         'infinite-scroll': 'infiniteScroll 40s linear infinite',
-        'marquee': 'marquee 25s linear infinite',
-        'marquee-rtl': 'marqueeRtl 25s linear infinite',
+        'marquee': 'marquee 30s linear infinite',
+        'marquee-rtl': 'marqueeRtl 30s linear infinite',
         // NEW: Enhanced animations for UI improvements
         'reveal-up': 'revealUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
         'reveal-down': 'revealDown 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
@@ -227,12 +227,12 @@ const config: Config = {
           to: { transform: 'translateX(-100%)' },
         },
         marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
         marqueeRtl: {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0)' },
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
         // NEW: Enhanced keyframes for UI improvements
         revealUp: {

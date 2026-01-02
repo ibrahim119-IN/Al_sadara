@@ -23,7 +23,9 @@ interface Review {
   createdAt: string
 }
 
-const statusConfig: Record<string, { color: string; label: string; labelAr: string; icon: React.ElementType }> = {
+type ReviewStatusKey = 'pending' | 'approved' | 'rejected'
+
+const statusConfig: Record<ReviewStatusKey, { color: string; label: string; labelAr: string; icon: React.ComponentType<{ className?: string }> }> = {
   pending: { color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400', label: 'Pending', labelAr: 'قيد المراجعة', icon: Clock },
   approved: { color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400', label: 'Approved', labelAr: 'معتمد', icon: CheckCircle },
   rejected: { color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400', label: 'Rejected', labelAr: 'مرفوض', icon: XCircle },
@@ -133,7 +135,8 @@ export default function ReviewsPage() {
               </thead>
               <tbody className="divide-y divide-secondary-200 dark:divide-secondary-700">
                 {reviews.map((review) => {
-                  const status = statusConfig[review.status] || statusConfig.pending
+                  const reviewStatus = (review.status as ReviewStatusKey) || 'pending'
+                  const status = statusConfig[reviewStatus] || statusConfig.pending
                   const StatusIcon = status.icon
                   return (
                     <tr key={review.id} className="hover:bg-secondary-50 dark:hover:bg-secondary-900/50">

@@ -33,7 +33,9 @@ interface Order {
   itemsCount: number
 }
 
-const statusConfig: Record<string, { label: string; labelAr: string; color: string; icon: React.ElementType }> = {
+type OrderStatusKey = 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled'
+
+const statusConfig: Record<OrderStatusKey, { label: string; labelAr: string; color: string; icon: React.ComponentType<{ className?: string }> }> = {
   pending: { label: 'Pending', labelAr: 'قيد الانتظار', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400', icon: Clock },
   processing: { label: 'Processing', labelAr: 'قيد المعالجة', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400', icon: RefreshCw },
   shipped: { label: 'Shipped', labelAr: 'تم الشحن', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400', icon: Truck },
@@ -190,7 +192,9 @@ export default function OrdersPage() {
               </thead>
               <tbody className="divide-y divide-secondary-200 dark:divide-secondary-700">
                 {orders.map((order) => {
-                  const StatusIcon = statusConfig[order.status]?.icon || Clock
+                  const orderStatus = (order.status as OrderStatusKey) || 'pending'
+                  const statusInfo = statusConfig[orderStatus] || statusConfig.pending
+                  const StatusIcon = statusInfo.icon
                   return (
                     <tr key={order.id} className="hover:bg-secondary-50 dark:hover:bg-secondary-900/50">
                       <td className="px-5 py-4">
@@ -215,10 +219,10 @@ export default function OrdersPage() {
                       <td className="px-5 py-4">
                         <span className={cn(
                           "inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full",
-                          statusConfig[order.status]?.color
+                          statusInfo.color
                         )}>
                           <StatusIcon className="w-3 h-3" />
-                          {isRTL ? statusConfig[order.status]?.labelAr : statusConfig[order.status]?.label}
+                          {isRTL ? statusInfo.labelAr : statusInfo.label}
                         </span>
                       </td>
                       <td className="px-5 py-4 text-sm text-secondary-500">

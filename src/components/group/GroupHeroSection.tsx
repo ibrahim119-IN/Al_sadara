@@ -23,8 +23,10 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [animationReady, setAnimationReady] = useState(false)
 
-  // تكرار الشركات 2 مرات فقط للـ infinite loop السلس (50% animation)
-  const repeatedCompanies = [...companies, ...companies]
+  // Double track method للـ seamless infinite scroll
+  // كل track = companies × 2 لضمان تغطية الشاشات العريضة
+  // Track A + Track B متطابقين - الـ animation تتحرك -50% بالضبط
+  const doubledCompanies = [...companies, ...companies]
 
   useEffect(() => {
     setIsLoaded(true)
@@ -219,49 +221,76 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}
       >
-        {/* Carousel with mask gradient for smooth fade effect */}
-        <div
-          className="w-full overflow-hidden"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent 0, black 128px, black calc(100% - 128px), transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0, black 128px, black calc(100% - 128px), transparent 100%)',
-          }}
-        >
-          {/* Single track with 2x repeated items - moves 50% to loop seamlessly */}
+        {/* Carousel - dir=ltr عشان الـ transform يشتغل صح في RTL */}
+        <div className="w-full overflow-hidden" dir="ltr">
+          {/* Double Track Method - Track A + Track B متطابقين */}
           <div
             ref={trackRef}
-            className={`flex items-center hover:[animation-play-state:paused] ${animationReady ? (isRTL ? 'animate-marquee-rtl' : 'animate-marquee') : ''}`}
+            className={`flex w-max items-center hover:[animation-play-state:paused] ${animationReady ? (isRTL ? 'animate-marquee-rtl' : 'animate-marquee') : ''}`}
             style={{ willChange: 'transform' }}
           >
-            {repeatedCompanies.map((company, index) => (
-              <div key={index} className="flex-shrink-0 px-2">
-                <Link
-                  href={`/${locale}/companies/${company.slug}`}
-                  className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-white/30 transition-all duration-300 group shadow-lg"
-                >
-                  {/* Logo with white circular background */}
-                  <div className="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden">
-                    <div className="w-10 h-10 relative">
-                      <Image
-                        src={company.logo}
-                        alt={isRTL ? company.name.ar : company.name.en}
-                        fill
-                        sizes="40px"
-                        className="object-contain"
-                      />
+            {/* Track A - companies × 2 */}
+            <div className="flex items-center shrink-0">
+              {doubledCompanies.map((company, index) => (
+                <div key={`a-${index}`} className="flex-shrink-0 px-2">
+                  <Link
+                    href={`/${locale}/companies/${company.slug}`}
+                    className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-white/30 transition-all duration-300 group shadow-lg"
+                  >
+                    <div className="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden">
+                      <div className="w-10 h-10 relative">
+                        <Image
+                          src={company.logo}
+                          alt={isRTL ? company.name.ar : company.name.en}
+                          fill
+                          sizes="40px"
+                          className="object-contain"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-bold text-white text-lg whitespace-nowrap">
-                      {isRTL ? company.name.ar : company.name.en}
-                    </span>
-                    <span className="text-sm text-white/60 whitespace-nowrap">
-                      {isRTL ? company.location.city.ar : company.location.city.en}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                    <div className="flex flex-col">
+                      <span className="font-bold text-white text-lg whitespace-nowrap">
+                        {isRTL ? company.name.ar : company.name.en}
+                      </span>
+                      <span className="text-sm text-white/60 whitespace-nowrap">
+                        {isRTL ? company.location.city.ar : company.location.city.en}
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+            {/* Track B - نسخة طبق الأصل من Track A */}
+            <div className="flex items-center shrink-0">
+              {doubledCompanies.map((company, index) => (
+                <div key={`b-${index}`} className="flex-shrink-0 px-2">
+                  <Link
+                    href={`/${locale}/companies/${company.slug}`}
+                    className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-white/30 transition-all duration-300 group shadow-lg"
+                  >
+                    <div className="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden">
+                      <div className="w-10 h-10 relative">
+                        <Image
+                          src={company.logo}
+                          alt={isRTL ? company.name.ar : company.name.en}
+                          fill
+                          sizes="40px"
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-bold text-white text-lg whitespace-nowrap">
+                        {isRTL ? company.name.ar : company.name.en}
+                      </span>
+                      <span className="text-sm text-white/60 whitespace-nowrap">
+                        {isRTL ? company.location.city.ar : company.location.city.en}
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -34,7 +34,9 @@ interface Product {
   images?: Array<{ image?: { url?: string } }>
 }
 
-const stockStatusConfig: Record<string, { label: string; labelAr: string; color: string; icon: React.ElementType }> = {
+type StockStatusKey = 'inStock' | 'lowStock' | 'outOfStock'
+
+const stockStatusConfig: Record<StockStatusKey, { label: string; labelAr: string; color: string; icon: React.ComponentType<{ className?: string }> }> = {
   inStock: { label: 'In Stock', labelAr: 'متوفر', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400', icon: CheckCircle },
   lowStock: { label: 'Low Stock', labelAr: 'مخزون منخفض', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400', icon: AlertTriangle },
   outOfStock: { label: 'Out of Stock', labelAr: 'غير متوفر', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400', icon: XCircle },
@@ -146,7 +148,7 @@ export default function InventoryPage() {
     }).format(amount)
   }
 
-  const getStockStatus = (stock: number): keyof typeof stockStatusConfig => {
+  const getStockStatus = (stock: number): StockStatusKey => {
     if (stock === 0) return 'outOfStock'
     if (stock <= 10) return 'lowStock'
     return 'inStock'

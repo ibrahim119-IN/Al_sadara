@@ -73,7 +73,19 @@
       "Bash(npm view:*)",
       "Bash(claude mcp remove:*)",
       "Bash(git -C \"E:/Al_Sadara\" log --oneline -3)",
-      "Bash(git -C \"E:/Al_Sadara\" commit -m \"$\\(cat <<''EOF''\nchore: آخر نسخة شغالة قبل تعديل الهوية البصرية\n\nLast stable version before identity/theme modifications:\n- Hero Section with WaveBackground effect working\n- Dashboard pages structure added\n- Payment API endpoints\n- User management API\n- All components functional\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git -C \"E:/Al_Sadara\" commit -m \"$\\(cat <<''EOF''\nchore: آخر نسخة شغالة قبل تعديل الهوية البصرية\n\nLast stable version before identity/theme modifications:\n- Hero Section with WaveBackground effect working\n- Dashboard pages structure added\n- Payment API endpoints\n- User management API\n- All components functional\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git checkout:*)",
+      "Bash(npx:*)",
+      "Bash(git push:*)",
+      "Bash(node:*)",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@72.62.177.198 \"echo ''Connected successfully!'' && uname -a && df -h / && free -h\")",
+      "Bash(ssh root@72.62.177.198 \"apt-get update && apt-get install -y ca-certificates curl gnupg lsb-release\")",
+      "Bash(ssh root@72.62.177.198 \"docker --version && docker-compose --version 2>/dev/null || docker compose version\")",
+      "Bash(ssh root@72.62.177.198 \"apt-get install -y nginx certbot python3-certbot-nginx\")",
+      "Bash(ssh root@72.62.177.198 \"mkdir -p /var/www && cd /var/www && rm -rf alsadara && git clone https://github.com/ibrahim119-IN/Al_sadara.git alsadara\")",
+      "Bash(ssh root@72.62.177.198 \"cat > /var/www/alsadara/.env.production << ''EOF''\n# Al Sadara Production Environment\nNODE_ENV=production\n\n# Database\nPOSTGRES_USER=postgres\nPOSTGRES_PASSWORD=AlSadara@Prod2024!\nPOSTGRES_DB=alsadara\nDATABASE_URI=postgresql://postgres:AlSadara@Prod2024!@db:5432/alsadara\n\n# Payload CMS\nPAYLOAD_SECRET=45f1e9419ec9d9910af60667e426590899f2d3423253a1e406f00f647ca4da46\nPAYLOAD_PUBLIC_SERVER_URL=https://alsadara.org\n\n# Next.js\nNEXT_PUBLIC_SERVER_URL=https://alsadara.org\nEOF\ncat /var/www/alsadara/.env.production\")",
+      "Bash(ssh root@72.62.177.198 \"cd /var/www/alsadara && cp .env.production .env && docker compose -f docker-compose.prod.yml up -d db\")",
+      "Bash(ssh root@72.62.177.198:*)"
     ]
   }
 }

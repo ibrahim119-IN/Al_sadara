@@ -11,7 +11,7 @@ interface FAQItem {
 }
 
 interface FAQCategory {
-  icon: React.ElementType
+  icon: React.ComponentType<{ className?: string }>
   title: string
   items: FAQItem[]
 }
