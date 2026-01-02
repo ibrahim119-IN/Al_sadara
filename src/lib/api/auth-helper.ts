@@ -6,7 +6,7 @@
  */
 
 import { NextResponse } from 'next/server'
-import { getCachedPayload } from '@/lib/payload/cache'
+import { getCachedPayload } from '@/lib/payload-client'
 import { hasPermission, Permission, UserRole } from '@/lib/dashboard/permissions/roles'
 
 // User type from Payload
