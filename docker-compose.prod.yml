@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: alsadara-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-your-secure-password}
+      POSTGRES_DB: ${POSTGRES_DB:-alsadara}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - alsadara-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URI: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-your-secure-password}@db:5432/${POSTGRES_DB:-alsadara}
+        PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+        NEXT_PUBLIC_SERVER_URL: https://alsadara.org
+    container_name: alsadara-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URI=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-your-secure-password}@db:5432/${POSTGRES_DB:-alsadara}
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET}
+      - NEXT_PUBLIC_SERVER_URL=https://alsadara.org
+      - PAYLOAD_PUBLIC_SERVER_URL=https://alsadara.org
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - alsadara-network
+
+networks:
+  alsadara-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

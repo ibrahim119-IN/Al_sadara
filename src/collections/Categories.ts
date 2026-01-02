@@ -1,5 +1,16 @@
 import type { CollectionConfig } from 'payload'
 
+// Helper to check user role permissions
+type UserRole = 'super-admin' | 'admin' | 'manager' | 'staff'
+
+const canManageCategories = (role?: UserRole): boolean => {
+  return ['super-admin', 'admin'].includes(role || '')
+}
+
+const canDeleteCategories = (role?: UserRole): boolean => {
+  return ['super-admin', 'admin'].includes(role || '')
+}
+
 export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
@@ -18,7 +29,26 @@ export const Categories: CollectionConfig = {
     },
   },
   access: {
+    // Anyone can read categories (public catalog)
     read: () => true,
+    // Only admins can create categories
+    create: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.collection !== 'users') return false
+      return canManageCategories(user.role as UserRole)
+    },
+    // Only admins can edit categories
+    update: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.collection !== 'users') return false
+      return canManageCategories(user.role as UserRole)
+    },
+    // Only admins can delete categories
+    delete: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.collection !== 'users') return false
+      return canDeleteCategories(user.role as UserRole)
+    },
   },
   fields: [
     {

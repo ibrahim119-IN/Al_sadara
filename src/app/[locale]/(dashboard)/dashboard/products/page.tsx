@@ -14,6 +14,7 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
+import { RoleGuard } from '@/components/dashboard/auth/RoleGuard'
 
 interface Product {
   id: string
@@ -102,13 +103,15 @@ export default function ProductsPage() {
         <h1 className="text-2xl font-bold text-secondary-900 dark:text-white">
           {t.title}
         </h1>
-        <Link
-          href={`/${locale}/admin/collections/products/create`}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          {t.addProduct}
-        </Link>
+        <RoleGuard permissions="products.create" hideIfDenied>
+          <Link
+            href={`/${locale}/admin/collections/products/create`}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            {t.addProduct}
+          </Link>
+        </RoleGuard>
       </div>
 
       {/* Search */}
@@ -185,12 +188,14 @@ export default function ProductsPage() {
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-2">
-                          <Link
-                            href={`/${locale}/admin/collections/products/${product.id}`}
-                            className="p-1 text-secondary-500 hover:text-primary-600"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Link>
+                          <RoleGuard permissions="products.edit" hideIfDenied>
+                            <Link
+                              href={`/${locale}/admin/collections/products/${product.id}`}
+                              className="p-1 text-secondary-500 hover:text-primary-600"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Link>
+                          </RoleGuard>
                         </div>
                       </td>
                     </tr>

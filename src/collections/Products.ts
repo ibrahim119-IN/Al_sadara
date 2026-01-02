@@ -1,6 +1,21 @@
 import type { CollectionConfig } from 'payload'
 import { afterProductChange, afterProductDelete } from './hooks/product-indexing-hooks'
 
+// Helper to check user role permissions
+type UserRole = 'super-admin' | 'admin' | 'manager' | 'staff'
+
+const canManageProducts = (role?: UserRole): boolean => {
+  return ['super-admin', 'admin'].includes(role || '')
+}
+
+const canEditProducts = (role?: UserRole): boolean => {
+  return ['super-admin', 'admin', 'manager'].includes(role || '')
+}
+
+const canDeleteProducts = (role?: UserRole): boolean => {
+  return ['super-admin', 'admin'].includes(role || '')
+}
+
 export const Products: CollectionConfig = {
   slug: 'products',
   admin: {
@@ -19,7 +34,26 @@ export const Products: CollectionConfig = {
     },
   },
   access: {
+    // Anyone can read products (public catalog)
     read: () => true,
+    // Only admins can create products
+    create: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.collection !== 'users') return false
+      return canManageProducts(user.role as UserRole)
+    },
+    // Admins and managers can edit
+    update: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.collection !== 'users') return false
+      return canEditProducts(user.role as UserRole)
+    },
+    // Only admins can delete
+    delete: ({ req: { user } }) => {
+      if (!user) return false
+      if (user.collection !== 'users') return false
+      return canDeleteProducts(user.role as UserRole)
+    },
   },
   hooks: {
     afterChange: [afterProductChange],

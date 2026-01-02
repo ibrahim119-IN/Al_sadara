@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDashboardData, Period, getRecentOrders } from '@/lib/analytics'
+import { withAuth } from '@/lib/api/auth-helper'
 
 // GET /api/analytics - Get dashboard analytics data
 export async function GET(request: NextRequest) {
-  try {
+  return withAuth(request, 'analytics.view', async () => {
+    try {
     const { searchParams } = new URL(request.url)
     const period = (searchParams.get('period') || 'month') as Period
     const fromDate = searchParams.get('from')
@@ -88,11 +90,12 @@ export async function GET(request: NextRequest) {
       // Metadata
       lastUpdated: data.lastUpdated,
     })
-  } catch (error) {
-    console.error('[Analytics API] Error:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch analytics data' },
-      { status: 500 }
-    )
-  }
+    } catch (error) {
+      console.error('[Analytics API] Error:', error)
+      return NextResponse.json(
+        { error: 'Failed to fetch analytics data' },
+        { status: 500 }
+      )
+    }
+  })
 }

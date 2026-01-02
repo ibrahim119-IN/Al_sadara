@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getCachedPayload } from '@/lib/payload-client'
+import { withAuth } from '@/lib/api/auth-helper'
 
 export async function GET(request: NextRequest) {
-  try {
-    const searchParams = request.nextUrl.searchParams
-    const query = searchParams.get('q')?.trim()
+  return withAuth(request, 'dashboard.view', async () => {
+    try {
+      const searchParams = request.nextUrl.searchParams
+      const query = searchParams.get('q')?.trim()
 
-    if (!query || query.length < 2) {
-      return NextResponse.json({ results: [] })
-    }
+      if (!query || query.length < 2) {
+        return NextResponse.json({ results: [] })
+      }
 
-    const payload = await getCachedPayload()
+      const payload = await getCachedPayload()
 
     // Search in parallel for better performance
     const [orders, products, customers] = await Promise.all([
@@ -84,11 +86,12 @@ export async function GET(request: NextRequest) {
       results,
       total: orders.totalDocs + products.totalDocs + customers.totalDocs,
     })
-  } catch (error) {
-    console.error('Search error:', error)
-    return NextResponse.json(
-      { error: 'Search failed' },
-      { status: 500 }
-    )
-  }
+    } catch (error) {
+      console.error('Search error:', error)
+      return NextResponse.json(
+        { error: 'Search failed' },
+        { status: 500 }
+      )
+    }
+  })
 }
