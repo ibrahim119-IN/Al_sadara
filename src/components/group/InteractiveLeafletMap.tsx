@@ -50,6 +50,7 @@ export default function InteractiveLeafletMap({ locale }: InteractiveLeafletMapP
     // Dynamically import Leaflet only on client side
     const initMap = async () => {
       const L = (await import('leaflet')).default
+      // @ts-ignore - CSS import
       await import('leaflet/dist/leaflet.css')
 
       // التأكد من أن المكون لا يزال mounted
