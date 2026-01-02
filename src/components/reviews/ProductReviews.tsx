@@ -128,8 +128,10 @@ export function ProductReviews({
           </div>
           <ReviewForm
             productId={productId}
-            onSubmit={handleSubmitReview}
-            isLoading={isLoading}
+            productName={isArabic ? productNameAr || productName : productName}
+            locale={isArabic ? 'ar' : 'en'}
+            onSubmit={handleSubmitReview as any}
+            onCancel={() => setShowForm(false)}
           />
         </div>
       )}
@@ -140,9 +142,8 @@ export function ProductReviews({
           <RatingSummary
             averageRating={stats.averageRating}
             totalReviews={stats.totalReviews}
-            distribution={stats.distribution}
-            onFilterChange={changeRatingFilter}
-            activeFilter={filterRating}
+            ratingDistribution={stats.distribution as any}
+            locale={isArabic ? 'ar' : 'en'}
           />
         </div>
       )}
@@ -159,16 +160,16 @@ export function ProductReviews({
         <>
           {stats && stats.totalReviews > 0 ? (
             <ReviewList
-              reviews={reviews}
+              reviews={reviews as any}
               isLoading={isLoading}
               totalPages={totalPages}
               currentPage={currentPage}
               onPageChange={changePage}
-              onSortChange={changeSort}
-              onRatingFilter={changeRatingFilter}
-              currentSort={sortBy}
+              onSortChange={changeSort as any}
+              onRatingFilter={changeRatingFilter as any}
+              currentSort={sortBy as any}
               currentRatingFilter={filterRating}
-              onVote={handleVote}
+              onVote={handleVote as any}
               showSortAndFilter={true}
             />
           ) : !isLoading ? (
