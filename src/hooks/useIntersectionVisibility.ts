@@ -87,12 +87,15 @@ export function useMultipleIntersectionVisibility(
 
   // Initialize refs array
   const refs = Array.from({ length: count }, (_, i) => {
-    return {
-      current: refsArray.current[i] || null,
+    const refObj = {
+      get current() {
+        return refsArray.current[i] || null
+      },
       set current(el: HTMLDivElement | null) {
         refsArray.current[i] = el
       },
-    } as RefObject<HTMLDivElement>
+    }
+    return refObj as RefObject<HTMLDivElement>
   })
 
   useEffect(() => {

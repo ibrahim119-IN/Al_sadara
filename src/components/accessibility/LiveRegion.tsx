@@ -34,8 +34,8 @@ interface LiveRegionProviderProps {
 export function LiveRegionProvider({ children, clearDelay = 5000 }: LiveRegionProviderProps) {
   const [politeMessage, setPoliteMessage] = useState('')
   const [assertiveMessage, setAssertiveMessage] = useState('')
-  const politeTimeoutRef = useRef<ReturnType<typeof setTimeout>>()
-  const assertiveTimeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const politeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const assertiveTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const announce = useCallback((message: string, politeness: LiveRegionPoliteness = 'polite') => {
     if (politeness === 'assertive') {

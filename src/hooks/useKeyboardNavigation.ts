@@ -26,7 +26,7 @@ export function useKeyboardNavigation<T>({
   const [activeIndex, setActiveIndex] = useState(initialIndex)
   const containerRef = useRef<HTMLElement>(null)
   const typeaheadBufferRef = useRef('')
-  const typeaheadTimeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const typeaheadTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const moveTo = useCallback((index: number) => {
     if (items.length === 0) return
