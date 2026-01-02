@@ -161,16 +161,12 @@ export function ProductReviews({
           {stats && stats.totalReviews > 0 ? (
             <ReviewList
               reviews={reviews as any}
-              isLoading={isLoading}
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onPageChange={changePage}
-              onSortChange={changeSort as any}
-              onRatingFilter={changeRatingFilter as any}
-              currentSort={sortBy as any}
-              currentRatingFilter={filterRating}
+              averageRating={stats?.averageRating || 0}
+              totalReviews={stats?.totalReviews || 0}
+              ratingDistribution={stats?.distribution as any || {}}
+              locale={isArabic ? 'ar' : 'en'}
               onVote={handleVote as any}
-              showSortAndFilter={true}
+              loading={isLoading}
             />
           ) : !isLoading ? (
             <div className="text-center py-12 bg-secondary-50 dark:bg-secondary-800/50 rounded-2xl">
