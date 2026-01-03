@@ -1,9 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
+'use client'
 
-export const metadata = {
-  title: 'Offline - Al Sadara',
-}
+import React from 'react'
 
 export default function OfflinePage() {
   return (

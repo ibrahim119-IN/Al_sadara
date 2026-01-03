@@ -2,6 +2,9 @@ import { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
+// Force dynamic generation - don't pre-render at build time
+export const dynamic = 'force-dynamic'
+
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://alsadara.org'
 
 // Static pages for both languages
