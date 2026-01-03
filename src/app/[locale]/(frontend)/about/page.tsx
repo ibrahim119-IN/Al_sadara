@@ -39,11 +39,11 @@ export async function generateMetadata({
       ? 'من نحن | مجموعة الصدارة القابضة'
       : 'About Us | Al Sadara Holding Group',
     description: isArabic
-      ? 'تعرف على مجموعة الصدارة القابضة - رحلة تمتد منذ 2008 في مجال الإلكترونيات وأنظمة المباني الذكية. نخدم مصر والسعودية بـ 6 شركات متخصصة.'
-      : 'Learn about Al Sadara Holding Group - A journey since 2008 in electronics and smart building systems. Serving Egypt and Saudi Arabia with 6 specialized companies.',
+      ? 'تعرف على مجموعة الصدارة القابضة - رحلة تمتد منذ 2005 في مجال تجارة خامات البلاستيك. نخدم الشرق الأوسط وأفريقيا بـ 5 شركات متخصصة.'
+      : 'Learn about Al Sadara Holding Group - A journey since 2005 in plastic raw materials trading. Serving Middle East and Africa with 5 specialized companies.',
     keywords: isArabic
-      ? ['من نحن', 'مجموعة الصدارة', 'تاريخ الشركة', 'رؤيتنا', 'قيمنا', 'فريق العمل']
-      : ['about us', 'Al Sadara Group', 'company history', 'our vision', 'our values', 'team'],
+      ? ['من نحن', 'مجموعة الصدارة', 'تاريخ الشركة', 'رؤيتنا', 'قيمنا', 'خامات البلاستيك', 'تجارة البلاستيك']
+      : ['about us', 'Al Sadara Group', 'company history', 'our vision', 'our values', 'plastic raw materials', 'plastics trading'],
     alternates: {
       canonical: `${BASE_URL}/${locale}/about`,
       languages: {
@@ -54,8 +54,8 @@ export async function generateMetadata({
     openGraph: {
       title: isArabic ? 'من نحن - مجموعة الصدارة' : 'About Us - Al Sadara Group',
       description: isArabic
-        ? 'تعرف على قصة نجاح مجموعة الصدارة'
-        : 'Discover the Al Sadara Group success story',
+        ? 'تعرف على قصة نجاح مجموعة الصدارة في تجارة خامات البلاستيك منذ 2005'
+        : 'Discover the Al Sadara Group success story in plastic raw materials trading since 2005',
       url: `${BASE_URL}/${locale}/about`,
       type: 'website',
       images: [
@@ -82,68 +82,68 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const content = {
     title: isRTL ? 'من نحن' : 'About Us',
     subtitle: isRTL
-      ? 'مجموعة الصدارة القابضة للإلكترونيات وأنظمة المباني الذكية'
-      : 'Al Sadara Holding Group for Electronics and Smart Building Systems',
+      ? 'مجموعة الصدارة القابضة - رائدون في تجارة خامات البلاستيك'
+      : 'Al Sadara Holding Group - Leaders in Plastic Raw Materials Trading',
     description: isRTL
-      ? 'نحن مجموعة شركات رائدة في مجال توريد وتركيب أنظمة المباني الذكية في مصر والسعودية. نقدم حلولاً متكاملة لكاميرات المراقبة، أنظمة الحضور والانصراف، السنترالات، أنظمة إنذار الحريق، وأكثر من ذلك.'
-      : 'We are a leading group of companies in supplying and installing smart building systems in Egypt and Saudi Arabia. We offer integrated solutions for CCTV cameras, access control systems, PBX systems, fire alarm systems, and more.',
+      ? 'نحن مجموعة شركات رائدة في مجال تجارة وتوزيع خامات البلاستيك في الشرق الأوسط وأفريقيا. نوفر مواد أولية عالية الجودة (HDPE, LDPE, PP, PVC, PS, PET) من أفضل المصادر العالمية لتلبية احتياجات مصانع البلاستيك.'
+      : 'We are a leading group of companies in plastic raw materials trading and distribution across the Middle East and Africa. We supply high-quality raw materials (HDPE, LDPE, PP, PVC, PS, PET) from the best global sources to meet the needs of plastic manufacturers.',
     mission: {
       title: isRTL ? 'مهمتنا' : 'Our Mission',
       text: isRTL
-        ? 'توفير حلول متكاملة وعالية الجودة لأنظمة المباني الذكية تساعد عملائنا على تحقيق أقصى استفادة من التقنيات الحديثة بأسعار تنافسية.'
-        : 'To provide integrated, high-quality smart building solutions that help our clients maximize the benefits of modern technology at competitive prices.',
+        ? 'توفير خامات بلاستيكية عالية الجودة بأسعار تنافسية، مع ضمان التوصيل السريع والدعم الفني المتميز لعملائنا في جميع أنحاء الشرق الأوسط وأفريقيا.'
+        : 'To provide high-quality plastic raw materials at competitive prices, with guaranteed fast delivery and excellent technical support for our clients across the Middle East and Africa.',
       icon: Target,
     },
     vision: {
       title: isRTL ? 'رؤيتنا' : 'Our Vision',
       text: isRTL
-        ? 'أن نكون الشريك الأول في مصر والشرق الأوسط لحلول المباني الذكية، مع الحفاظ على أعلى معايير الجودة والخدمة.'
-        : 'To be the leading partner in Egypt and the Middle East for smart building solutions, while maintaining the highest standards of quality and service.',
+        ? 'أن نكون المورد الرئيسي لخامات البلاستيك في الشرق الأوسط وأفريقيا، مع الحفاظ على أعلى معايير الجودة وبناء شراكات طويلة الأمد مع عملائنا.'
+        : 'To be the leading supplier of plastic raw materials in the Middle East and Africa, while maintaining the highest quality standards and building long-term partnerships with our clients.',
       icon: Eye,
     },
     values: [
       {
         title: isRTL ? 'الجودة' : 'Quality',
         description: isRTL
-          ? 'نلتزم بتقديم منتجات عالية الجودة من أفضل العلامات التجارية العالمية'
-          : 'We are committed to providing high-quality products from the best global brands',
+          ? 'نوفر خامات بلاستيكية عالية الجودة من أفضل المصادر العالمية'
+          : 'We supply high-quality plastic raw materials from the best global sources',
         icon: Award,
       },
       {
         title: isRTL ? 'الأمانة' : 'Integrity',
         description: isRTL
-          ? 'نؤمن بالشفافية والصدق في جميع تعاملاتنا مع العملاء'
-          : 'We believe in transparency and honesty in all our dealings with customers',
+          ? 'نلتزم بالشفافية في الأسعار والمواصفات مع جميع عملائنا'
+          : 'We maintain transparency in pricing and specifications with all our clients',
         icon: Handshake,
       },
       {
         title: isRTL ? 'الابتكار' : 'Innovation',
         description: isRTL
-          ? 'نسعى دائماً لتقديم أحدث التقنيات والحلول المبتكرة'
-          : 'We always strive to offer the latest technologies and innovative solutions',
+          ? 'نواكب أحدث تقنيات الصناعة وإعادة التدوير والحلول البيئية'
+          : 'We keep up with the latest industry technologies, recycling, and eco-friendly solutions',
         icon: Lightbulb,
       },
       {
         title: isRTL ? 'خدمة العملاء' : 'Customer Service',
         description: isRTL
-          ? 'نقدم دعماً فنياً متميزاً على مدار الساعة لضمان رضا عملائنا'
-          : 'We provide excellent technical support around the clock to ensure customer satisfaction',
+          ? 'نقدم دعماً فنياً ولوجستياً متميزاً لضمان رضا عملائنا'
+          : 'We provide excellent technical and logistics support to ensure customer satisfaction',
         icon: HeadphonesIcon,
       },
     ],
     stats: [
-      { value: '17+', label: isRTL ? 'سنة خبرة' : 'Years Experience', icon: Clock },
+      { value: '20+', label: isRTL ? 'سنة خبرة' : 'Years Experience', icon: Clock },
       { value: '1000+', label: isRTL ? 'عميل راضي' : 'Happy Clients', icon: Users },
-      { value: '6', label: isRTL ? 'شركات تابعة' : 'Subsidiaries', icon: Building2 },
+      { value: '5', label: isRTL ? 'شركات تابعة' : 'Subsidiaries', icon: Building2 },
       { value: '24/7', label: isRTL ? 'دعم فني' : 'Technical Support', icon: HeadphonesIcon },
     ],
     whyUs: [
-      isRTL ? 'فريق متخصص ذو خبرة واسعة' : 'Expert team with extensive experience',
-      isRTL ? 'منتجات أصلية من أفضل العلامات التجارية' : 'Genuine products from top brands',
-      isRTL ? 'أسعار تنافسية وعروض خاصة' : 'Competitive prices and special offers',
-      isRTL ? 'ضمان شامل على جميع المنتجات' : 'Comprehensive warranty on all products',
-      isRTL ? 'خدمة ما بعد البيع متميزة' : 'Excellent after-sales service',
-      isRTL ? 'تركيب وصيانة احترافية' : 'Professional installation and maintenance',
+      isRTL ? 'خبرة 20+ سنة في تجارة البلاستيك' : 'Over 20 years experience in plastics trading',
+      isRTL ? 'خامات أصلية من مصادر موثوقة عالمياً' : 'Genuine materials from globally trusted sources',
+      isRTL ? 'أسعار تنافسية وشحن سريع' : 'Competitive prices and fast shipping',
+      isRTL ? 'توصيل لجميع دول الشرق الأوسط وأفريقيا' : 'Delivery to all Middle East and African countries',
+      isRTL ? 'دعم فني ولوجستي متخصص' : 'Specialized technical and logistics support',
+      isRTL ? '5 شركات في 3 دول (السعودية، مصر، الإمارات)' : '5 companies across 3 countries (Saudi, Egypt, UAE)',
     ],
   }
 
@@ -166,16 +166,16 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <ShieldCheck className="w-5 h-5 text-accent-400" />
               <span className="text-sm font-medium">
-                {isRTL ? 'شريكك الموثوق منذ 2008' : 'Your Trusted Partner Since 2008'}
+                {isRTL ? 'شريكك الموثوق منذ 2005' : 'Your Trusted Partner Since 2005'}
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               {content.title}
             </h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-4">
+            <p className="text-xl md:text-2xl text-white/90 mb-4">
               {content.subtitle}
             </p>
-            <p className="text-lg text-primary-200 leading-relaxed">
+            <p className="text-lg text-white/80 leading-relaxed">
               {content.description}
             </p>
           </div>
@@ -330,7 +330,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 <h3 className="text-2xl font-bold mb-4">
                   {isRTL ? 'هل أنت مستعد للبدء؟' : 'Ready to Get Started?'}
                 </h3>
-                <p className="text-primary-100 mb-6 leading-relaxed">
+                <p className="text-white/90 mb-6 leading-relaxed">
                   {isRTL
                     ? 'تواصل معنا اليوم للحصول على استشارة مجانية وعرض سعر مخصص.'
                     : 'Contact us today for a free consultation and customized quote.'}

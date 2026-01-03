@@ -128,6 +128,18 @@ export default function InteractiveGroupMap({ locale, className = '' }: Interact
                 {isArabic ? 'السعودية' : 'KSA'}
               </text>
 
+              {/* UAE */}
+              <path
+                d="M80 40 L90 38 L92 48 L85 55 Z"
+                fill="#dbeafe"
+                stroke="#3b82f6"
+                strokeWidth="0.3"
+                opacity="0.6"
+              />
+              <text x="86" y="46" fontSize="2.5" fill="#2563eb" textAnchor="middle" fontWeight="bold">
+                {isArabic ? 'الإمارات' : 'UAE'}
+              </text>
+
               {/* Mediterranean Sea */}
               <ellipse cx="40" cy="30" rx="15" ry="8" fill="#bfdbfe" opacity="0.4" />
               <text x="40" y="30" fontSize="2" fill="#3b82f6" textAnchor="middle" opacity="0.7">
@@ -368,7 +380,7 @@ export default function InteractiveGroupMap({ locale, className = '' }: Interact
             <p className="text-sm text-secondary-600">{isArabic ? 'شركات' : 'Companies'}</p>
           </div>
           <div className="text-center p-4 bg-white rounded-xl shadow-soft">
-            <p className="text-3xl font-bold text-primary-600">2</p>
+            <p className="text-3xl font-bold text-primary-600">{groupInfo.countries.length}</p>
             <p className="text-sm text-secondary-600">{isArabic ? 'دول' : 'Countries'}</p>
           </div>
           <div className="text-center p-4 bg-white rounded-xl shadow-soft">
