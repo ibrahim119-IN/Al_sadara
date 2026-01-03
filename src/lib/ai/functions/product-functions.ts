@@ -124,9 +124,9 @@ export async function executeGetProductDetails(params: { productId: string }): P
             ? product.category.name
             : product.category,
         company:
-          typeof product.company === 'object' && product.company !== null
-            ? product.company.name
-            : product.company,
+          typeof (product as any).company === 'object' && (product as any).company !== null
+            ? (product as any).company.name
+            : (product as any).company,
       },
     }
   } catch (error) {
