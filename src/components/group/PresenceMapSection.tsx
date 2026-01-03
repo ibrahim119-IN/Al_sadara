@@ -43,7 +43,7 @@ const locations = [
     cityEn: 'Sharjah & Dubai',
     cityAr: 'الشارقة ودبي',
     companies: [
-      { nameEn: 'S.A.M International', nameAr: 'إس.إيه.إم' },
+      { nameEn: 'S.A.M International', nameAr: 'S.A.M' },
       { nameEn: 'El Sayed Shehata Polymers', nameAr: 'السيد شحاتة بوليمرز' },
     ],
     phones: ['+971503830860', '+971522097468'],

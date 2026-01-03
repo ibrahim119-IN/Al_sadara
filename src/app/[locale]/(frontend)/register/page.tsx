@@ -18,11 +18,11 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'إنشاء حساب | مجموعة الصدارة القابضة'
-      : 'Create Account | Al Sadara Holding Group',
+      ? 'إنشاء حساب | مجموعة شركات السيد شحاتة'
+      : 'Create Account | El Sayed Shehata Group',
     description: isArabic
-      ? 'أنشئ حسابك في مجموعة الصدارة للتسوق وتتبع طلباتك والاستفادة من العروض الحصرية'
-      : 'Create your Al Sadara account to shop, track orders, and enjoy exclusive offers',
+      ? 'أنشئ حسابك في مجموعة السيد شحاتة للتسوق وتتبع طلباتك والاستفادة من العروض الحصرية'
+      : 'Create your El Sayed Shehata account to shop, track orders, and enjoy exclusive offers',
     robots: {
       index: false,
       follow: true,
@@ -49,7 +49,7 @@ export default async function RegisterPage({ params }: RegisterPageProps) {
   const content = {
     ar: {
       title: 'إنشاء حساب جديد',
-      subtitle: 'انضم إلى مجموعة الصدارة القابضة',
+      subtitle: 'انضم إلى مجموعة شركات السيد شحاتة',
       haveAccount: 'لديك حساب بالفعل؟',
       signIn: 'تسجيل الدخول',
       backHome: 'العودة للرئيسية',
@@ -62,7 +62,7 @@ export default async function RegisterPage({ params }: RegisterPageProps) {
     },
     en: {
       title: 'Create Account',
-      subtitle: 'Join Al Sadara Holding Group',
+      subtitle: 'Join El Sayed Shehata Group',
       haveAccount: 'Already have an account?',
       signIn: 'Sign In',
       backHome: 'Back to Home',

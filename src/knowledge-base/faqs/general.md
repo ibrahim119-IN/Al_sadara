@@ -4,136 +4,103 @@
 
 ### عن الشركة
 
-#### من هي Al Sadara؟
-Al Sadara هي شركة رائدة في مجال الأنظمة الأمنية والاتصالات في مصر، متخصصة في توفير وتركيب كاميرات المراقبة، أنظمة التحكم في الدخول، الإنتركم، وأنظمة الإنذار.
+#### من هي مجموعة السيد شحاتة؟
+مجموعة السيد شحاتة للتجارة والصناعة هي مجموعة رائدة في مجال تجارة وتوريد خامات البلاستيك والبوليمرات في الشرق الأوسط، متخصصة في توفير HDPE، LDPE، PP، PVC، PET وخامات معاد تدويرها.
 
 #### أين مقر الشركة؟
-- **المقر الرئيسي**: القاهرة، مدينة نصر
+- **المقر الرئيسي**: جدة، المملكة العربية السعودية
 - **الفروع**:
-  - المعادي
-  - مصر الجديدة
-  - المهندسين
-  - 6 أكتوبر
-  - الإسكندرية (سموحة)
+  - 6 أكتوبر، مصر
+  - الشارقة، الإمارات
+  - دبي، الإمارات
+
+#### ما هي شركات المجموعة؟
+1. **الصدارة للصناعة** - جدة، السعودية (تأسست 2005)
+2. **التالة الخضراء** - 6 أكتوبر، مصر (تأسست 2015)
+3. **S.A.M International** - الشارقة، الإمارات (تأسست 2017)
+4. **السيد شحاتة بوليمرز** - دبي، الإمارات (تأسست 2021)
+5. **القيصر** - 6 أكتوبر، مصر (تأسست 2024)
 
 #### ساعات العمل؟
-- **الأحد - الخميس**: 9 صباحاً - 9 مساءً
-- **السبت**: 10 صباحاً - 6 مساءً
+- **الأحد - الخميس**: 9 صباحاً - 6 مساءً
+- **السبت**: 10 صباحاً - 2 مساءً
 - **الجمعة**: مغلق
-- **خدمة العملاء أونلاين**: 24/7
+- **خدمة العملاء أونلاين**: متاحة 24/7
 
 ### الحساب والتسجيل
 
 #### هل يجب إنشاء حساب للشراء؟
-لا، يمكنك الشراء كـ **ضيف** بدون تسجيل. لكن إنشاء حساب يوفر لك:
-- تتبع الطلبات
-- حفظ العناوين
+لا، يمكنك الطلب مباشرة. لكن إنشاء حساب يوفر لك:
+- تتبع الطلبات والشحنات
+- حفظ بيانات الفواتير
 - الوصول للعروض الخاصة
-- سجل المشتريات
+- سجل المشتريات والأسعار
 
-#### كيف أنشئ حساب؟
+#### كيف أنشئ حساب تجاري؟
 1. اضغط على "تسجيل" في أعلى الصفحة
-2. أدخل البيانات المطلوبة (الاسم، البريد الإلكتروني، الهاتف)
-3. اختر كلمة مرور قوية
-4. اضغط "إنشاء حساب"
-
-#### نسيت كلمة المرور؟
-1. اضغط "نسيت كلمة المرور؟" في صفحة تسجيل الدخول
-2. أدخل بريدك الإلكتروني
-3. سنرسل لك رابط إعادة تعيين كلمة المرور
-4. افتح الرابط وأدخل كلمة مرور جديدة
-
-#### كيف أحدث معلومات حسابي؟
-1. سجل الدخول إلى حسابك
-2. اذهب إلى "حسابي" → "الملف الشخصي"
-3. عدل المعلومات المطلوبة
-4. اضغط "حفظ التغييرات"
+2. اختر "حساب تجاري"
+3. أدخل بيانات الشركة (السجل التجاري، البطاقة الضريبية)
+4. سنتواصل معك لتفعيل الحساب
 
 ### الطلبات
 
+#### كيف أطلب عرض سعر؟
+- **عبر الموقع**: صفحة "طلب عرض سعر"
+- **واتساب**: +966554401575
+- **البريد**: info@alsadara.org
+- **المساعد الذكي**: اسأل عن الأسعار
+
+#### ما هي كمية الطلب الأدنى؟
+- **عملاء جدد**: 1 طن (1000 كجم)
+- **عملاء منتظمين**: حسب الاتفاق
+- **مشاريع كبيرة**: أسعار خاصة للكميات الكبيرة
+
 #### كيف أتتبع طلبي؟
 - **مع حساب**: سجل دخول → "طلباتي" → اضغط على رقم الطلب
-- **بدون حساب**: أدخل رقم الطلب ورقم الهاتف في صفحة "تتبع الطلب"
-
-#### يمكنني إلغاء الطلب؟
-- **قبل الشحن**: نعم، مجاناً
-- **بعد الشحن**: تواصل مع خدمة العملاء
-- **بعد الاستلام**: راجع سياسة الإرجاع (14 يوم)
-
-#### كيف أعدل عنوان الشحن؟
-- **قبل الشحن**: تواصل مع خدمة العملاء فوراً
-- **بعد الشحن**: غير ممكن (تحدث مع المندوب مباشرة)
-
-#### لم أستلم الطلب في الموعد المحدد؟
-1. تحقق من حالة الطلب في "تتبع الطلب"
-2. تواصل مع خدمة العملاء: 01000000000
-3. سنتابع مع شركة الشحن فوراً
+- **بدون حساب**: تواصل مع خدمة العملاء برقم الطلب
 
 ### الدفع والأسعار
 
 #### ما هي طرق الدفع المتاحة؟
-- الدفع عند الاستلام (25 جنيه رسوم)
-- التحويل البنكي (مجاناً + خصم 50 جنيه)
-- البطاقات الائتمانية (فيزا، ماستركارد، ميزة)
-- المحافظ الإلكترونية (فودافون كاش، أورنج، اتصالات)
-- فوري (5 جنيه رسوم)
+- التحويل البنكي (الطريقة الأساسية)
+- خطاب اعتماد (L/C) للطلبات الكبيرة
+- الدفع عند الاستلام (للعملاء المعتمدين)
+- تسهيلات دفع (حسب الاتفاق)
 
-#### هل الأسعار شاملة الضريبة؟
-نعم، جميع الأسعار المعروضة شاملة ضريبة القيمة المضافة (14%).
-
-#### هل يمكن التقسيط؟
-نعم، للطلبات أكثر من 3,000 جنيه، بدون فوائد حتى 12 شهر عبر البنوك الشريكة.
-
-#### هل توجد خصومات على الكميات؟
-نعم، تواصل معنا للطلبات الكبيرة والمشاريع للحصول على أسعار خاصة.
+#### هل الأسعار ثابتة؟
+الأسعار تتغير حسب:
+- أسعار السوق العالمية
+- حجم الطلب (خصومات للكميات)
+- شروط الدفع
+- **تواصل معنا للحصول على أحدث الأسعار**
 
 ### الشحن والتوصيل
 
-#### كم تكلفة الشحن؟
-- **القاهرة الكبرى**: 50 جنيه
-- **الإسكندرية وباقي المحافظات**: 70 جنيه
-- **مجاني للطلبات أكثر من 2,000 جنيه**
+#### ما هي خيارات الشحن؟
+- **FOB**: التسليم على ظهر السفينة
+- **CIF**: شامل التأمين والشحن
+- **DDP**: التسليم للمستودع
+- **استلام من المخزن**: متاح في جميع الفروع
 
-#### متى يصل طلبي؟
-- داخل القاهرة: 1-3 أيام عمل
-- باقي المحافظات: 3-7 أيام عمل
-- للمناطق النائية: 7-10 أيام
-
-#### هل يمكن الاستلام من الفرع؟
-نعم، مجاناً من أي فرع من فروعنا. اختر "استلام من الفرع" عند إتمام الطلب.
-
-### الضمان والصيانة
-
-#### ما هي مدة الضمان؟
-- كاميرات Hikvision/Dahua: سنتان
-- أنظمة التحكم والإنتركم: سنة واحدة
-- الأسلاك والكابلات: 6 أشهر
-- **+ 6 أشهر إضافية من Al Sadara**
-
-#### أين مراكز الصيانة؟
-لدينا مراكز صيانة معتمدة في القاهرة، الجيزة، والإسكندرية. تواصل معنا لأقرب مركز.
-
-#### كم تستغرق الصيانة؟
-- الصيانة العادية: 3-7 أيام
-- الصيانة الطارئة: 24 ساعة (للعملاء المميزين)
+#### كم يستغرق التوصيل؟
+- **من المخزون المحلي**: 3-7 أيام
+- **استيراد**: 30-45 يوم
+- **طلبات خاصة**: حسب التوفر
 
 ### خدمة العملاء
 
 #### كيف أتواصل معكم؟
-- **الهاتف**: 01000000000
-- **واتساب**: 01000000000
-- **البريد الإلكتروني**: support@alsadara.com
-- **الشات المباشر**: عبر الموقع
+- **الهاتف**: +966554401575
+- **واتساب**: +966554401575
+- **البريد الإلكتروني**: info@alsadara.org
 - **المساعد الذكي**: متاح 24/7
 
-#### ساعات خدمة العملاء؟
-- **هاتفياً**: 9 صباحاً - 9 مساءً (السبت - الخميس)
-- **أونلاين**: 24/7
-
-#### متوسط وقت الرد؟
-- الشات المباشر: فوري
-- البريد الإلكتروني: خلال 24 ساعة
-- الهاتف: خلال دقيقة واحدة
+#### هل توفرون الدعم الفني؟
+نعم، نوفر:
+- استشارات فنية مجانية
+- مساعدة في اختيار الخامات المناسبة
+- معلومات عن المواصفات والتطبيقات
+- زيارات ميدانية للعملاء الكبار
 
 ---
 
@@ -141,133 +108,100 @@ Al Sadara هي شركة رائدة في مجال الأنظمة الأمنية �
 
 ### About the Company
 
-#### Who is Al Sadara?
-Al Sadara is a leading company in security systems and communications in Egypt, specializing in providing and installing surveillance cameras, access control systems, intercoms, and alarm systems.
+#### Who is El Sayed Shehata Group?
+El Sayed Shehata Group for Trade and Industry is a leading group in plastic raw materials and polymers trading in the Middle East, specializing in HDPE, LDPE, PP, PVC, PET and recycled materials.
 
 #### Where is the company located?
-- **Main Office**: Cairo, Nasr City
+- **Headquarters**: Jeddah, Saudi Arabia
 - **Branches**:
-  - Maadi
-  - Heliopolis
-  - Mohandessin
-  - 6th of October
-  - Alexandria (Smouha)
+  - 6th of October, Egypt
+  - Sharjah, UAE
+  - Dubai, UAE
+
+#### What are the group companies?
+1. **Al Sadara Industry** - Jeddah, Saudi Arabia (Est. 2005)
+2. **Al Talah Al Khadra** - 6th of October, Egypt (Est. 2015)
+3. **S.A.M International** - Sharjah, UAE (Est. 2017)
+4. **El Sayed Shehata Polymers** - Dubai, UAE (Est. 2021)
+5. **Al Qaisar** - 6th of October, Egypt (Est. 2024)
 
 #### Working hours?
-- **Sunday - Thursday**: 9 AM - 9 PM
-- **Saturday**: 10 AM - 6 PM
+- **Sunday - Thursday**: 9 AM - 6 PM
+- **Saturday**: 10 AM - 2 PM
 - **Friday**: Closed
-- **Online Customer Service**: 24/7
+- **Online Customer Service**: Available 24/7
 
 ### Account and Registration
 
-#### Do I need to create an account to purchase?
-No, you can purchase as a **guest** without registration. But creating an account gives you:
-- Order tracking
-- Save addresses
+#### Do I need an account to order?
+No, you can order directly. But creating an account gives you:
+- Order and shipment tracking
+- Save billing information
 - Access to special offers
-- Purchase history
+- Purchase and pricing history
 
-#### How do I create an account?
-1. Click "Register" at the top of the page
-2. Enter required information (name, email, phone)
-3. Choose a strong password
-4. Click "Create Account"
-
-#### Forgot password?
-1. Click "Forgot Password?" on login page
-2. Enter your email
-3. We'll send you a password reset link
-4. Open the link and enter a new password
-
-#### How do I update my account information?
-1. Log in to your account
-2. Go to "My Account" → "Profile"
-3. Edit required information
-4. Click "Save Changes"
+#### How do I create a business account?
+1. Click "Register" at the top
+2. Select "Business Account"
+3. Enter company details (CR, Tax ID)
+4. We'll contact you to activate
 
 ### Orders
 
+#### How do I request a quote?
+- **Via website**: "Request Quote" page
+- **WhatsApp**: +966554401575
+- **Email**: info@alsadara.org
+- **AI Assistant**: Ask about prices
+
+#### What is the minimum order quantity?
+- **New customers**: 1 ton (1000 kg)
+- **Regular customers**: As per agreement
+- **Large projects**: Special prices for bulk
+
 #### How do I track my order?
 - **With account**: Login → "My Orders" → Click order number
-- **Without account**: Enter order number and phone number on "Track Order" page
-
-#### Can I cancel my order?
-- **Before shipping**: Yes, free
-- **After shipping**: Contact customer service
-- **After receiving**: See return policy (14 days)
-
-#### How do I change shipping address?
-- **Before shipping**: Contact customer service immediately
-- **After shipping**: Not possible (talk to delivery agent directly)
-
-#### I didn't receive my order on time?
-1. Check order status in "Track Order"
-2. Contact customer service: 01000000000
-3. We'll follow up with shipping company immediately
+- **Without account**: Contact customer service with order number
 
 ### Payment and Prices
 
 #### What payment methods are available?
-- Cash on Delivery (25 EGP fee)
-- Bank Transfer (free + 50 EGP discount)
-- Credit Cards (Visa, Mastercard, Meeza)
-- E-Wallets (Vodafone Cash, Orange, Etisalat)
-- Fawry (5 EGP fee)
+- Bank Transfer (primary method)
+- Letter of Credit (L/C) for large orders
+- Cash on Delivery (for approved customers)
+- Payment facilities (as per agreement)
 
-#### Are prices inclusive of tax?
-Yes, all displayed prices include VAT (14%).
-
-#### Can I pay in installments?
-Yes, for orders over 3,000 EGP, interest-free up to 12 months via partner banks.
-
-#### Are there quantity discounts?
-Yes, contact us for bulk orders and projects to get special prices.
+#### Are prices fixed?
+Prices vary based on:
+- Global market prices
+- Order volume (bulk discounts)
+- Payment terms
+- **Contact us for latest prices**
 
 ### Shipping and Delivery
 
-#### How much is shipping?
-- **Greater Cairo**: 50 EGP
-- **Alexandria and other governorates**: 70 EGP
-- **Free for orders over 2,000 EGP**
+#### What are shipping options?
+- **FOB**: Free on Board
+- **CIF**: Cost, Insurance, Freight
+- **DDP**: Delivered Duty Paid
+- **Warehouse Pickup**: Available at all branches
 
-#### When will my order arrive?
-- Within Cairo: 1-3 business days
-- Other governorates: 3-7 business days
-- Remote areas: 7-10 days
-
-#### Can I pick up from branch?
-Yes, free from any of our branches. Choose "Branch Pickup" when completing order.
-
-### Warranty and Maintenance
-
-#### What is the warranty period?
-- Hikvision/Dahua cameras: 2 years
-- Access control and intercom systems: 1 year
-- Cables and wires: 6 months
-- **+ 6 additional months from Al Sadara**
-
-#### Where are service centers?
-We have authorized service centers in Cairo, Giza, and Alexandria. Contact us for nearest center.
-
-#### How long does maintenance take?
-- Regular maintenance: 3-7 days
-- Emergency maintenance: 24 hours (for premium customers)
+#### How long is delivery?
+- **From local stock**: 3-7 days
+- **Import**: 30-45 days
+- **Special orders**: Based on availability
 
 ### Customer Service
 
 #### How do I contact you?
-- **Phone**: 01000000000
-- **WhatsApp**: 01000000000
-- **Email**: support@alsadara.com
-- **Live Chat**: Via website
+- **Phone**: +966554401575
+- **WhatsApp**: +966554401575
+- **Email**: info@alsadara.org
 - **AI Assistant**: Available 24/7
 
-#### Customer service hours?
-- **By phone**: 9 AM - 9 PM (Saturday - Thursday)
-- **Online**: 24/7
-
-#### Average response time?
-- Live Chat: Instant
-- Email: Within 24 hours
-- Phone: Within 1 minute
+#### Do you provide technical support?
+Yes, we provide:
+- Free technical consultations
+- Help choosing suitable materials
+- Specifications and applications info
+- Site visits for major clients

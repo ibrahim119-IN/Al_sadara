@@ -18,11 +18,11 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'نسيت كلمة المرور | مجموعة الصدارة القابضة'
-      : 'Forgot Password | Al Sadara Holding Group',
+      ? 'نسيت كلمة المرور | مجموعة شركات السيد شحاتة'
+      : 'Forgot Password | El Sayed Shehata Group',
     description: isArabic
-      ? 'استعادة كلمة المرور لحسابك في مجموعة الصدارة'
-      : 'Reset your Al Sadara account password',
+      ? 'استعادة كلمة المرور لحسابك في مجموعة السيد شحاتة'
+      : 'Reset your El Sayed Shehata account password',
     robots: {
       index: false,
       follow: true,
@@ -86,13 +86,13 @@ export default async function ForgotPasswordPage({ params }: ForgotPasswordPageP
           </Link>
 
           <h2 className="text-3xl font-bold text-white text-center mb-4">
-            {isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group'}
+            {isRTL ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group'}
           </h2>
 
           <p className="text-white/80 text-center max-w-md">
             {isRTL
-              ? 'الرائدون في مجال الإلكترونيات وأنظمة المباني الذكية في مصر والسعودية'
-              : 'Leaders in electronics and smart building systems in Egypt and Saudi Arabia'}
+              ? 'رواد تجارة وتوريد خامات البلاستيك والبوليمرات في الشرق الأوسط وأفريقيا'
+              : 'Leaders in plastic raw materials trading and polymers supply across the Middle East and Africa'}
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 {
-  "name": "Al Sadara - Smart Building Solutions",
-  "short_name": "Al Sadara",
-  "description": "Al Sadara Holding Group - Leaders in Electronics and Building Management Systems",
+  "name": "El Sayed Shehata Group - Plastic Raw Materials",
+  "short_name": "ITs Group",
+  "description": "El Sayed Shehata Group of Companies - Leaders in Plastic Raw Materials Trading and Polymers",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
@@ -9,7 +9,7 @@
   "theme_color": "#0066CC",
   "dir": "auto",
   "lang": "ar",
-  "categories": ["shopping", "business", "electronics"],
+  "categories": ["shopping", "business", "industrial"],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",

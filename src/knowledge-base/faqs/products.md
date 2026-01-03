@@ -2,384 +2,186 @@
 
 ## العربية
 
-### كاميرات المراقبة
+### خامات البلاستيك
 
-#### ما الفرق بين كاميرات IP وكاميرات Analog؟
-**كاميرات IP:**
-- جودة عالية (حتى 4K)
-- توصيل عبر الشبكة
-- إمكانية المشاهدة عن بعد بسهولة
-- أغلى سعراً
-- **مناسبة**: للأماكن الكبيرة والمشاريع الاحترافية
+#### ما الفرق بين HDPE و LDPE؟
+**HDPE (بولي إيثيلين عالي الكثافة):**
+- كثافة عالية (0.941-0.965 g/cm³)
+- صلابة وقوة أعلى
+- مقاومة ممتازة للمواد الكيميائية
+- **مناسب**: الأنابيب، العبوات الصلبة، خزانات المياه
 
-**كاميرات Analog (AHD/TVI):**
-- جودة جيدة (حتى 5 ميجابكسل)
-- توصيل عبر كابل Coaxial
-- أرخص سعراً
-- نظام أبسط
-- **مناسبة**: للمنازل والمحلات الصغيرة
+**LDPE (بولي إيثيلين منخفض الكثافة):**
+- كثافة منخفضة (0.910-0.940 g/cm³)
+- مرونة عالية
+- شفافية أفضل
+- **مناسب**: الأفلام، الأكياس، التغليف
 
-#### أيهما أفضل Hikvision أم Dahua؟
-**كلاهما ممتاز!**
-- **Hikvision**: أكثر شهرة، واجهة سهلة، دعم فني أفضل
-- **Dahua**: سعر أفضل قليلاً، مواصفات مشابهة، جودة ممتازة
+#### ما هو معدل التدفق (MFI) ولماذا مهم؟
+- **MFI** = Melt Flow Index (معدل تدفق المصهور)
+- يقيس سيولة البوليمر عند درجة حرارة معينة
+- كلما زاد MFI، كان البوليمر أسهل في المعالجة
+- **MFI منخفض**: للبثق والأنابيب
+- **MFI عالي**: للحقن والقولبة
 
-**اختيارنا**: حسب الميزانية والتفضيل الشخصي - كلاهما موثوق.
+#### ما هي أنواع البولي بروبيلين (PP)؟
+1. **Homopolymer PP**
+   - صلابة عالية
+   - مقاومة للحرارة
+   - **مناسب**: العبوات، الألياف
 
-#### ما معنى الرؤية الليلية IR؟
-- **IR** = Infrared (الأشعة تحت الحمراء)
-- تسمح للكاميرا بالرؤية في الظلام الكامل
-- المدى يُقاس بالأمتار (مثال: IR 30m)
-- بعض الكاميرات تصل حتى 80 متر
+2. **Copolymer PP**
+   - مرونة أعلى
+   - مقاومة للصدمات
+   - **مناسب**: قطع السيارات، الأدوات المنزلية
 
-#### ما هو PTZ Camera؟
-- **Pan-Tilt-Zoom**: كاميرا متحركة
-- يمكن التحكم فيها عن بعد (يمين، يسار، أعلى، أسفل)
-- زووم بصري (Optical Zoom)
-- **مناسبة**: للمداخل الرئيسية، الساحات الكبيرة
+3. **Random Copolymer PP**
+   - شفافية عالية
+   - **مناسب**: العبوات الشفافة
 
-#### كم كاميرا أحتاج لمنزلي؟
-**منزل صغير/شقة**:
-- 2-4 كاميرات (المدخل، الصالة، الشارع)
+#### ما الفرق بين PVC الصلب والمرن؟
+**PVC الصلب (Rigid):**
+- بدون ملدنات
+- صلب وقوي
+- **مناسب**: الأنابيب، النوافذ، الأبواب
 
-**فيلا متوسطة**:
-- 6-8 كاميرات (جميع الزوايا الخارجية + مدخل رئيسي)
+**PVC المرن (Flexible):**
+- يحتوي على ملدنات
+- مرن وقابل للثني
+- **مناسب**: الكابلات، الأرضيات، الأفلام
 
-**فيلا كبيرة**:
-- 10-16 كاميرا (تغطية شاملة داخلية وخارجية)
+### الخامات المعاد تدويرها
 
-#### هل الكاميرات مقاومة للماء؟
-- ابحث عن **IP66** أو **IP67** للكاميرات الخارجية
-- IP66: مقاومة للأمطار الغزيرة والغبار
-- IP67: مقاومة للغمر لفترة قصيرة
-- الكاميرات الداخلية عادةً لا تكون مقاومة للماء
+#### هل الخامات المعاد تدويرها بجودة جيدة؟
+نعم، الخامات المعاد تدويرها يمكن أن تكون بجودة ممتازة:
+- نوفر شهادات جودة للخامات
+- درجات متعددة حسب النقاء
+- أسعار أفضل من الخامات البكر
+- **مناسبة**: للتطبيقات غير الغذائية
 
-### أجهزة التسجيل (DVR/NVR)
+#### ما هي درجات الخامات المعاد تدويرها؟
+- **Grade A**: نقاء عالي (95%+)، لون موحد
+- **Grade B**: نقاء جيد (85-95%)، ألوان مختلفة
+- **Grade C**: نقاء متوسط، للتطبيقات غير الحرجة
 
-#### ما الفرق بين DVR و NVR؟
-**DVR (Digital Video Recorder):**
-- لكاميرات Analog (AHD/TVI)
-- توصيل عبر كابل Coaxial
-- معالجة الفيديو في الجهاز
+### المواصفات والاختبارات
 
-**NVR (Network Video Recorder):**
-- لكاميرات IP
-- توصيل عبر الشبكة (LAN/WiFi)
-- معالجة الفيديو في الكاميرا
+#### كيف أتأكد من جودة الخامات؟
+نوفر لكل شحنة:
+- شهادة مواصفات من المصنع (COA)
+- تحليل معملي عند الطلب
+- عينات للفحص قبل الشراء
+- ضمان الجودة
 
-#### كم قناة (Channel) أحتاج؟
-- **4 قنوات**: للشقق والمحلات الصغيرة
-- **8 قنوات**: للمنازل والمكاتب المتوسطة
-- **16 قناة**: للفلل والشركات
-- **32 قناة**: للمصانع والمجمعات
+#### ما هي المواصفات المهمة للخامات؟
+1. **الكثافة** - تحدد نوع البوليمر
+2. **MFI** - معدل التدفق للمعالجة
+3. **قوة الشد** - مقاومة الشد
+4. **درجة الانصهار** - الحرارة المناسبة
 
-**نصيحة**: اشتري جهاز بقنوات أكثر للتوسع المستقبلي.
+### التخزين والنقل
 
-#### كم سعة الهارد ديسك المناسبة؟
-**يعتمد على:**
-- عدد الكاميرات
-- الجودة (1080p, 4K)
-- مدة التسجيل المطلوبة
+#### كيف أخزن خامات البلاستيك؟
+- **الحماية من الرطوبة**: بعض البوليمرات تمتص الرطوبة
+- **بعيداً عن الشمس المباشرة**: UV يضر بالخامات
+- **درجة حرارة معتدلة**: 15-35 درجة مئوية
+- **أكياس محكمة**: للحفاظ على الجودة
 
-**أمثلة**:
-- **4 كاميرات 1080p لمدة شهر**: 1TB
-- **8 كاميرات 1080p لمدة شهر**: 2TB
-- **16 كاميرا 4K لمدة شهر**: 6-8TB
-
-### أنظمة التحكم في الدخول
-
-#### ما هي أنواع أنظمة التحكم في الدخول؟
-1. **بصمة الإصبع (Fingerprint)**
-   - دقة عالية
-   - لا يمكن نسيانها
-   - سريعة
-
-2. **البطاقات الممغنطة (RFID Cards)**
-   - سهلة الاستخدام
-   - قابلة للنسخ
-   - رخيصة
-
-3. **التعرف على الوجه (Face Recognition)**
-   - بدون لمس
-   - سريعة جداً
-   - تقنية حديثة
-
-4. **كود PIN**
-   - بسيطة
-   - قابلة للمشاركة
-   - احتياطية
-
-#### هل يمكن دمج البصمة مع البطاقة؟
-نعم، معظم الأجهزة الحديثة تدعم **Multi-Authentication**:
-- بطاقة + بصمة
-- بطاقة + كود PIN
-- بصمة + كود
-
-#### هل يعمل نظام البصمة مع الأطفال؟
-نعم، لكن:
-- يفضل من سن 5 سنوات فأكثر
-- بصمات الأطفال الصغار قد تتغير
-- يُنصح باستخدام البطاقات للأطفال الصغار
-
-### أنظمة الإنتركم
-
-#### ما الفرق بين إنتركم سلكي ولا سلكي؟
-**السلكي:**
-- أكثر استقراراً
-- جودة صوت وصورة أفضل
-- يحتاج تمديد أسلاك
-- أرخص
-
-**اللاسلكي (WiFi):**
-- تركيب سهل
-- لا يحتاج أسلاك
-- يعتمد على قوة الواي فاي
-- أغلى قليلاً
-
-#### هل يمكن فتح الباب من الموبايل؟
-نعم، الأجهزة الحديثة تدعم:
-- تطبيق للموبايل
-- فتح الباب عن بُعد
-- استقبال إشعار عند الضغط على الجرس
-- تسجيل الزوار
-
-#### كم جرس يمكن توصيله؟
-حسب نوع النظام:
-- الأنظمة البسيطة: 1-2 جرس
-- الأنظمة المتوسطة: 2-4 جرس
-- الأنظمة الاحترافية: حتى 50 جرس (للعمارات)
-
-### الأسلاك والكابلات
-
-#### ما نوع السلك المناسب لكاميرا IP؟
-- **Cat5e** أو **Cat6** (كابل شبكة)
-- Cat6 أفضل لمسافات طويلة (أكثر من 50 متر)
-- يوفر الطاقة (PoE) والبيانات معاً
-
-#### ما نوع السلك المناسب لكاميرا Analog؟
-- **RG59 Coaxial Cable**
-- مع سلك طاقة منفصل (2 كور)
-- أو كابل مدمج (Coax + Power)
-
-#### هل يمكن استخدام الأسلاك القديمة؟
-**للتحديث من Analog إلى IP:**
-- لا، يجب تبديل الأسلاك إلى Cat5e/Cat6
-
-**للتحديث من DVR قديم لجديد:**
-- نعم، نفس الأسلاك تعمل
-
-### الصيانة والأعطال
-
-#### الكاميرا لا تعمل ليلاً؟
-**الأسباب المحتملة:**
-1. إعدادات IR مغلقة
-2. LED الأشعة تحت الحمراء معطلة
-3. عدسة متسخة
-4. الكاميرا غير مخصصة للرؤية الليلية
-
-**الحل**: تواصل مع الصيانة للفحص.
-
-#### الصورة مشوشة أو غير واضحة؟
-1. تحقق من نظافة العدسة
-2. تأكد من إعدادات الجودة في DVR
-3. تحقق من سلامة الكابلات
-4. أعد ضبط الفوكس (Focus)
-
-#### انقطعت الكاميرا فجأة؟
-1. تحقق من الطاقة (Adapter)
-2. تحقق من توصيل الكابلات
-3. أعد تشغيل DVR/NVR
-4. تحقق من إعدادات الشبكة (للكاميرات IP)
+#### ما هي كمية الطلب الأدنى؟
+- **للتجار**: طن واحد (1000 كجم)
+- **للمصانع**: 5 أطنان أو أكثر (أسعار خاصة)
+- **للتجربة**: 25 كجم (حسب التوفر)
 
 ---
 
 ## English
 
-### Surveillance Cameras
+### Plastic Raw Materials
 
-#### What's the difference between IP and Analog cameras?
-**IP Cameras:**
-- High quality (up to 4K)
-- Network connection
-- Easy remote viewing
-- More expensive
-- **Suitable for**: Large places and professional projects
+#### What's the difference between HDPE and LDPE?
+**HDPE (High Density Polyethylene):**
+- High density (0.941-0.965 g/cm³)
+- Higher rigidity and strength
+- Excellent chemical resistance
+- **Suitable for**: Pipes, rigid containers, water tanks
 
-**Analog Cameras (AHD/TVI):**
-- Good quality (up to 5MP)
-- Coaxial cable connection
-- Cheaper
-- Simpler system
-- **Suitable for**: Homes and small shops
+**LDPE (Low Density Polyethylene):**
+- Low density (0.910-0.940 g/cm³)
+- High flexibility
+- Better transparency
+- **Suitable for**: Films, bags, packaging
 
-#### Which is better, Hikvision or Dahua?
-**Both excellent!**
-- **Hikvision**: More popular, easy interface, better tech support
-- **Dahua**: Slightly better price, similar specs, excellent quality
+#### What is MFI and why is it important?
+- **MFI** = Melt Flow Index
+- Measures polymer fluidity at a specific temperature
+- Higher MFI means easier processing
+- **Low MFI**: For extrusion and pipes
+- **High MFI**: For injection molding
 
-**Our choice**: Depends on budget and personal preference - both reliable.
+#### What are the types of Polypropylene (PP)?
+1. **Homopolymer PP**
+   - High rigidity
+   - Heat resistant
+   - **Suitable for**: Containers, fibers
 
-#### What does IR night vision mean?
-- **IR** = Infrared
-- Allows camera to see in complete darkness
-- Range measured in meters (example: IR 30m)
-- Some cameras reach up to 80 meters
+2. **Copolymer PP**
+   - Higher flexibility
+   - Impact resistant
+   - **Suitable for**: Auto parts, household items
 
-#### What is a PTZ Camera?
-- **Pan-Tilt-Zoom**: Movable camera
-- Remote control (left, right, up, down)
-- Optical Zoom
-- **Suitable for**: Main entrances, large yards
+3. **Random Copolymer PP**
+   - High transparency
+   - **Suitable for**: Clear containers
 
-#### How many cameras do I need for my home?
-**Small home/Apartment**:
-- 2-4 cameras (entrance, living room, street)
+#### What's the difference between rigid and flexible PVC?
+**Rigid PVC:**
+- No plasticizers
+- Hard and strong
+- **Suitable for**: Pipes, windows, doors
 
-**Medium villa**:
-- 6-8 cameras (all exterior corners + main entrance)
+**Flexible PVC:**
+- Contains plasticizers
+- Flexible and bendable
+- **Suitable for**: Cables, flooring, films
 
-**Large villa**:
-- 10-16 cameras (comprehensive indoor and outdoor coverage)
+### Recycled Materials
 
-#### Are cameras waterproof?
-- Look for **IP66** or **IP67** for outdoor cameras
-- IP66: Resistant to heavy rain and dust
-- IP67: Resistant to brief submersion
-- Indoor cameras usually not waterproof
+#### Are recycled materials good quality?
+Yes, recycled materials can be excellent quality:
+- We provide quality certificates
+- Multiple grades based on purity
+- Better prices than virgin materials
+- **Suitable for**: Non-food applications
 
-### Recording Devices (DVR/NVR)
+#### What are recycled material grades?
+- **Grade A**: High purity (95%+), uniform color
+- **Grade B**: Good purity (85-95%), mixed colors
+- **Grade C**: Medium purity, for non-critical applications
 
-#### What's the difference between DVR and NVR?
-**DVR (Digital Video Recorder):**
-- For Analog cameras (AHD/TVI)
-- Coaxial cable connection
-- Video processing in device
+### Specifications and Testing
 
-**NVR (Network Video Recorder):**
-- For IP cameras
-- Network connection (LAN/WiFi)
-- Video processing in camera
+#### How do I verify material quality?
+We provide for each shipment:
+- Factory Certificate of Analysis (COA)
+- Lab analysis on request
+- Samples for testing before purchase
+- Quality guarantee
 
-#### How many channels do I need?
-- **4 channels**: For apartments and small shops
-- **8 channels**: For homes and medium offices
-- **16 channels**: For villas and companies
-- **32 channels**: For factories and compounds
+#### What are important material specifications?
+1. **Density** - Determines polymer type
+2. **MFI** - Flow rate for processing
+3. **Tensile Strength** - Pull resistance
+4. **Melting Point** - Processing temperature
 
-**Tip**: Buy device with more channels for future expansion.
+### Storage and Transport
 
-#### What hard disk capacity is suitable?
-**Depends on:**
-- Number of cameras
-- Quality (1080p, 4K)
-- Required recording duration
+#### How do I store plastic materials?
+- **Moisture protection**: Some polymers absorb moisture
+- **Away from direct sunlight**: UV damages materials
+- **Moderate temperature**: 15-35°C
+- **Sealed bags**: To maintain quality
 
-**Examples**:
-- **4 cameras 1080p for 1 month**: 1TB
-- **8 cameras 1080p for 1 month**: 2TB
-- **16 cameras 4K for 1 month**: 6-8TB
-
-### Access Control Systems
-
-#### What are the types of access control systems?
-1. **Fingerprint**
-   - High accuracy
-   - Can't be forgotten
-   - Fast
-
-2. **RFID Cards**
-   - Easy to use
-   - Can be duplicated
-   - Cheap
-
-3. **Face Recognition**
-   - Contactless
-   - Very fast
-   - Modern technology
-
-4. **PIN Code**
-   - Simple
-   - Shareable
-   - Backup
-
-#### Can fingerprint be combined with card?
-Yes, most modern devices support **Multi-Authentication**:
-- Card + fingerprint
-- Card + PIN code
-- Fingerprint + code
-
-#### Does fingerprint system work with children?
-Yes, but:
-- Preferably from age 5 and above
-- Young children's fingerprints may change
-- Cards recommended for young children
-
-### Intercom Systems
-
-#### What's the difference between wired and wireless intercom?
-**Wired:**
-- More stable
-- Better audio and video quality
-- Requires wire installation
-- Cheaper
-
-**Wireless (WiFi):**
-- Easy installation
-- No wires needed
-- Depends on WiFi strength
-- Slightly more expensive
-
-#### Can I open the door from mobile?
-Yes, modern devices support:
-- Mobile app
-- Remote door opening
-- Notification when doorbell pressed
-- Visitor recording
-
-#### How many bells can be connected?
-Depends on system type:
-- Simple systems: 1-2 bells
-- Medium systems: 2-4 bells
-- Professional systems: Up to 50 bells (for buildings)
-
-### Wires and Cables
-
-#### What wire type is suitable for IP camera?
-- **Cat5e** or **Cat6** (network cable)
-- Cat6 better for long distances (over 50 meters)
-- Provides power (PoE) and data together
-
-#### What wire type is suitable for Analog camera?
-- **RG59 Coaxial Cable**
-- With separate power wire (2 core)
-- Or combined cable (Coax + Power)
-
-#### Can old wires be used?
-**For upgrade from Analog to IP:**
-- No, must replace wires with Cat5e/Cat6
-
-**For upgrade from old to new DVR:**
-- Yes, same wires work
-
-### Maintenance and Troubleshooting
-
-#### Camera doesn't work at night?
-**Possible causes:**
-1. IR settings turned off
-2. Infrared LEDs disabled
-3. Dirty lens
-4. Camera not designed for night vision
-
-**Solution**: Contact maintenance for inspection.
-
-#### Image is blurry or unclear?
-1. Check lens cleanliness
-2. Verify quality settings in DVR
-3. Check cable integrity
-4. Readjust focus
-
-#### Camera suddenly disconnected?
-1. Check power (Adapter)
-2. Check cable connections
-3. Restart DVR/NVR
-4. Check network settings (for IP cameras)
+#### What is the minimum order quantity?
+- **For traders**: 1 ton (1000 kg)
+- **For factories**: 5 tons or more (special prices)
+- **For trial**: 25 kg (subject to availability)

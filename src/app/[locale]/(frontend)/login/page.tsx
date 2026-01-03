@@ -18,11 +18,11 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'تسجيل الدخول | مجموعة الصدارة القابضة'
-      : 'Login | Al Sadara Holding Group',
+      ? 'تسجيل الدخول | مجموعة شركات السيد شحاتة'
+      : 'Login | El Sayed Shehata Group',
     description: isArabic
-      ? 'سجل دخولك إلى حسابك في مجموعة الصدارة للوصول إلى طلباتك وإدارة حسابك'
-      : 'Sign in to your Al Sadara account to access your orders and manage your account',
+      ? 'سجل دخولك إلى حسابك في مجموعة السيد شحاتة للوصول إلى طلباتك وإدارة حسابك'
+      : 'Sign in to your El Sayed Shehata account to access your orders and manage your account',
     robots: {
       index: false,
       follow: true,
@@ -51,14 +51,14 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
   const content = {
     ar: {
       title: 'تسجيل الدخول',
-      subtitle: 'مرحباً بعودتك إلى مجموعة الصدارة',
+      subtitle: 'مرحباً بعودتك إلى مجموعة السيد شحاتة',
       noAccount: 'ليس لديك حساب؟',
       createAccount: 'إنشاء حساب جديد',
       backHome: 'العودة للرئيسية',
     },
     en: {
       title: 'Sign In',
-      subtitle: 'Welcome back to Al Sadara Group',
+      subtitle: 'Welcome back to El Sayed Shehata Group',
       noAccount: "Don't have an account?",
       createAccount: 'Create Account',
       backHome: 'Back to Home',
@@ -90,26 +90,26 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
           </Link>
 
           <h2 className="text-3xl font-bold text-white text-center mb-4">
-            {isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group'}
+            {isRTL ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group'}
           </h2>
 
           <p className="text-white/80 text-center max-w-md">
             {isRTL
-              ? 'الرائدون في مجال الإلكترونيات وأنظمة المباني الذكية في مصر والسعودية'
-              : 'Leaders in electronics and smart building systems in Egypt and Saudi Arabia'}
+              ? 'رواد تجارة وتوريد خامات البلاستيك والبوليمرات في الشرق الأوسط وأفريقيا'
+              : 'Leaders in plastic raw materials trading and polymers supply across the Middle East and Africa'}
           </p>
 
           <div className="mt-12 grid grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-white">6</div>
+              <div className="text-4xl font-bold text-white">5</div>
               <div className="text-white/70 text-sm mt-1">{isRTL ? 'شركات' : 'Companies'}</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-white">2</div>
+              <div className="text-4xl font-bold text-white">3</div>
               <div className="text-white/70 text-sm mt-1">{isRTL ? 'دول' : 'Countries'}</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-white">15+</div>
+              <div className="text-4xl font-bold text-white">21+</div>
               <div className="text-white/70 text-sm mt-1">{isRTL ? 'سنة خبرة' : 'Years'}</div>
             </div>
           </div>

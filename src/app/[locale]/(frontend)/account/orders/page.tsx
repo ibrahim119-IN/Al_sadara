@@ -15,11 +15,11 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'طلباتي | مجموعة الصدارة القابضة'
-      : 'My Orders | Al Sadara Holding Group',
+      ? 'طلباتي | مجموعة شركات السيد شحاتة'
+      : 'My Orders | El Sayed Shehata Group',
     description: isArabic
-      ? 'عرض وتتبع طلباتك من مجموعة الصدارة'
-      : 'View and track your orders from Al Sadara Group',
+      ? 'عرض وتتبع طلباتك من مجموعة السيد شحاتة'
+      : 'View and track your orders from El Sayed Shehata Group',
     robots: {
       index: false,
       follow: false,

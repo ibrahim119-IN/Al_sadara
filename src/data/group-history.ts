@@ -57,11 +57,11 @@ export const timelineEvents: TimelineEvent[] = [
     year: 2017,
     type: 'expansion',
     title: {
-      ar: 'تأسيس إس.إيه.إم في الإمارات',
+      ar: 'تأسيس S.A.M في الإمارات',
       en: 'S.A.M Founded in UAE',
     },
     description: {
-      ar: 'تأسيس شركة إس.إيه.إم (International Plastic Material Trading FZE) في الشارقة، الإمارات العربية المتحدة',
+      ar: 'تأسيس شركة S.A.M (International Plastic Material Trading FZE) في الشارقة، الإمارات العربية المتحدة',
       en: 'Establishment of S.A.M (International Plastic Material Trading FZE) in Sharjah, United Arab Emirates',
     },
     icon: '🌍',

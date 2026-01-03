@@ -277,14 +277,16 @@ export const Products: CollectionConfig = {
         ar: 'نوع المنتج',
       },
       options: [
-        { label: 'CCTV Camera', value: 'cctv' },
-        { label: 'Access Control', value: 'access-control' },
-        { label: 'Intercom', value: 'intercom' },
-        { label: 'PBX System', value: 'pbx' },
-        { label: 'Nurse Call', value: 'nurse-call' },
-        { label: 'Fire Alarm', value: 'fire-alarm' },
-        { label: 'GPS Tracker', value: 'gps' },
+        { label: 'HDPE', value: 'hdpe' },
+        { label: 'LDPE', value: 'ldpe' },
+        { label: 'Polypropylene (PP)', value: 'pp' },
+        { label: 'PVC', value: 'pvc' },
+        { label: 'PET', value: 'pet' },
+        { label: 'Polystyrene (PS)', value: 'ps' },
+        { label: 'Recycled Materials', value: 'recycled' },
         { label: 'Raw Material', value: 'raw-material' },
+        { label: 'Masterbatch', value: 'masterbatch' },
+        { label: 'Additives', value: 'additives' },
       ],
     },
 
@@ -322,98 +324,82 @@ export const Products: CollectionConfig = {
       ],
     },
 
-    // CCTV-specific fields
+    // Polymer specifications
     {
-      name: 'cctvSpecs',
+      name: 'polymerSpecs',
       type: 'group',
       label: {
-        en: 'CCTV Specifications',
-        ar: 'مواصفات الكاميرا',
+        en: 'Polymer Specifications',
+        ar: 'مواصفات البوليمر',
       },
       admin: {
-        condition: (data) => data.productType === 'cctv',
+        condition: (data) => ['hdpe', 'ldpe', 'pp', 'pvc', 'pet', 'ps'].includes(data.productType),
       },
       fields: [
         {
-          name: 'resolution',
+          name: 'density',
           type: 'text',
-          label: { en: 'Resolution', ar: 'الدقة' },
+          label: { en: 'Density (g/cm³)', ar: 'الكثافة (جم/سم³)' },
         },
         {
-          name: 'cameraType',
-          type: 'select',
-          options: ['IP', 'AHD', 'TVI', 'CVI'],
-          label: { en: 'Camera Type', ar: 'نوع الكاميرا' },
-        },
-        {
-          name: 'nightVision',
+          name: 'meltFlowRate',
           type: 'text',
-          label: { en: 'Night Vision Range', ar: 'مدى الرؤية الليلية' },
+          label: { en: 'Melt Flow Rate (g/10min)', ar: 'معدل التدفق (جم/10دقائق)' },
         },
         {
-          name: 'indoorOutdoor',
-          type: 'select',
-          options: [
-            { label: 'Indoor', value: 'indoor' },
-            { label: 'Outdoor', value: 'outdoor' },
-            { label: 'Both', value: 'both' },
-          ],
-          label: { en: 'Indoor/Outdoor', ar: 'داخلي/خارجي' },
+          name: 'tensileStrength',
+          type: 'text',
+          label: { en: 'Tensile Strength (MPa)', ar: 'قوة الشد (ميجا باسكال)' },
         },
         {
-          name: 'poe',
-          type: 'checkbox',
-          label: { en: 'PoE Support', ar: 'دعم PoE' },
+          name: 'meltingPoint',
+          type: 'text',
+          label: { en: 'Melting Point (°C)', ar: 'نقطة الانصهار (°م)' },
         },
         {
-          name: 'audioSupport',
-          type: 'checkbox',
-          label: { en: 'Audio Support', ar: 'دعم الصوت' },
+          name: 'applications',
+          type: 'textarea',
+          label: { en: 'Applications', ar: 'التطبيقات' },
+        },
+        {
+          name: 'applicationsAr',
+          type: 'textarea',
+          label: { en: 'Applications (Arabic)', ar: 'التطبيقات (عربي)' },
         },
       ],
     },
 
-    // Access Control specific
+    // Masterbatch specifications
     {
-      name: 'accessControlSpecs',
+      name: 'masterbatchSpecs',
       type: 'group',
       label: {
-        en: 'Access Control Specifications',
-        ar: 'مواصفات جهاز الحضور',
+        en: 'Masterbatch Specifications',
+        ar: 'مواصفات الماستر باتش',
       },
       admin: {
-        condition: (data) => data.productType === 'access-control',
+        condition: (data) => data.productType === 'masterbatch',
       },
       fields: [
         {
-          name: 'maxUsers',
-          type: 'number',
-          label: { en: 'Max Users', ar: 'أقصى عدد مستخدمين' },
+          name: 'colorCode',
+          type: 'text',
+          label: { en: 'Color Code', ar: 'كود اللون' },
         },
         {
-          name: 'fingerprintCapacity',
-          type: 'number',
-          label: { en: 'Fingerprint Capacity', ar: 'سعة البصمات' },
+          name: 'pigmentContent',
+          type: 'text',
+          label: { en: 'Pigment Content (%)', ar: 'نسبة الصبغة (%)' },
         },
         {
-          name: 'faceCapacity',
-          type: 'number',
-          label: { en: 'Face Capacity', ar: 'سعة الوجوه' },
+          name: 'carrierResin',
+          type: 'text',
+          label: { en: 'Carrier Resin', ar: 'الراتنج الحامل' },
         },
         {
-          name: 'cardSupport',
-          type: 'checkbox',
-          label: { en: 'Card Support', ar: 'دعم الكارت' },
-        },
-        {
-          name: 'wifiSupport',
-          type: 'checkbox',
-          label: { en: 'WiFi Support', ar: 'دعم WiFi' },
-        },
-        {
-          name: 'attendanceReport',
-          type: 'checkbox',
-          label: { en: 'Attendance Report', ar: 'تقرير الحضور' },
+          name: 'recommendedDosage',
+          type: 'text',
+          label: { en: 'Recommended Dosage (%)', ar: 'الجرعة الموصى بها (%)' },
         },
       ],
     },

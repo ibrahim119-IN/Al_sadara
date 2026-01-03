@@ -41,14 +41,16 @@ function buildProductText(product: Product, locale: 'ar' | 'en' = 'ar'): string 
   // Add product type
   if (product.productType) {
     const typeLabels: Record<string, string> = {
-      cctv: 'كاميرا مراقبة',
-      'access-control': 'نظام تحكم في الدخول',
-      intercom: 'إنتركم',
-      pbx: 'سنترال',
-      'nurse-call': 'نظام استدعاء الممرضات',
-      'fire-alarm': 'نظام إنذار حريق',
-      gps: 'نظام تتبع GPS',
+      hdpe: 'بولي إيثيلين عالي الكثافة',
+      ldpe: 'بولي إيثيلين منخفض الكثافة',
+      pp: 'بولي بروبيلين',
+      pvc: 'بي في سي',
+      pet: 'بولي إيثيلين تيريفثالات',
+      ps: 'بوليسترين',
+      recycled: 'خامات معاد تدويرها',
       'raw-material': 'مواد خام',
+      masterbatch: 'ماستر باتش',
+      additives: 'إضافات',
     }
     parts.push(`نوع المنتج: ${typeLabels[product.productType] || product.productType}`)
   }
@@ -64,20 +66,20 @@ function buildProductText(product: Product, locale: 'ar' | 'en' = 'ar'): string 
     parts.push(`المواصفات: ${specsText}`)
   }
 
-  // Add CCTV specific specs
-  if (product.productType === 'cctv' && product.cctvSpecs) {
-    const specs = product.cctvSpecs
-    if (specs.resolution) parts.push(`الدقة: ${specs.resolution}`)
-    if (specs.lensType) parts.push(`نوع العدسة: ${specs.lensType}`)
-    if (specs.nightVisionRange) parts.push(`مدى الرؤية الليلية: ${specs.nightVisionRange} متر`)
-    if (specs.weatherResistance) parts.push(`مقاوم للطقس: ${specs.weatherResistance}`)
+  // Add Polymer specific specs
+  if (product.polymerSpecs) {
+    const specs = product.polymerSpecs as any
+    if (specs.mfi) parts.push(`معدل التدفق MFI: ${specs.mfi}`)
+    if (specs.density) parts.push(`الكثافة: ${specs.density}`)
+    if (specs.tensileStrength) parts.push(`قوة الشد: ${specs.tensileStrength}`)
+    if (specs.meltingPoint) parts.push(`درجة الانصهار: ${specs.meltingPoint}`)
   }
 
-  // Add Access Control specific specs
-  if (product.productType === 'access-control' && product.accessControlSpecs) {
-    const specs = product.accessControlSpecs
-    if (specs.accessMethod) parts.push(`طريقة الدخول: ${specs.accessMethod}`)
-    if (specs.userCapacity) parts.push(`سعة المستخدمين: ${specs.userCapacity}`)
+  // Add Masterbatch specific specs
+  if (product.masterbatchSpecs) {
+    const specs = product.masterbatchSpecs as any
+    if (specs.colorCode) parts.push(`كود اللون: ${specs.colorCode}`)
+    if (specs.concentration) parts.push(`التركيز: ${specs.concentration}`)
   }
 
   // Add price range

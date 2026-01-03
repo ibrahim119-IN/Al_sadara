@@ -15,8 +15,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'الملف الشخصي | مجموعة الصدارة القابضة'
-      : 'Profile | Al Sadara Holding Group',
+      ? 'الملف الشخصي | مجموعة شركات السيد شحاتة'
+      : 'Profile | El Sayed Shehata Group',
     description: isArabic
       ? 'تعديل معلوماتك الشخصية وإعدادات الحساب'
       : 'Edit your personal information and account settings',

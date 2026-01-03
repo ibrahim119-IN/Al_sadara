@@ -48,14 +48,14 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'مجموعة الصدارة القابضة | رواد الإلكترونيات وأنظمة المباني الذكية'
-      : 'Al Sadara Holding Group | Leaders in Electronics & Smart Building Systems',
+      ? 'مجموعة شركات السيد شحاتة | رواد تجارة خامات البلاستيك والبوليمرات'
+      : 'El Sayed Shehata Group | Leaders in Plastic Raw Materials & Polymers Trading',
     description: isArabic
-      ? 'مجموعة الصدارة القابضة - رواد صناعة الإلكترونيات وأنظمة المباني الذكية في مصر والسعودية. كاميرات مراقبة، أنظمة حضور وانصراف، سنترالات، وأنظمة إنذار الحريق.'
-      : 'Al Sadara Holding Group - Leaders in electronics and smart building systems in Egypt and Saudi Arabia. CCTV cameras, access control, PBX systems, and fire alarm systems.',
+      ? 'مجموعة شركات السيد شحاتة - رواد تجارة وتوريد خامات البلاستيك والبوليمرات في مصر والسعودية والإمارات. HDPE، LDPE، PP، إعادة التدوير.'
+      : 'El Sayed Shehata Group of Companies - Leaders in plastic raw materials trading and polymers supply in Egypt, Saudi Arabia, and UAE. HDPE, LDPE, PP, Recycling.',
     keywords: isArabic
-      ? ['مجموعة الصدارة', 'كاميرات مراقبة', 'أنظمة أمان', 'سنترالات', 'حضور وانصراف', 'إنذار حريق', 'مصر', 'السعودية']
-      : ['Al Sadara Group', 'CCTV cameras', 'security systems', 'PBX', 'access control', 'fire alarm', 'Egypt', 'Saudi Arabia'],
+      ? ['مجموعة السيد شحاتة', 'خامات بلاستيك', 'بوليمرات', 'HDPE', 'LDPE', 'PP', 'إعادة تدوير', 'مصر', 'السعودية', 'الإمارات']
+      : ['El Sayed Shehata Group', 'plastic raw materials', 'polymers', 'HDPE', 'LDPE', 'PP', 'recycling', 'Egypt', 'Saudi Arabia', 'UAE'],
     alternates: {
       canonical: `${BASE_URL}/${locale}`,
       languages: {
@@ -65,13 +65,13 @@ export async function generateMetadata({
     },
     openGraph: {
       title: isArabic
-        ? 'مجموعة الصدارة القابضة'
-        : 'Al Sadara Holding Group',
+        ? 'مجموعة شركات السيد شحاتة'
+        : 'El Sayed Shehata Group',
       description: isArabic
-        ? 'رواد صناعة الإلكترونيات وأنظمة المباني الذكية'
-        : 'Leaders in Electronics & Smart Building Systems',
+        ? 'رواد تجارة خامات البلاستيك والبوليمرات'
+        : 'Leaders in Plastic Raw Materials & Polymers Trading',
       url: `${BASE_URL}/${locale}`,
-      siteName: isArabic ? 'مجموعة الصدارة' : 'Al Sadara Group',
+      siteName: isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
       locale: locale === 'ar' ? 'ar_EG' : 'en_US',
       type: 'website',
       images: [
@@ -79,16 +79,16 @@ export async function generateMetadata({
           url: `${BASE_URL}/images/og-home.jpg`,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+          alt: isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group of Companies',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: isArabic ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+      title: isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
       description: isArabic
-        ? 'رواد صناعة الإلكترونيات وأنظمة المباني الذكية'
-        : 'Leaders in Electronics & Smart Building Systems',
+        ? 'رواد تجارة خامات البلاستيك والبوليمرات'
+        : 'Leaders in Plastic Raw Materials & Polymers Trading',
       images: [`${BASE_URL}/images/og-home.jpg`],
     },
   }

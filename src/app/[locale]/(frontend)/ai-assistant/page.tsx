@@ -15,8 +15,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'المساعد الذكي | مجموعة الصدارة القابضة'
-      : 'AI Assistant | Al Sadara Holding Group',
+      ? 'المساعد الذكي | مجموعة شركات السيد شحاتة'
+      : 'AI Assistant | El Sayed Shehata Group',
     description: isArabic
       ? 'تحدث مع المساعد الذكي للحصول على مساعدة في اختيار المنتجات والإجابة على أسئلتك'
       : 'Chat with our AI assistant to get help choosing products and answering your questions',

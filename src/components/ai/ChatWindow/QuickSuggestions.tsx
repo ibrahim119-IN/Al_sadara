@@ -34,8 +34,8 @@ const suggestions: Record<PageContext['pageName'], Array<{ ar: string; en: strin
   ],
   products: [
     { ar: 'ابحث عن منتج', en: 'Search for a product' },
-    { ar: 'خامات PE', en: 'PE materials' },
-    { ar: 'كاميرات مراقبة', en: 'Security cameras' },
+    { ar: 'خامات HDPE', en: 'HDPE materials' },
+    { ar: 'خامات معاد تدويرها', en: 'Recycled materials' },
     { ar: 'عرض أسعار', en: 'Price quote' },
   ],
   contact: [

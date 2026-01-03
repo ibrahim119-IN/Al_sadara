@@ -45,10 +45,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${categoryName} | ${isArabic ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group'}`,
+    title: `${categoryName} | ${isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group'}`,
     description: categoryDescription || (isArabic
-      ? `تصفح منتجات ${categoryName} من مجموعة الصدارة`
-      : `Browse ${categoryName} products from Al Sadara Group`),
+      ? `تصفح منتجات ${categoryName} من مجموعة السيد شحاتة`
+      : `Browse ${categoryName} products from El Sayed Shehata Group`),
     alternates: {
       canonical: `${BASE_URL}/${locale}/categories/${slug}`,
       languages: {

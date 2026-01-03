@@ -23,10 +23,8 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [animationReady, setAnimationReady] = useState(false)
 
-  // Double track method للـ seamless infinite scroll
-  // كل track = companies × 2 لضمان تغطية الشاشات العريضة
+  // Seamless infinite scroll - single track duplicated
   // Track A + Track B متطابقين - الـ animation تتحرك -50% بالضبط
-  const doubledCompanies = [...companies, ...companies]
 
   useEffect(() => {
     setIsLoaded(true)
@@ -38,25 +36,25 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
   const content = {
     ar: {
       badge: 'منذ 2005',
-      title: 'مجموعة السيد شحاتة',
+      title: 'مجموعة شركات السيد شحاتة',
       subtitle: 'للتجارة والصناعة',
-      description: 'رواد صناعة وتجارة خامات البلاستيك وأنظمة المباني الذكية في الشرق الأوسط وأفريقيا',
+      description: 'رواد تجارة وتوريد خامات البلاستيك والبوليمرات في الشرق الأوسط وأفريقيا',
       cta1: 'شركاتنا',
       cta2: 'تواصل معنا',
-      stat1: { value: '6', label: 'شركات تابعة' },
+      stat1: { value: '5', label: 'شركات تابعة' },
       stat2: { value: '3', label: 'دول' },
-      stat3: { value: '+20', label: 'سنة خبرة' },
+      stat3: { value: '+21', label: 'سنة خبرة' },
     },
     en: {
       badge: 'Since 2005',
       title: 'El Sayed Shehata Group',
-      subtitle: 'for Trade & Industry',
-      description: 'Leaders in plastics raw materials trading and smart building systems across the Middle East and Africa',
+      subtitle: 'of Companies',
+      description: 'Leaders in plastic raw materials trading and polymers supply across the Middle East and Africa',
       cta1: 'Our Companies',
       cta2: 'Contact Us',
-      stat1: { value: '6', label: 'Subsidiaries' },
+      stat1: { value: '5', label: 'Subsidiaries' },
       stat2: { value: '3', label: 'Countries' },
-      stat3: { value: '+20', label: 'Years Experience' },
+      stat3: { value: '+21', label: 'Years Experience' },
     },
   }
 
@@ -222,17 +220,17 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
         }`}
       >
         {/* Carousel - dir=ltr عشان الـ transform يشتغل صح في RTL */}
-        <div className="w-full overflow-hidden" dir="ltr">
-          {/* Double Track Method - Track A + Track B متطابقين */}
+        <div className="w-full overflow-hidden" dir="ltr" style={{ contain: 'layout' }}>
+          {/* Double Track Method - Track A + Track B */}
           <div
             ref={trackRef}
             className={`flex w-max items-center hover:[animation-play-state:paused] ${animationReady ? (isRTL ? 'animate-marquee-rtl' : 'animate-marquee') : ''}`}
-            style={{ willChange: 'transform' }}
+            style={{ willChange: 'transform', contain: 'layout' }}
           >
-            {/* Track A - companies × 2 */}
+            {/* Track A */}
             <div className="flex items-center shrink-0">
-              {doubledCompanies.map((company, index) => (
-                <div key={`a-${index}`} className="flex-shrink-0 px-2">
+              {companies.map((company, index) => (
+                <div key={`a-${index}`} className="flex-shrink-0 px-3">
                   <Link
                     href={`/${locale}/companies/${company.slug}`}
                     className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-white/30 transition-all duration-300 group shadow-lg"
@@ -262,8 +260,8 @@ export default function GroupHeroSection({ locale }: GroupHeroSectionProps) {
             </div>
             {/* Track B - نسخة طبق الأصل من Track A */}
             <div className="flex items-center shrink-0">
-              {doubledCompanies.map((company, index) => (
-                <div key={`b-${index}`} className="flex-shrink-0 px-2">
+              {companies.map((company, index) => (
+                <div key={`b-${index}`} className="flex-shrink-0 px-3">
                   <Link
                     href={`/${locale}/companies/${company.slug}`}
                     className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 hover:border-white/30 transition-all duration-300 group shadow-lg"

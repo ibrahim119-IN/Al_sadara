@@ -41,8 +41,8 @@
   },
   "home": {
     "hero": {
-      "title": "Complete Smart Building Solutions",
-      "subtitle": "CCTV Systems, Access Control, PBX, and Fire Alarm Systems",
+      "title": "Premium Plastic Raw Materials & Polymers",
+      "subtitle": "HDPE, LDPE, PP, PVC, PET and Recycled Materials for All Industries",
       "cta": "Browse Products"
     },
     "featuredProducts": "Featured Products",
@@ -130,16 +130,16 @@
     "copyright": "All rights reserved © Al Sadara"
   },
   "ai": {
-    "chatTitle": "Al Sadara Assistant",
+    "chatTitle": "ESS Group Assistant",
     "placeholder": "Type your question here...",
     "thinking": "Thinking...",
     "error": "An error occurred, please try again",
-    "welcome": "Hello! I'm Al Sadara's AI assistant. How can I help you today?",
+    "welcome": "Hello! I'm El Sayed Shehata Group's AI assistant. How can I help you today?",
     "suggestions": [
-      "I need an attendance device for 50 employees",
-      "What's the difference between IP and AHD cameras?",
-      "I have 50,000 EGP for a complete surveillance system",
-      "Show me PBX systems"
+      "I need HDPE for pipe manufacturing",
+      "What's the difference between LDPE and HDPE?",
+      "I need PP for packaging production",
+      "Show me recycled materials"
     ]
   },
   "group": {
@@ -165,9 +165,10 @@
     "location": "Location",
     "type": {
       "plastics": "Plastics Trading",
-      "electronics": "Electronics & Security",
+      "polymers": "Polymers Trading",
       "manufacturing": "Manufacturing",
-      "recycling": "Recycling"
+      "recycling": "Recycling",
+      "raw-materials": "Raw Materials"
     }
   },
   "dashboard": {

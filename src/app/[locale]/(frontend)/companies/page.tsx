@@ -25,7 +25,7 @@ export async function generateMetadata({
       ? `تعرف على شركات ${groupInfo.name.ar} - ${groupInfo.totalCompanies} شركات متخصصة في مصر والسعودية والإمارات`
       : `Discover ${groupInfo.name.en} companies - ${groupInfo.totalCompanies} specialized companies in Egypt, Saudi Arabia, and UAE`,
     keywords: isArabic
-      ? ['شركات ITs', 'مجموعة السيد شحاتة', 'الصدارة للصناعة', 'التالة الخضراء', 'القيصر', 'إس.إيه.إم', 'بوليمرز', 'شركات مصر', 'شركات السعودية', 'شركات الإمارات']
+      ? ['شركات ITs', 'مجموعة السيد شحاتة', 'الصدارة للصناعة', 'التالة الخضراء', 'القيصر', 'S.A.M', 'بوليمرز', 'شركات مصر', 'شركات السعودية', 'شركات الإمارات']
       : ['ITs companies', 'El Sayed Shehata Group', 'Al Sadara Industry', 'Al Talah', 'Al Qaysar', 'S.A.M', 'Polymers', 'Egypt companies', 'Saudi companies', 'UAE companies'],
     alternates: {
       canonical: `${BASE_URL}/${locale}/companies`,

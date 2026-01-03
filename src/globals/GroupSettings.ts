@@ -217,7 +217,7 @@ export const GroupSettings: GlobalConfig = {
                 {
                   name: 'totalCompanies',
                   type: 'number',
-                  defaultValue: 6,
+                  defaultValue: 5,
                   label: {
                     en: 'Total Companies',
                     ar: 'عدد الشركات',

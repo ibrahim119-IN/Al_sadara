@@ -48,12 +48,12 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: isArabic
-      ? `${name} | مجموعة الصدارة القابضة`
-      : `${name} | Al Sadara Holding Group`,
+      ? `${name} | مجموعة شركات السيد شحاتة`
+      : `${name} | El Sayed Shehata Group`,
     description,
     keywords: isArabic
-      ? [name, 'منتجات الصدارة', product.category?.nameAr, 'إلكترونيات'].filter(Boolean)
-      : [name, 'Al Sadara products', product.category?.name, 'electronics'].filter(Boolean),
+      ? [name, 'منتجات السيد شحاتة', product.category?.nameAr, 'بوليمرات', 'بلاستيك'].filter(Boolean)
+      : [name, 'El Sayed Shehata products', product.category?.name, 'polymers', 'plastics'].filter(Boolean),
     alternates: {
       canonical: `${BASE_URL}/${locale}/products/${slug}`,
       languages: {
@@ -156,7 +156,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     sku: product.sku,
     brand: {
       '@type': 'Organization',
-      name: isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+      name: isRTL ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
     },
     offers: {
       '@type': 'Offer',
@@ -168,7 +168,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         : 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
-        name: isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+        name: isRTL ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
       },
     },
     ...(product.category && {

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Layers, Camera, Shield, Radio, Flame, Package } from 'lucide-react'
+import { ArrowRight, Layers, Recycle } from 'lucide-react'
 
 interface GroupProductsSectionProps {
   locale: 'ar' | 'en'
@@ -11,12 +11,20 @@ interface GroupProductsSectionProps {
 const productCategories = {
   plastics: [
     {
-      code: 'PE',
-      nameEn: 'Polyethylene',
-      nameAr: 'بولي إيثيلين',
-      descEn: 'HDPE, LDPE, LLDPE for packaging and industrial applications',
-      descAr: 'للتغليف والتطبيقات الصناعية',
+      code: 'HDPE',
+      nameEn: 'High Density PE',
+      nameAr: 'بولي إيثيلين عالي الكثافة',
+      descEn: 'For pipes, bottles, and industrial containers',
+      descAr: 'للأنابيب والزجاجات والحاويات الصناعية',
       color: '#2196F3',
+    },
+    {
+      code: 'LDPE',
+      nameEn: 'Low Density PE',
+      nameAr: 'بولي إيثيلين منخفض الكثافة',
+      descEn: 'For bags, films, and flexible packaging',
+      descAr: 'للأكياس والأغشية والتغليف المرن',
+      color: '#03A9F4',
     },
     {
       code: 'PP',
@@ -36,19 +44,11 @@ const productCategories = {
     },
     {
       code: 'PET',
-      nameEn: 'Polyethylene Terephthalate',
+      nameEn: 'PET Resin',
       nameAr: 'بولي إيثيلين تريفثالات',
       descEn: 'For bottles, containers, and fibers',
       descAr: 'للزجاجات والحاويات والألياف',
       color: '#FF5722',
-    },
-    {
-      code: 'EVA',
-      nameEn: 'Ethylene Vinyl Acetate',
-      nameAr: 'خلات فينيل الإيثيلين',
-      descEn: 'For footwear, solar panels, and packaging',
-      descAr: 'للأحذية والألواح الشمسية والتغليف',
-      color: '#E91E63',
     },
     {
       code: 'PVC',
@@ -59,34 +59,38 @@ const productCategories = {
       color: '#607D8B',
     },
   ],
-  electronics: [
+  recycled: [
     {
-      icon: Camera,
-      nameEn: 'CCTV Cameras',
-      nameAr: 'كاميرات المراقبة',
-      descEn: 'IP, AHD, and PTZ surveillance systems',
-      descAr: 'أنظمة مراقبة IP وAHD وPTZ',
+      code: 'rHDPE',
+      nameEn: 'Recycled HDPE',
+      nameAr: 'HDPE معاد تدويره',
+      descEn: 'Eco-friendly recycled high-density polyethylene',
+      descAr: 'بولي إيثيلين عالي الكثافة صديق للبيئة',
+      color: '#4CAF50',
     },
     {
-      icon: Shield,
-      nameEn: 'Access Control',
-      nameAr: 'أجهزة الحضور والانصراف',
-      descEn: 'Fingerprint, face recognition, and card systems',
-      descAr: 'بصمة ووجه وكارت',
+      code: 'rLDPE',
+      nameEn: 'Recycled LDPE',
+      nameAr: 'LDPE معاد تدويره',
+      descEn: 'Recycled low-density polyethylene granules',
+      descAr: 'حبيبات بولي إيثيلين منخفض الكثافة',
+      color: '#8BC34A',
     },
     {
-      icon: Flame,
-      nameEn: 'Fire Alarm Systems',
-      nameAr: 'أنظمة إنذار الحريق',
-      descEn: 'Smoke detectors and fire panels',
-      descAr: 'كاشفات الدخان ولوحات الإنذار',
+      code: 'rPP',
+      nameEn: 'Recycled PP',
+      nameAr: 'PP معاد تدويره',
+      descEn: 'Recycled polypropylene for sustainable products',
+      descAr: 'بولي بروبلين معاد تدويره للمنتجات المستدامة',
+      color: '#009688',
     },
     {
-      icon: Radio,
-      nameEn: 'Intercom & PBX',
-      nameAr: 'الإنتركم والسنترالات',
-      descEn: 'Video intercom and IP PBX systems',
-      descAr: 'إنتركم فيديو وسنترالات IP',
+      code: 'rPET',
+      nameEn: 'Recycled PET',
+      nameAr: 'PET معاد تدويره',
+      descEn: 'Recycled PET flakes and granules',
+      descAr: 'رقائق وحبيبات PET معاد تدويرها',
+      color: '#00BCD4',
     },
   ],
 }
@@ -95,7 +99,7 @@ export default function GroupProductsSection({ locale }: GroupProductsSectionPro
   const isRTL = locale === 'ar'
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [activeTab, setActiveTab] = useState<'plastics' | 'electronics'>('plastics')
+  const [activeTab, setActiveTab] = useState<'plastics' | 'recycled'>('plastics')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -119,17 +123,17 @@ export default function GroupProductsSection({ locale }: GroupProductsSectionPro
     ar: {
       badge: 'منتجاتنا',
       title: 'مجموعة متنوعة من المنتجات',
-      subtitle: 'نقدم خامات بلاستيك عالية الجودة وأنظمة إلكترونية متكاملة',
+      subtitle: 'نقدم خامات بلاستيك عالية الجودة ومواد معاد تدويرها صديقة للبيئة',
       plastics: 'خامات البلاستيك',
-      electronics: 'الإلكترونيات والأمن',
+      recycled: 'المواد المعاد تدويرها',
       viewAll: 'عرض جميع المنتجات',
     },
     en: {
       badge: 'Our Products',
       title: 'A Diverse Range of Products',
-      subtitle: 'We offer high-quality plastic raw materials and integrated electronic systems',
+      subtitle: 'We offer high-quality plastic raw materials and eco-friendly recycled materials',
       plastics: 'Plastic Raw Materials',
-      electronics: 'Electronics & Security',
+      recycled: 'Recycled Materials',
       viewAll: 'View All Products',
     },
   }
@@ -174,85 +178,53 @@ export default function GroupProductsSection({ locale }: GroupProductsSectionPro
             {t.plastics}
           </button>
           <button
-            onClick={() => setActiveTab('electronics')}
+            onClick={() => setActiveTab('recycled')}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-              activeTab === 'electronics'
+              activeTab === 'recycled'
                 ? 'bg-primary-600 text-white shadow-btn'
                 : 'bg-secondary-100 text-secondary-600 hover:bg-secondary-200'
             }`}
           >
-            <Camera className="w-5 h-5" />
-            {t.electronics}
+            <Recycle className="w-5 h-5" />
+            {t.recycled}
           </button>
         </div>
 
         {/* Products Grid */}
-        {activeTab === 'plastics' ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {productCategories.plastics.map((product, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {(activeTab === 'plastics' ? productCategories.plastics : productCategories.recycled).map((product, index) => (
+            <div
+              key={product.code}
+              className={`group relative bg-white rounded-3xl border border-secondary-100 p-6 text-center shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+            >
+              {/* Code Badge */}
               <div
-                key={product.code}
-                className={`group relative bg-white rounded-3xl border border-secondary-100 p-6 text-center shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+                className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                style={{ backgroundColor: `${product.color}15` }}
               >
-                {/* Code Badge */}
-                <div
-                  className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
-                  style={{ backgroundColor: `${product.color}15` }}
+                <span
+                  className="text-2xl font-bold"
+                  style={{ color: product.color }}
                 >
-                  <span
-                    className="text-3xl font-bold"
-                    style={{ color: product.color }}
-                  >
-                    {product.code}
-                  </span>
-                </div>
-
-                {/* Name */}
-                <h3 className="font-bold text-secondary-900 mb-2">
-                  {isRTL ? product.nameAr : product.nameEn}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-secondary-500 line-clamp-2">
-                  {isRTL ? product.descAr : product.descEn}
-                </p>
+                  {product.code}
+                </span>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {productCategories.electronics.map((product, index) => {
-              const Icon = product.icon
-              return (
-                <div
-                  key={index}
-                  className={`group bg-gradient-to-br from-secondary-50 to-primary-50 rounded-3xl p-8 text-center hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${(index + 1) * 100}ms` }}
-                >
-                  {/* Icon */}
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Icon className="w-10 h-10 text-white" />
-                  </div>
 
-                  {/* Name */}
-                  <h3 className="font-bold text-xl text-secondary-900 mb-3">
-                    {isRTL ? product.nameAr : product.nameEn}
-                  </h3>
+              {/* Name */}
+              <h3 className="font-bold text-secondary-900 mb-2">
+                {isRTL ? product.nameAr : product.nameEn}
+              </h3>
 
-                  {/* Description */}
-                  <p className="text-secondary-600">
-                    {isRTL ? product.descAr : product.descEn}
-                  </p>
-                </div>
-              )
-            })}
-          </div>
-        )}
+              {/* Description */}
+              <p className="text-sm text-secondary-500 line-clamp-2">
+                {isRTL ? product.descAr : product.descEn}
+              </p>
+            </div>
+          ))}
+        </div>
 
         {/* View All Button */}
         <div

@@ -148,117 +148,91 @@ export async function executeFunctions(
 // Comprehensive keyword mapping for Arabic to English product terms
 // Supports multiple search terms per keyword for better matching
 const KEYWORD_MAP: Record<string, string[]> = {
-  // === Access Control / Attendance ===
-  'حضور': ['ZKTeco', 'Access Control', 'Attendance'],
-  'انصراف': ['ZKTeco', 'Access Control', 'Attendance'],
-  'بصمة': ['ZKTeco', 'Fingerprint', 'Biometric'],
-  'حضور وانصراف': ['ZKTeco', 'Access Control'],
-  'اجهزة حضور': ['ZKTeco', 'Access Control'],
-  'جهاز بصمة': ['ZKTeco', 'Fingerprint'],
-  'ماكينة حضور': ['ZKTeco', 'Attendance Machine'],
-  'access control': ['ZKTeco', 'Access Control'],
-  'attendance': ['ZKTeco', 'Attendance'],
-  'fingerprint': ['ZKTeco', 'Fingerprint'],
-  'biometric': ['ZKTeco', 'Biometric'],
+  // === HDPE ===
+  'hdpe': ['HDPE', 'High Density Polyethylene'],
+  'اتش دي بي اي': ['HDPE', 'High Density Polyethylene'],
+  'بولي ايثيلين عالي الكثافة': ['HDPE', 'High Density Polyethylene'],
+  'بولي إيثيلين عالي': ['HDPE'],
+  'high density polyethylene': ['HDPE'],
 
-  // === Cameras ===
-  'كاميرا': ['Camera', 'CCTV', 'Hikvision', 'Dahua'],
-  'كاميرات': ['Camera', 'CCTV'],
-  'مراقبة': ['Camera', 'CCTV', 'Surveillance'],
-  'كاميرات مراقبة': ['Camera', 'CCTV', 'Surveillance'],
-  'كام': ['Camera', 'CCTV'],
-  'كاميرا مراقبه': ['Camera', 'CCTV'],
-  'كاميرا داخلية': ['Camera', 'Indoor', 'Dome'],
-  'كاميرا خارجية': ['Camera', 'Outdoor', 'Bullet'],
-  'camera': ['Camera', 'CCTV'],
-  'cctv': ['Camera', 'CCTV'],
-  'surveillance': ['Camera', 'Surveillance'],
-  'dome': ['Camera', 'Dome'],
-  'bullet': ['Camera', 'Bullet'],
-  'ip camera': ['Camera', 'IP'],
-  'كاميرا اي بي': ['Camera', 'IP'],
+  // === LDPE ===
+  'ldpe': ['LDPE', 'Low Density Polyethylene'],
+  'ال دي بي اي': ['LDPE', 'Low Density Polyethylene'],
+  'بولي ايثيلين منخفض الكثافة': ['LDPE', 'Low Density Polyethylene'],
+  'بولي إيثيلين منخفض': ['LDPE'],
+  'low density polyethylene': ['LDPE'],
 
-  // === DVR/NVR ===
-  'تسجيل': ['DVR', 'NVR', 'Recorder'],
-  'جهاز تسجيل': ['DVR', 'NVR'],
-  'مسجل': ['DVR', 'NVR', 'Recorder'],
-  'ريكوردر': ['DVR', 'NVR', 'Recorder'],
-  'dvr': ['DVR', 'Recorder'],
-  'nvr': ['NVR', 'Recorder'],
-  'xvr': ['XVR', 'DVR', 'Recorder'],
-  'recorder': ['DVR', 'NVR', 'Recorder'],
-  '4 قنوات': ['DVR', '4CH'],
-  '8 قنوات': ['DVR', '8CH'],
-  '16 قناة': ['DVR', '16CH'],
+  // === PP ===
+  'pp': ['PP', 'Polypropylene'],
+  'بي بي': ['PP', 'Polypropylene'],
+  'بولي بروبيلين': ['PP', 'Polypropylene'],
+  'polypropylene': ['PP', 'Polypropylene'],
 
-  // === Brands ===
-  'هيكفيجن': ['Hikvision'],
-  'هيك فيجن': ['Hikvision'],
-  'هايكفيجن': ['Hikvision'],
-  'هايك فيجن': ['Hikvision'],
-  'hikvision': ['Hikvision'],
-  'داهوا': ['Dahua'],
-  'داهو': ['Dahua'],
-  'dahua': ['Dahua'],
-  'زد كي تيكو': ['ZKTeco'],
-  'زد كي': ['ZKTeco'],
-  'zkteco': ['ZKTeco'],
-  'zk': ['ZKTeco'],
+  // === PVC ===
+  'pvc': ['PVC', 'Polyvinyl Chloride'],
+  'بي في سي': ['PVC', 'Polyvinyl Chloride'],
+  'بولي فينيل كلورايد': ['PVC'],
+  'polyvinyl chloride': ['PVC'],
 
-  // === Accessories ===
-  'كابل': ['Cable', 'Wire'],
-  'سلك': ['Cable', 'Wire'],
-  'كيبل': ['Cable'],
-  'cable': ['Cable'],
-  'wire': ['Wire', 'Cable'],
-  'محول': ['Adapter', 'Converter', 'Power Supply'],
-  'باور سبلاي': ['Power Supply', 'Adapter'],
-  'power supply': ['Power Supply'],
-  'adapter': ['Adapter'],
+  // === PET ===
+  'pet': ['PET', 'Polyethylene Terephthalate'],
+  'بي اي تي': ['PET', 'Polyethylene Terephthalate'],
+  'بولي إيثيلين تيريفثاليت': ['PET'],
 
-  // === Storage ===
-  'هارد': ['HDD', 'Hard Disk', 'Storage'],
-  'هارد ديسك': ['HDD', 'Hard Disk'],
-  'تخزين': ['HDD', 'Storage'],
-  'hdd': ['HDD', 'Hard Disk'],
-  'hard disk': ['HDD', 'Hard Disk'],
-  'storage': ['Storage', 'HDD'],
+  // === PS ===
+  'ps': ['PS', 'Polystyrene'],
+  'بي اس': ['PS', 'Polystyrene'],
+  'بولي ستايرين': ['PS', 'Polystyrene'],
+  'polystyrene': ['PS', 'Polystyrene'],
 
-  // === Intercom ===
-  'انتركم': ['Intercom', 'Video Door'],
-  'جرس': ['Intercom', 'Doorbell'],
-  'فيديو دور': ['Intercom', 'Video Door'],
-  'intercom': ['Intercom'],
-  'doorbell': ['Doorbell', 'Intercom'],
+  // === Recycled Materials ===
+  'معاد تدويره': ['Recycled', 'Recycled Materials'],
+  'خامات معاد تدويرها': ['Recycled', 'Recycled Materials'],
+  'تدوير': ['Recycled', 'Recycled Materials'],
+  'recycled': ['Recycled', 'Recycled Materials'],
+  'regrind': ['Recycled', 'Regrind'],
 
-  // === Fire Alarm ===
-  'انذار': ['Fire Alarm', 'Alarm'],
-  'انذار حريق': ['Fire Alarm'],
-  'حريق': ['Fire Alarm'],
-  'fire alarm': ['Fire Alarm'],
-  'smoke detector': ['Smoke Detector', 'Fire Alarm'],
-  'كاشف دخان': ['Smoke Detector'],
+  // === Masterbatch ===
+  'ماستر باتش': ['Masterbatch', 'Color Masterbatch'],
+  'masterbatch': ['Masterbatch'],
+  'ملونات': ['Masterbatch', 'Pigment'],
+  'صبغة': ['Masterbatch', 'Pigment', 'Color'],
 
-  // === GPS ===
-  'جي بي اس': ['GPS', 'Tracker'],
-  'تتبع': ['GPS', 'Tracker'],
-  'جهاز تتبع': ['GPS', 'Tracker'],
-  'gps': ['GPS', 'Tracker'],
-  'tracker': ['Tracker', 'GPS'],
+  // === Additives ===
+  'اضافات': ['Additives', 'Plastic Additives'],
+  'additives': ['Additives', 'Plastic Additives'],
+  'مثبتات': ['Stabilizers', 'UV Stabilizers'],
+  'stabilizers': ['Stabilizers'],
+
+  // === Raw Materials General ===
+  'خامات': ['Raw Materials', 'Polymers'],
+  'بوليمر': ['Polymer', 'Polymers'],
+  'بوليمرات': ['Polymers'],
+  'polymers': ['Polymers', 'Polymer'],
+  'بلاستيك': ['Plastic', 'Plastics', 'Polymers'],
+  'plastic': ['Plastic', 'Plastics'],
+  'raw materials': ['Raw Materials', 'Polymers'],
+
+  // === Applications ===
+  'انابيب': ['Pipes', 'HDPE', 'PVC'],
+  'pipes': ['Pipes', 'HDPE', 'PVC'],
+  'تغليف': ['Packaging', 'LDPE', 'PP'],
+  'packaging': ['Packaging', 'LDPE', 'PP'],
+  'عبوات': ['Containers', 'PET', 'PP'],
+  'containers': ['Containers', 'PET', 'PP'],
+  'فيلم': ['Film', 'LDPE', 'HDPE'],
+  'film': ['Film', 'LDPE', 'HDPE'],
 }
 
 // Fuzzy matching for common misspellings
 const FUZZY_CORRECTIONS: Record<string, string> = {
-  'هيكفجن': 'هيكفيجن',
-  'هايكفجن': 'هيكفيجن',
-  'هيكڤيجن': 'هيكفيجن',
-  'داهو': 'داهوا',
-  'دهوا': 'داهوا',
-  'كامرا': 'كاميرا',
-  'كميرا': 'كاميرا',
-  'كاميره': 'كاميرا',
-  'بصمه': 'بصمة',
-  'حضوروانصراف': 'حضور وانصراف',
+  'اتش دي': 'hdpe',
+  'ال دي': 'ldpe',
+  'بولي بروبلين': 'بولي بروبيلين',
+  'بولي إثيلين': 'بولي إيثيلين',
+  'بلاستك': 'بلاستيك',
+  'خاماة': 'خامات',
+  'بوليمير': 'بوليمر',
 }
 
 /**

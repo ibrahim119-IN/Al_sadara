@@ -15,8 +15,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? `طلب رقم ${orderNumber} | مجموعة الصدارة القابضة`
-      : `Order ${orderNumber} | Al Sadara Holding Group`,
+      ? `طلب رقم ${orderNumber} | مجموعة شركات السيد شحاتة`
+      : `Order ${orderNumber} | El Sayed Shehata Group`,
     description: isArabic
       ? `عرض تفاصيل الطلب رقم ${orderNumber}`
       : `View details for order ${orderNumber}`,

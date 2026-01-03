@@ -119,7 +119,7 @@ export const companiesLocations: CompanyLocation[] = [
     id: '3',
     slug: 'sam',
     name: {
-      ar: 'إس.إيه.إم',
+      ar: 'S.A.M',
       en: 'S.A.M International',
     },
     description: {
@@ -233,8 +233,8 @@ export const companiesLocations: CompanyLocation[] = [
 
 export const groupInfo = {
   name: {
-    ar: 'مجموعة الصدارة القابضة',
-    en: 'Al Sadara Holding Group',
+    ar: 'مجموعة شركات السيد شحاتة',
+    en: 'El Sayed Shehata Group of Companies',
   },
   headquarters: {
     ar: 'جدة، السعودية',

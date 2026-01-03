@@ -17,8 +17,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'إتمام الطلب | مجموعة الصدارة القابضة'
-      : 'Checkout | Al Sadara Holding Group',
+      ? 'إتمام الطلب | مجموعة شركات السيد شحاتة'
+      : 'Checkout | El Sayed Shehata Group',
     description: isArabic
       ? 'أكمل بيانات الشحن والدفع لإتمام طلبك'
       : 'Complete your shipping and payment details to place your order',

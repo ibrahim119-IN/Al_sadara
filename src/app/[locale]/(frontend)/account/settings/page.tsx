@@ -15,8 +15,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'الإعدادات | مجموعة الصدارة القابضة'
-      : 'Settings | Al Sadara Holding Group',
+      ? 'الإعدادات | مجموعة شركات السيد شحاتة'
+      : 'Settings | El Sayed Shehata Group',
     description: isArabic
       ? 'إدارة إعدادات حسابك والتفضيلات'
       : 'Manage your account settings and preferences',

@@ -13,10 +13,10 @@ import {
   Linkedin,
   MessageCircle,
   ArrowRight,
-  Camera,
-  Shield,
-  Flame,
-  Radio,
+  Cylinder,
+  Box,
+  Layers,
+  Recycle,
   CheckCircle2,
   Award,
   Headphones
@@ -32,10 +32,10 @@ export function Footer({ locale, dict }: FooterProps) {
   const isRTL = locale === 'ar'
 
   const products = [
-    { name: isRTL ? 'كاميرات المراقبة' : 'CCTV Cameras', href: `/${locale}/categories/cctv`, icon: Camera },
-    { name: isRTL ? 'أجهزة الحضور والانصراف' : 'Access Control', href: `/${locale}/categories/access-control`, icon: Shield },
-    { name: isRTL ? 'أنظمة إنذار الحريق' : 'Fire Alarm Systems', href: `/${locale}/categories/fire-alarm`, icon: Flame },
-    { name: isRTL ? 'أنظمة الإنتركم' : 'Intercom Systems', href: `/${locale}/categories/intercom`, icon: Radio },
+    { name: isRTL ? 'بولي إيثيلين عالي الكثافة' : 'HDPE', href: `/${locale}/categories/hdpe`, icon: Cylinder },
+    { name: isRTL ? 'بولي إيثيلين منخفض الكثافة' : 'LDPE', href: `/${locale}/categories/ldpe`, icon: Box },
+    { name: isRTL ? 'بولي بروبلين' : 'Polypropylene (PP)', href: `/${locale}/categories/pp`, icon: Layers },
+    { name: isRTL ? 'بلاستيك معاد التدوير' : 'Recycled Plastics', href: `/${locale}/categories/recycled`, icon: Recycle },
   ]
 
   const quickLinks = [
@@ -53,9 +53,9 @@ export function Footer({ locale, dict }: FooterProps) {
   ]
 
   const features = [
-    { text: isRTL ? 'ضمان على جميع المنتجات' : 'Warranty on all products', icon: CheckCircle2 },
-    { text: isRTL ? 'دعم فني على مدار الساعة' : '24/7 Technical Support', icon: Headphones },
-    { text: isRTL ? 'منتجات أصلية 100%' : '100% Genuine Products', icon: Award },
+    { text: isRTL ? 'جودة عالية مضمونة' : 'Guaranteed Quality', icon: CheckCircle2 },
+    { text: isRTL ? 'دعم فني متواصل' : 'Continuous Support', icon: Headphones },
+    { text: isRTL ? 'خامات أصلية 100%' : '100% Genuine Materials', icon: Award },
   ]
 
   return (

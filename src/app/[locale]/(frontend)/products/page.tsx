@@ -11,15 +11,15 @@ import { Package, Filter, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://alsadara.org'
 
-// Product type options for filters
+// Product type options for filters - Plastic raw materials
 const productTypes = [
-  { value: 'cctv', labelEn: 'CCTV Cameras', labelAr: 'كاميرات المراقبة' },
-  { value: 'access-control', labelEn: 'Access Control', labelAr: 'أجهزة الحضور والانصراف' },
-  { value: 'intercom', labelEn: 'Intercom', labelAr: 'الإنتركم' },
-  { value: 'pbx', labelEn: 'PBX Systems', labelAr: 'السنترالات' },
-  { value: 'fire-alarm', labelEn: 'Fire Alarm', labelAr: 'إنذار الحريق' },
-  { value: 'gps', labelEn: 'GPS Tracking', labelAr: 'تتبع GPS' },
-  { value: 'raw-material', labelEn: 'Raw Materials', labelAr: 'الخامات' },
+  { value: 'hdpe', labelEn: 'HDPE', labelAr: 'بولي إيثيلين عالي الكثافة' },
+  { value: 'ldpe', labelEn: 'LDPE', labelAr: 'بولي إيثيلين منخفض الكثافة' },
+  { value: 'pp', labelEn: 'Polypropylene', labelAr: 'بولي بروبيلين' },
+  { value: 'pvc', labelEn: 'PVC', labelAr: 'بي في سي' },
+  { value: 'pet', labelEn: 'PET', labelAr: 'بولي إيثيلين تيريفثاليت' },
+  { value: 'ps', labelEn: 'Polystyrene', labelAr: 'بولي ستايرين' },
+  { value: 'recycled', labelEn: 'Recycled Materials', labelAr: 'خامات معاد تدويرها' },
 ]
 
 export async function generateMetadata({
@@ -32,14 +32,14 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'المنتجات | مجموعة الصدارة القابضة'
-      : 'Products | Al Sadara Holding Group',
+      ? 'المنتجات | مجموعة شركات السيد شحاتة'
+      : 'Products | El Sayed Shehata Group',
     description: isArabic
-      ? 'تصفح منتجات مجموعة الصدارة - كاميرات مراقبة، أنظمة تحكم، إنتركم، سنترالات، أجهزة إنذار الحريق وتتبع GPS. منتجات إلكترونية عالية الجودة.'
-      : 'Browse Al Sadara products - CCTV cameras, access control, intercom, PBX systems, fire alarms and GPS tracking. High-quality electronic products.',
+      ? 'تصفح منتجات مجموعة السيد شحاتة - خامات بلاستيك عالية الجودة: HDPE, LDPE, PP, PVC, PET, PS. خامات بوليمرات أصلية ومعاد تدويرها.'
+      : 'Browse El Sayed Shehata products - High-quality plastic raw materials: HDPE, LDPE, PP, PVC, PET, PS. Virgin and recycled polymer materials.',
     keywords: isArabic
-      ? ['منتجات الصدارة', 'كاميرات مراقبة', 'أنظمة أمان', 'إلكترونيات', 'سنترالات', 'إنتركم']
-      : ['Al Sadara products', 'CCTV cameras', 'security systems', 'electronics', 'PBX', 'intercom'],
+      ? ['منتجات السيد شحاتة', 'خامات بلاستيك', 'بوليمرات', 'HDPE', 'LDPE', 'PP', 'PVC']
+      : ['El Sayed Shehata products', 'plastic raw materials', 'polymers', 'HDPE', 'LDPE', 'PP', 'PVC'],
     alternates: {
       canonical: `${BASE_URL}/${locale}/products`,
       languages: {
@@ -50,8 +50,8 @@ export async function generateMetadata({
     openGraph: {
       title: isArabic ? 'تصفح منتجاتنا' : 'Browse Our Products',
       description: isArabic
-        ? 'منتجات إلكترونية عالية الجودة من مجموعة الصدارة'
-        : 'High-quality electronic products from Al Sadara Group',
+        ? 'خامات بلاستيك وبوليمرات عالية الجودة من مجموعة السيد شحاتة'
+        : 'High-quality plastic raw materials and polymers from El Sayed Shehata Group',
       url: `${BASE_URL}/${locale}/products`,
       type: 'website',
       images: [
@@ -59,7 +59,7 @@ export async function generateMetadata({
           url: `${BASE_URL}/images/og-products.jpg`,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'منتجات مجموعة الصدارة' : 'Al Sadara Products',
+          alt: isArabic ? 'منتجات مجموعة السيد شحاتة' : 'El Sayed Shehata Products',
         },
       ],
     },
@@ -147,22 +147,22 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
   const collectionSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: isRTL ? 'منتجات مجموعة الصدارة' : 'Al Sadara Products',
+    name: isRTL ? 'منتجات مجموعة السيد شحاتة' : 'El Sayed Shehata Products',
     description: isRTL
-      ? 'تصفح منتجات مجموعة الصدارة الإلكترونية'
-      : 'Browse Al Sadara electronic products',
+      ? 'تصفح منتجات خامات البلاستيك والبوليمرات'
+      : 'Browse plastic raw materials and polymer products',
     url: `${BASE_URL}/${locale}/products`,
     numberOfItems: totalProducts,
     provider: {
       '@type': 'Organization',
-      name: isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+      name: isRTL ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
     },
   }
 
   const content = {
     ar: {
       title: 'منتجاتنا',
-      subtitle: 'تصفح مجموعتنا المتنوعة من المنتجات الإلكترونية عالية الجودة',
+      subtitle: 'تصفح مجموعتنا المتنوعة من خامات البلاستيك والبوليمرات عالية الجودة',
       showing: `عرض ${totalProducts} منتج`,
       filter: 'تصفية النتائج',
       search: 'بحث',
@@ -179,7 +179,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
     },
     en: {
       title: 'Our Products',
-      subtitle: 'Browse our diverse collection of high-quality electronic products',
+      subtitle: 'Browse our diverse collection of high-quality plastic raw materials and polymers',
       showing: `Showing ${totalProducts} products`,
       filter: 'Filter Results',
       search: 'Search',

@@ -32,14 +32,14 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'تواصل معنا | مجموعة الصدارة القابضة'
-      : 'Contact Us | Al Sadara Holding Group',
+      ? 'تواصل معنا | مجموعة شركات السيد شحاتة'
+      : 'Contact Us | El Sayed Shehata Group',
     description: isArabic
-      ? 'تواصل مع مجموعة الصدارة القابضة - نحن هنا لمساعدتك. اتصل بنا، أرسل بريد إلكتروني، أو زورنا في مكاتبنا في مصر والسعودية.'
-      : 'Contact Al Sadara Holding Group - We are here to help. Call us, email us, or visit our offices in Egypt and Saudi Arabia.',
+      ? 'تواصل مع مجموعة شركات السيد شحاتة - نحن هنا لمساعدتك. اتصل بنا، أرسل بريد إلكتروني، أو زورنا في مكاتبنا في مصر والسعودية والإمارات.'
+      : 'Contact El Sayed Shehata Group - We are here to help. Call us, email us, or visit our offices in Egypt, Saudi Arabia, and UAE.',
     keywords: isArabic
-      ? ['تواصل معنا', 'الصدارة', 'دعم العملاء', 'مصر', 'السعودية']
-      : ['contact us', 'Al Sadara', 'customer support', 'Egypt', 'Saudi Arabia'],
+      ? ['تواصل معنا', 'السيد شحاتة', 'دعم العملاء', 'مصر', 'السعودية', 'الإمارات']
+      : ['contact us', 'El Sayed Shehata', 'customer support', 'Egypt', 'Saudi Arabia', 'UAE'],
     alternates: {
       canonical: `${BASE_URL}/${locale}/contact`,
       languages: {
@@ -50,8 +50,8 @@ export async function generateMetadata({
     openGraph: {
       title: isArabic ? 'تواصل معنا' : 'Contact Us',
       description: isArabic
-        ? 'نحن هنا لمساعدتك - تواصل مع مجموعة الصدارة'
-        : 'We are here to help - Contact Al Sadara Group',
+        ? 'نحن هنا لمساعدتك - تواصل مع مجموعة السيد شحاتة'
+        : 'We are here to help - Contact El Sayed Shehata Group',
       url: `${BASE_URL}/${locale}/contact`,
       type: 'website',
     },
@@ -75,14 +75,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const contactSchema = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: isRTL ? 'تواصل مع مجموعة الصدارة' : 'Contact Al Sadara Group',
+    name: isRTL ? 'تواصل مع مجموعة السيد شحاتة' : 'Contact El Sayed Shehata Group',
     description: isRTL
-      ? 'صفحة التواصل مع مجموعة الصدارة القابضة'
-      : 'Contact page for Al Sadara Holding Group',
+      ? 'صفحة التواصل مع مجموعة شركات السيد شحاتة'
+      : 'Contact page for El Sayed Shehata Group',
     url: `${BASE_URL}/${locale}/contact`,
     mainEntity: {
       '@type': 'Organization',
-      name: isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+      name: isRTL ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
       telephone: '+966554401575',
       email: 'info@alsadara.org',
       address: {

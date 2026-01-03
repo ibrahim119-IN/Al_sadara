@@ -8,8 +8,8 @@ export function OrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${BASE_URL}/#organization`,
-    name: 'Al Sadara Holding Group',
-    alternateName: ['الصدارة', 'مجموعة الصدارة القابضة'],
+    name: 'El Sayed Shehata Group of Companies',
+    alternateName: ['مجموعة شركات السيد شحاتة', 'ITs Group', 'مجموعة السيد شحاتة'],
     url: BASE_URL,
     logo: {
       '@type': 'ImageObject',
@@ -17,7 +17,7 @@ export function OrganizationSchema() {
       width: 200,
       height: 200,
     },
-    description: 'Al Sadara Holding Group - Leaders in Plastic Raw Materials Trading',
+    description: 'El Sayed Shehata Group of Companies - Leaders in Plastic Raw Materials Trading and Polymers Supply',
     foundingDate: '2005',
     numberOfEmployees: {
       '@type': 'QuantitativeValue',
@@ -109,10 +109,10 @@ export function WebsiteSchema({ locale }: { locale: string }) {
     '@type': 'WebSite',
     '@id': `${BASE_URL}/#website`,
     url: BASE_URL,
-    name: isArabic ? 'مجموعة الصدارة' : 'Al Sadara Group',
+    name: isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
     description: isArabic
-      ? 'مجموعة الصدارة القابضة - رائدون في تجارة خامات البلاستيك'
-      : 'Al Sadara Holding Group - Leaders in Plastic Raw Materials Trading',
+      ? 'مجموعة شركات السيد شحاتة - رائدون في تجارة خامات البلاستيك والبوليمرات'
+      : 'El Sayed Shehata Group of Companies - Leaders in Plastic Raw Materials Trading and Polymers',
     publisher: {
       '@id': `${BASE_URL}/#organization`,
     },
@@ -171,7 +171,7 @@ export function ProductSchema({ product, locale }: ProductSchemaProps) {
     sku: product.sku,
     brand: {
       '@type': 'Brand',
-      name: product.brand || 'Al Sadara',
+      name: product.brand || 'El Sayed Shehata Group',
     },
     category: product.category,
     offers: {
@@ -185,7 +185,7 @@ export function ProductSchema({ product, locale }: ProductSchemaProps) {
         : 'https://schema.org/OutOfStock',
       seller: {
         '@type': 'Organization',
-        name: 'Al Sadara',
+        name: 'El Sayed Shehata Group',
       },
     },
     ...(product.rating && {

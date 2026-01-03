@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Al Sadara - Smart Building Solutions',
-  description: 'Al Sadara for Electronics and Building Management Systems - CCTV, Access Control, PBX, and more',
+  title: 'El Sayed Shehata Group - Plastic Raw Materials',
+  description: 'El Sayed Shehata Group of Companies - Leaders in Plastic Raw Materials Trading and Polymers Supply',
 }
 
 export default function RootLayout({

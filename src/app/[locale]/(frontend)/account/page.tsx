@@ -15,11 +15,11 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'حسابي | مجموعة الصدارة القابضة'
-      : 'My Account | Al Sadara Holding Group',
+      ? 'حسابي | مجموعة شركات السيد شحاتة'
+      : 'My Account | El Sayed Shehata Group',
     description: isArabic
-      ? 'إدارة حسابك في مجموعة الصدارة - عرض الطلبات، العناوين، والإعدادات'
-      : 'Manage your Al Sadara account - view orders, addresses, and settings',
+      ? 'إدارة حسابك في مجموعة السيد شحاتة - عرض الطلبات، العناوين، والإعدادات'
+      : 'Manage your El Sayed Shehata account - view orders, addresses, and settings',
     robots: {
       index: false,
       follow: false,

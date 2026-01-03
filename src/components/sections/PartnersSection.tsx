@@ -9,14 +9,14 @@ interface PartnersSectionProps {
 
 // Brand logos - using text as placeholder, can be replaced with actual logos
 const brands = [
-  { name: 'Hikvision', logo: '/brands/hikvision.png' },
-  { name: 'Dahua', logo: '/brands/dahua.png' },
-  { name: 'ZKTeco', logo: '/brands/zkteco.png' },
-  { name: 'Panasonic', logo: '/brands/panasonic.png' },
-  { name: 'Bosch', logo: '/brands/bosch.png' },
-  { name: 'Honeywell', logo: '/brands/honeywell.png' },
-  { name: 'Grandstream', logo: '/brands/grandstream.png' },
-  { name: 'Yealink', logo: '/brands/yealink.png' },
+  { name: 'SABIC', logo: '/brands/sabic.png' },
+  { name: 'Borouge', logo: '/brands/borouge.png' },
+  { name: 'ExxonMobil', logo: '/brands/exxonmobil.png' },
+  { name: 'LyondellBasell', logo: '/brands/lyondellbasell.png' },
+  { name: 'BASF', logo: '/brands/basf.png' },
+  { name: 'Dow', logo: '/brands/dow.png' },
+  { name: 'Ineos', logo: '/brands/ineos.png' },
+  { name: 'Total', logo: '/brands/total.png' },
 ]
 
 export default function PartnersSection({ locale }: PartnersSectionProps) {

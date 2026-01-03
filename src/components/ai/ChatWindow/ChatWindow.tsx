@@ -96,7 +96,7 @@ export function ChatWindow({ locale }: ChatWindowProps) {
           </div>
           <div>
             <h3 className="font-bold text-lg">
-              {locale === 'ar' ? 'مساعد ITs' : 'ITs Assistant'}
+              {locale === 'ar' ? 'مساعد السيد شحاتة' : 'ESS Group Assistant'}
             </h3>
             <p className="text-xs text-white/80">
               {locale === 'ar' ? 'أونلاين الآن' : 'Online now'}
@@ -167,8 +167,8 @@ export function ChatWindow({ locale }: ChatWindowProps) {
 
             <p className="text-gray-600 mb-6 max-w-sm">
               {locale === 'ar'
-                ? 'أنا مساعدك الذكي من مجموعة ITs. يمكنني مساعدتك في اختيار المنتجات المناسبة (خامات بلاستيك أو إلكترونيات)، معرفة شركاتنا، والتواصل معنا.'
-                : "I'm your AI assistant from ITs Group. I can help you choose the right products (plastics or electronics), learn about our companies, and get in touch with us."}
+                ? 'أنا مساعدك الذكي من مجموعة السيد شحاتة. يمكنني مساعدتك في اختيار الخامات المناسبة (HDPE, LDPE, PP, PVC)، معرفة شركاتنا، والتواصل معنا.'
+                : "I'm your AI assistant from El Sayed Shehata Group. I can help you choose the right materials (HDPE, LDPE, PP, PVC), learn about our companies, and get in touch with us."}
             </p>
 
             <div className="text-sm text-gray-500 space-y-2">
@@ -178,9 +178,9 @@ export function ChatWindow({ locale }: ChatWindowProps) {
               <ul className="space-y-1 text-right">
                 <li>• {locale === 'ar' ? 'ما هي شركاتكم؟' : 'What are your companies?'}</li>
                 <li>
-                  • {locale === 'ar' ? 'خامات بلاستيك PE أو PP' : 'PE or PP plastic materials'}
+                  • {locale === 'ar' ? 'خامات HDPE أو PP' : 'HDPE or PP materials'}
                 </li>
-                <li>• {locale === 'ar' ? 'كاميرات مراقبة' : 'Security cameras'}</li>
+                <li>• {locale === 'ar' ? 'خامات معاد تدويرها' : 'Recycled materials'}</li>
                 <li>• {locale === 'ar' ? 'فرعكم في السعودية؟' : 'Your branch in Saudi Arabia?'}</li>
               </ul>
             </div>

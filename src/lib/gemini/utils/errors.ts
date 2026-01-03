@@ -5,7 +5,7 @@
 
 export const USER_FRIENDLY_ERRORS = {
   // Search errors
-  NO_PRODUCTS_FOUND: 'لم أجد منتجات بهذا الاسم. جرب البحث بكلمات مثل "Camera" أو "DVR" أو "ZKTeco"',
+  NO_PRODUCTS_FOUND: 'لم أجد منتجات بهذا الاسم. جرب البحث بكلمات مثل "HDPE" أو "PP" أو "خامات معاد تدويرها"',
   EMPTY_QUERY: 'يرجى كتابة اسم المنتج أو الفئة التي تبحث عنها',
   SEARCH_FAILED: 'حدث خطأ في البحث. يرجى المحاولة مرة أخرى',
 
@@ -87,11 +87,11 @@ export function getNoResultsMessage(query: string): string {
   return `لم أجد منتجات تطابق "${query}".
 
 يمكنك تجربة:
-- البحث باسم العلامة التجارية: Hikvision، Dahua، ZKTeco
-- البحث بنوع المنتج: Camera، DVR، كاميرا
-- البحث بالفئة: كاميرات مراقبة، أجهزة حضور
+- البحث باسم المادة: HDPE، LDPE، PP، PVC
+- البحث بالاستخدام: أنابيب، أفلام، حقن
+- البحث بالنوع: خامات معاد تدويرها، ماستر باتش
 
-هل تريد مساعدة في إيجاد منتج معين؟`
+هل تريد مساعدة في إيجاد خامة معينة؟`
 }
 
 /**
@@ -99,10 +99,10 @@ export function getNoResultsMessage(query: string): string {
  */
 export function getSuggestions(): string[] {
   return [
-    'ما هي كاميرات المراقبة المتاحة؟',
-    'أريد جهاز حضور وانصراف',
-    'ما أفضل DVR لديكم؟',
-    'أسعار كاميرات Hikvision',
-    'أجهزة ZKTeco للبصمة',
+    'ما هي خامات HDPE المتاحة؟',
+    'أريد PP لصناعة العبوات',
+    'ما أسعار خامات SABIC؟',
+    'خامات معاد تدويرها',
+    'ماستر باتش أسود',
   ]
 }

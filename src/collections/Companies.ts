@@ -113,9 +113,10 @@ export const Companies: CollectionConfig = {
                   required: true,
                   options: [
                     { label: { en: 'Plastics Trading', ar: 'تجارة بلاستيك' }, value: 'plastics' },
-                    { label: { en: 'Electronics & Security', ar: 'إلكترونيات وأمن' }, value: 'electronics' },
+                    { label: { en: 'Polymers Trading', ar: 'تجارة بوليمرات' }, value: 'polymers' },
                     { label: { en: 'Manufacturing', ar: 'تصنيع' }, value: 'manufacturing' },
                     { label: { en: 'Recycling', ar: 'تدوير' }, value: 'recycling' },
+                    { label: { en: 'Raw Materials', ar: 'خامات' }, value: 'raw-materials' },
                   ],
                   label: {
                     en: 'Company Type',

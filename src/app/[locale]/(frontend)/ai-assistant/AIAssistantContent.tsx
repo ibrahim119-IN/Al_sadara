@@ -159,35 +159,35 @@ export function AIAssistantContent({ locale, dict }: AIAssistantContentProps) {
 
                   <p className="text-lg text-gray-600 mb-8 max-w-2xl">
                     {locale === 'ar'
-                      ? 'أنا مساعدك الذكي المختص بأنظمة الأمان والمراقبة. يمكنني مساعدتك في:'
-                      : "I'm your AI assistant specialized in security and surveillance systems. I can help you with:"}
+                      ? 'أنا مساعدك الذكي المختص بخامات البلاستيك والبوليمرات. يمكنني مساعدتك في:'
+                      : "I'm your AI assistant specialized in plastic raw materials and polymers. I can help you with:"}
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
                     {/* Quick Action Cards */}
                     <QuickActionCard
-                      icon="🎥"
-                      title={locale === 'ar' ? 'اختيار كاميرات مراقبة' : 'Choose Security Cameras'}
-                      description={locale === 'ar' ? 'ساعدني في اختيار الكاميرا المناسبة لاحتياجاتي' : 'Help me choose the right camera for my needs'}
-                      onClick={() => sendMessage(locale === 'ar' ? 'أحتاج كاميرا مراقبة' : 'I need a security camera')}
+                      icon="🧪"
+                      title={locale === 'ar' ? 'اختيار الخامات المناسبة' : 'Choose Right Materials'}
+                      description={locale === 'ar' ? 'ساعدني في اختيار الخامة المناسبة لاحتياجاتي' : 'Help me choose the right material for my needs'}
+                      onClick={() => sendMessage(locale === 'ar' ? 'أحتاج خامات لصناعة الأنابيب' : 'I need materials for pipe manufacturing')}
                     />
                     <QuickActionCard
-                      icon="🔒"
-                      title={locale === 'ar' ? 'أنظمة التحكم في الدخول' : 'Access Control Systems'}
-                      description={locale === 'ar' ? 'استكشف أنظمة التحكم المتاحة' : 'Explore available access control systems'}
-                      onClick={() => sendMessage(locale === 'ar' ? 'ما هي أنظمة التحكم في الدخول المتوفرة؟' : 'What access control systems are available?')}
+                      icon="♻️"
+                      title={locale === 'ar' ? 'خامات معاد تدويرها' : 'Recycled Materials'}
+                      description={locale === 'ar' ? 'استكشف خياراتنا من الخامات المعاد تدويرها' : 'Explore our recycled material options'}
+                      onClick={() => sendMessage(locale === 'ar' ? 'ما هي الخامات المعاد تدويرها المتوفرة؟' : 'What recycled materials are available?')}
                     />
                     <QuickActionCard
                       icon="💰"
-                      title={locale === 'ar' ? 'تخطيط الميزانية' : 'Budget Planning'}
-                      description={locale === 'ar' ? 'احصل على حل كامل ضمن ميزانيتك' : 'Get a complete solution within your budget'}
-                      onClick={() => sendMessage(locale === 'ar' ? 'أريد نظام كامل بميزانية 50000 جنيه' : 'I want a complete system with 50,000 EGP budget')}
+                      title={locale === 'ar' ? 'طلب عرض سعر' : 'Request Quote'}
+                      description={locale === 'ar' ? 'احصل على أسعار تنافسية لمتطلباتك' : 'Get competitive prices for your requirements'}
+                      onClick={() => sendMessage(locale === 'ar' ? 'أريد عرض سعر لـ 5 طن HDPE' : 'I need a quote for 5 tons of HDPE')}
                     />
                     <QuickActionCard
                       icon="🔍"
-                      title={locale === 'ar' ? 'مقارنة المنتجات' : 'Compare Products'}
-                      description={locale === 'ar' ? 'قارن بين منتجات مختلفة' : 'Compare different products'}
-                      onClick={() => sendMessage(locale === 'ar' ? 'قارن بين كاميرات Hikvision و Dahua' : 'Compare Hikvision and Dahua cameras')}
+                      title={locale === 'ar' ? 'مقارنة الخامات' : 'Compare Materials'}
+                      description={locale === 'ar' ? 'قارن بين أنواع البوليمرات المختلفة' : 'Compare different polymer types'}
+                      onClick={() => sendMessage(locale === 'ar' ? 'قارن بين HDPE و LDPE' : 'Compare HDPE and LDPE')}
                     />
                   </div>
                 </div>

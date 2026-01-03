@@ -131,14 +131,13 @@ function TimelineItem({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Pulse Ring Animation */}
+          {/* Subtle glow effect - performance optimized */}
           <div
-            className="absolute inset-0 rounded-full animate-ping opacity-20"
-            style={{ backgroundColor: event.color }}
-          />
-          <div
-            className="absolute inset-0 rounded-full animate-pulse opacity-10"
-            style={{ backgroundColor: event.color }}
+            className="absolute inset-0 rounded-full opacity-20 transition-opacity duration-500"
+            style={{
+              backgroundColor: event.color,
+              opacity: isHovered ? 0.3 : 0.15,
+            }}
           />
 
           {/* Icon or Company Logo */}
@@ -404,7 +403,7 @@ export default function GroupTimeline({ locale, className = '' }: GroupTimelineP
 
           {/* Start Marker */}
           <div className="flex justify-center mb-12">
-            <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full shadow-xl shadow-emerald-300/30 animate-pulse">
+            <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full shadow-xl shadow-emerald-300/30 hover:scale-105 transition-transform">
               <span className="text-2xl">🌟</span>
               <span className="font-bold text-lg">{isArabic ? 'بداية الرحلة' : 'The Beginning'}</span>
             </div>

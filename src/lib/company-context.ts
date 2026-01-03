@@ -12,7 +12,7 @@ export interface Company {
   taglineAr?: string
   description?: string
   descriptionAr?: string
-  companyType: 'plastics' | 'electronics' | 'manufacturing' | 'recycling'
+  companyType: 'plastics' | 'manufacturing' | 'recycling' | 'trading'
   foundedYear?: number
   country: 'egypt' | 'saudi' | 'uae'
   city?: string
@@ -61,14 +61,14 @@ export const SUBDOMAIN_MAP: Record<string, string> = {
   'industry': 'industry',      // الصدارة للصناعة
   'talah': 'talah',            // التالة الخضراء
   'polymers': 'polymers',      // السيد شحاتة بوليمرز
-  'sam': 'sam',                // إس.إيه.إم
+  'sam': 'sam',                // S.A.M International
   'qaysar': 'qaysar',          // القيصر
 }
 
 // Default company colors based on type
 export const DEFAULT_COMPANY_COLORS: Record<string, { primary: string; secondary: string }> = {
   plastics: { primary: '#0066CC', secondary: '#004499' },
-  electronics: { primary: '#00A651', secondary: '#008542' },
+  trading: { primary: '#00A651', secondary: '#008542' },
   manufacturing: { primary: '#FF6600', secondary: '#CC5200' },
   recycling: { primary: '#4CAF50', secondary: '#388E3C' },
 }
@@ -202,7 +202,7 @@ export function getCountryFlag(country: 'egypt' | 'saudi' | 'uae'): string {
 export function getCompanyTypeName(type: Company['companyType'], locale: 'ar' | 'en'): string {
   const names = {
     plastics: { ar: 'تجارة خامات بلاستيك', en: 'Plastics Trading' },
-    electronics: { ar: 'إلكترونيات وأنظمة أمن', en: 'Electronics & Security' },
+    trading: { ar: 'تجارة دولية', en: 'International Trading' },
     manufacturing: { ar: 'تصنيع', en: 'Manufacturing' },
     recycling: { ar: 'تدوير', en: 'Recycling' },
   }

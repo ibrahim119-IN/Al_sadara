@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { Effects } from '@react-three/drei'
 import { Particles } from './gl/Particles'
 import { VignetteShader } from './gl/shaders/vignetteShader'
+import { useEffect, useRef, useState } from 'react'
 
 interface WaveBackgroundProps {
   // Animation parameters
@@ -56,8 +57,31 @@ export function WaveBackground({
   backgroundColor = '#0a0a1a', // Dark blue background
   className = '',
 }: WaveBackgroundProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(true)
+
+  // Pause animation when out of viewport for performance
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting)
+      },
+      { threshold: 0, rootMargin: '100px' }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className={`absolute inset-0 ${className}`}>
+    <div
+      ref={containerRef}
+      className={`absolute inset-0 ${className}`}
+      style={{ willChange: 'transform', contain: 'layout' }}
+    >
       <Canvas
         camera={{
           position: [1.26, 2.66, -1.82],
@@ -73,7 +97,9 @@ export function WaveBackground({
         gl={{
           antialias: false,
           alpha: false,
+          powerPreference: 'high-performance',
         }}
+        frameloop={isVisible ? 'always' : 'demand'}
       >
         <color attach="background" args={[backgroundColor]} />
         <Particles
@@ -117,8 +143,31 @@ export function WaveBackgroundSimple({
   backgroundColor = '#0a0a1a',
   className = '',
 }: Omit<WaveBackgroundProps, 'vignetteDarkness' | 'vignetteOffset'>) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(true)
+
+  // Pause animation when out of viewport for performance
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting)
+      },
+      { threshold: 0, rootMargin: '100px' }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className={`absolute inset-0 ${className}`}>
+    <div
+      ref={containerRef}
+      className={`absolute inset-0 ${className}`}
+      style={{ willChange: 'transform', contain: 'layout' }}
+    >
       <Canvas
         camera={{
           position: [1.26, 2.66, -1.82],
@@ -134,7 +183,9 @@ export function WaveBackgroundSimple({
         gl={{
           antialias: false,
           alpha: false,
+          powerPreference: 'high-performance',
         }}
+        frameloop={isVisible ? 'always' : 'demand'}
       >
         <color attach="background" args={[backgroundColor]} />
         <Particles

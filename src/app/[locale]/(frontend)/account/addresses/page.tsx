@@ -15,8 +15,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'العناوين | مجموعة الصدارة القابضة'
-      : 'Addresses | Al Sadara Holding Group',
+      ? 'العناوين | مجموعة شركات السيد شحاتة'
+      : 'Addresses | El Sayed Shehata Group',
     description: isArabic
       ? 'إدارة عناوين الشحن والتوصيل الخاصة بك'
       : 'Manage your shipping and delivery addresses',

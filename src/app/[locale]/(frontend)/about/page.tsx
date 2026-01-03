@@ -36,14 +36,14 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'من نحن | مجموعة الصدارة القابضة'
-      : 'About Us | Al Sadara Holding Group',
+      ? 'من نحن | مجموعة شركات السيد شحاتة'
+      : 'About Us | El Sayed Shehata Group',
     description: isArabic
-      ? 'تعرف على مجموعة الصدارة القابضة - رحلة تمتد منذ 2005 في مجال تجارة خامات البلاستيك. نخدم الشرق الأوسط وأفريقيا بـ 5 شركات متخصصة.'
-      : 'Learn about Al Sadara Holding Group - A journey since 2005 in plastic raw materials trading. Serving Middle East and Africa with 5 specialized companies.',
+      ? 'تعرف على مجموعة شركات السيد شحاتة - رحلة تمتد منذ 2005 في مجال تجارة خامات البلاستيك. نخدم الشرق الأوسط وأفريقيا بـ 5 شركات متخصصة.'
+      : 'Learn about El Sayed Shehata Group - A journey since 2005 in plastic raw materials trading. Serving Middle East and Africa with 5 specialized companies.',
     keywords: isArabic
-      ? ['من نحن', 'مجموعة الصدارة', 'تاريخ الشركة', 'رؤيتنا', 'قيمنا', 'خامات البلاستيك', 'تجارة البلاستيك']
-      : ['about us', 'Al Sadara Group', 'company history', 'our vision', 'our values', 'plastic raw materials', 'plastics trading'],
+      ? ['من نحن', 'مجموعة السيد شحاتة', 'تاريخ الشركة', 'رؤيتنا', 'قيمنا', 'خامات البلاستيك', 'تجارة البلاستيك']
+      : ['about us', 'El Sayed Shehata Group', 'company history', 'our vision', 'our values', 'plastic raw materials', 'plastics trading'],
     alternates: {
       canonical: `${BASE_URL}/${locale}/about`,
       languages: {
@@ -52,10 +52,10 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: isArabic ? 'من نحن - مجموعة الصدارة' : 'About Us - Al Sadara Group',
+      title: isArabic ? 'من نحن - مجموعة السيد شحاتة' : 'About Us - El Sayed Shehata Group',
       description: isArabic
-        ? 'تعرف على قصة نجاح مجموعة الصدارة في تجارة خامات البلاستيك منذ 2005'
-        : 'Discover the Al Sadara Group success story in plastic raw materials trading since 2005',
+        ? 'تعرف على قصة نجاح مجموعة السيد شحاتة في تجارة خامات البلاستيك منذ 2005'
+        : 'Discover the El Sayed Shehata Group success story in plastic raw materials trading since 2005',
       url: `${BASE_URL}/${locale}/about`,
       type: 'website',
       images: [
@@ -63,7 +63,7 @@ export async function generateMetadata({
           url: `${BASE_URL}/images/og-about.jpg`,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'من نحن - مجموعة الصدارة' : 'About Us - Al Sadara Group',
+          alt: isArabic ? 'من نحن - مجموعة السيد شحاتة' : 'About Us - El Sayed Shehata Group',
         },
       ],
     },
@@ -82,8 +82,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const content = {
     title: isRTL ? 'من نحن' : 'About Us',
     subtitle: isRTL
-      ? 'مجموعة الصدارة القابضة - رائدون في تجارة خامات البلاستيك'
-      : 'Al Sadara Holding Group - Leaders in Plastic Raw Materials Trading',
+      ? 'مجموعة شركات السيد شحاتة - رائدون في تجارة خامات البلاستيك'
+      : 'El Sayed Shehata Group - Leaders in Plastic Raw Materials Trading',
     description: isRTL
       ? 'نحن مجموعة شركات رائدة في مجال تجارة وتوزيع خامات البلاستيك في الشرق الأوسط وأفريقيا. نوفر مواد أولية عالية الجودة (HDPE, LDPE, PP, PVC, PS, PET) من أفضل المصادر العالمية لتلبية احتياجات مصانع البلاستيك.'
       : 'We are a leading group of companies in plastic raw materials trading and distribution across the Middle East and Africa. We supply high-quality raw materials (HDPE, LDPE, PP, PVC, PS, PET) from the best global sources to meet the needs of plastic manufacturers.',

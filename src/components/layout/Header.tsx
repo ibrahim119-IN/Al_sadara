@@ -17,14 +17,14 @@ import {
   Menu,
   X,
   ChevronDown,
-  Camera,
-  Shield,
-  Phone as PhoneIcon,
-  Radio,
-  Flame,
-  MapPinned,
   Layers,
-  HeadphonesIcon,
+  Recycle,
+  Box,
+  Cylinder,
+  Factory,
+  Leaf,
+  Globe,
+  Beaker,
   Clock,
   ArrowRight,
   LogOut,
@@ -45,68 +45,68 @@ interface HeaderProps {
 
 const categories = [
   {
-    slug: 'cctv',
-    nameEn: 'CCTV Cameras',
-    nameAr: 'كاميرات المراقبة',
-    descEn: 'IP & Analog surveillance systems',
-    descAr: 'أنظمة مراقبة IP وتناظرية',
-    icon: Camera
+    slug: 'hdpe',
+    nameEn: 'HDPE',
+    nameAr: 'بولي إيثيلين عالي الكثافة',
+    descEn: 'High Density Polyethylene',
+    descAr: 'HDPE للصناعات المختلفة',
+    icon: Cylinder
   },
   {
-    slug: 'access-control',
-    nameEn: 'Access Control',
-    nameAr: 'أجهزة الحضور والانصراف',
-    descEn: 'Biometric & Card-based systems',
-    descAr: 'أنظمة بصمة وكارت',
-    icon: Shield
+    slug: 'ldpe',
+    nameEn: 'LDPE',
+    nameAr: 'بولي إيثيلين منخفض الكثافة',
+    descEn: 'Low Density Polyethylene',
+    descAr: 'LDPE للأكياس والأغشية',
+    icon: Box
   },
   {
-    slug: 'pbx',
-    nameEn: 'PBX Systems',
-    nameAr: 'السنترالات',
-    descEn: 'IP & Digital phone systems',
-    descAr: 'أنظمة هاتف رقمية',
-    icon: PhoneIcon
-  },
-  {
-    slug: 'intercom',
-    nameEn: 'Intercom Systems',
-    nameAr: 'أنظمة الإنتركم',
-    descEn: 'Video & Audio intercoms',
-    descAr: 'إنتركم صوت وصورة',
-    icon: Radio
-  },
-  {
-    slug: 'fire-alarm',
-    nameEn: 'Fire Alarm',
-    nameAr: 'إنذار الحريق',
-    descEn: 'Detection & Alert systems',
-    descAr: 'أنظمة كشف وتنبيه',
-    icon: Flame
-  },
-  {
-    slug: 'gps',
-    nameEn: 'GPS Tracking',
-    nameAr: 'تتبع GPS',
-    descEn: 'Vehicle & Asset tracking',
-    descAr: 'تتبع المركبات والأصول',
-    icon: MapPinned
-  },
-  {
-    slug: 'nurse-call',
-    nameEn: 'Nurse Call',
-    nameAr: 'نداء التمريض',
-    descEn: 'Hospital call systems',
-    descAr: 'أنظمة استدعاء المستشفيات',
-    icon: HeadphonesIcon
-  },
-  {
-    slug: 'raw-materials',
-    nameEn: 'Raw Materials',
-    nameAr: 'الخامات',
-    descEn: 'PP, PE, HDPE & more',
-    descAr: 'بولي بروبلين وغيرها',
+    slug: 'pp',
+    nameEn: 'Polypropylene',
+    nameAr: 'بولي بروبلين',
+    descEn: 'PP for packaging & textiles',
+    descAr: 'PP للتعبئة والمنسوجات',
     icon: Layers
+  },
+  {
+    slug: 'recycled',
+    nameEn: 'Recycled Plastics',
+    nameAr: 'بلاستيك معاد التدوير',
+    descEn: 'Eco-friendly recycled materials',
+    descAr: 'خامات صديقة للبيئة',
+    icon: Recycle
+  },
+  {
+    slug: 'polymers',
+    nameEn: 'Polymers',
+    nameAr: 'البوليمرات',
+    descEn: 'Various polymer types',
+    descAr: 'أنواع البوليمرات المختلفة',
+    icon: Beaker
+  },
+  {
+    slug: 'masterbatch',
+    nameEn: 'Masterbatch',
+    nameAr: 'ماستر باتش',
+    descEn: 'Color & additive concentrates',
+    descAr: 'ملونات ومضافات مركزة',
+    icon: Factory
+  },
+  {
+    slug: 'bio-plastics',
+    nameEn: 'Bio Plastics',
+    nameAr: 'بلاستيك حيوي',
+    descEn: 'Biodegradable materials',
+    descAr: 'خامات قابلة للتحلل',
+    icon: Leaf
+  },
+  {
+    slug: 'international',
+    nameEn: 'International Trade',
+    nameAr: 'التجارة الدولية',
+    descEn: 'Import & Export services',
+    descAr: 'خدمات الاستيراد والتصدير',
+    icon: Globe
   },
 ]
 

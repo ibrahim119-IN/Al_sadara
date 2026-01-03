@@ -123,21 +123,21 @@ export default function ShippingReturnsPage() {
         ],
       },
       warranty: {
-        title: 'الضمان',
-        content: `جميع منتجاتنا مشمولة بضمان المصنع الرسمي:
-• **الإلكترونيات:** ضمان 1-2 سنة
-• **الأجهزة الذكية:** ضمان 1-3 سنوات
-• **الإضاءة:** ضمان سنة واحدة
+        title: 'ضمان الجودة',
+        content: `جميع خامات البلاستيك والبوليمرات لدينا مضمونة الجودة:
+• **خامات البوليمرات:** شهادات جودة من المصنع
+• **المواد المعاد تدويرها:** اختبارات معتمدة
+• **جميع الشحنات:** تحليل معملي عند الطلب
 
-**ما يغطيه الضمان:**
-• العيوب المصنعية
-• أعطال المكونات الداخلية
-• مشاكل الأداء غير الطبيعية
+**ما نضمنه:**
+• مطابقة المواصفات الفنية
+• نقاء الخامات حسب المعايير
+• التغليف والتخزين المناسب
 
-**ما لا يغطيه الضمان:**
-• الأضرار الناتجة عن سوء الاستخدام
-• الأضرار الناتجة عن الحوادث أو الماء
-• التعديلات غير المصرح بها`,
+**الحالات غير المشمولة:**
+• الأضرار الناتجة عن التخزين الخاطئ
+• التلف أثناء التصنيع عند العميل
+• التغييرات في المواصفات بعد الاستلام`,
       },
     },
     en: {
@@ -251,21 +251,21 @@ You can track your order through:
         ],
       },
       warranty: {
-        title: 'Warranty',
-        content: `All our products are covered by official manufacturer warranty:
-• **Electronics:** 1-2 year warranty
-• **Smart Devices:** 1-3 years warranty
-• **Lighting:** 1 year warranty
+        title: 'Quality Guarantee',
+        content: `All our plastic raw materials and polymers are quality guaranteed:
+• **Polymer Materials:** Factory quality certificates
+• **Recycled Materials:** Certified testing
+• **All Shipments:** Lab analysis available upon request
 
-**What warranty covers:**
-• Manufacturing defects
-• Internal component failures
-• Abnormal performance issues
+**What we guarantee:**
+• Compliance with technical specifications
+• Material purity per standards
+• Proper packaging and storage
 
-**What warranty doesn't cover:**
-• Damage from misuse
-• Damage from accidents or water
-• Unauthorized modifications`,
+**Not covered:**
+• Damage from improper storage
+• Damage during customer's manufacturing process
+• Specification changes after receipt`,
       },
     },
   }

@@ -1,167 +1,202 @@
-# سياسة الضمان | Warranty Policy
+# سياسة ضمان الجودة | Quality Guarantee Policy
 
 ## العربية
 
-### أنواع الضمان
+### ضمان الجودة
 
-#### 1. ضمان الشركة المصنعة
-- **كاميرات هايكفيجن (Hikvision)**: سنتان
-- **كاميرات داهوا (Dahua)**: سنتان
-- **أجهزة الإنتركم**: سنة واحدة
-- **أنظمة التحكم في الدخول**: سنتان
-- **الأسلاك والكابلات**: 6 أشهر
+نضمن جودة جميع خاماتنا البلاستيكية والبوليمرات وفقاً للمواصفات المتفق عليها.
 
-#### 2. ضمان Al Sadara
-- نضيف **6 أشهر ضمان إضافي** على جميع المنتجات
-- خدمة صيانة مجانية خلال فترة الضمان
-- استبدال فوري للمنتجات المعيبة
+### شهادات الجودة
 
-### ما يغطيه الضمان
+#### 1. شهادة المواصفات (COA)
+**Certificate of Analysis**
+- مقدمة مع كل شحنة
+- تشمل جميع الخصائص الفيزيائية
+- موثقة من المصنع المنتج
 
-✅ **العيوب المصنعية**
-- أعطال الهاردوير
-- مشاكل البرمجيات الأصلية
-- عيوب التصنيع
+**المواصفات المشمولة:**
+- معدل التدفق (MFI)
+- الكثافة
+- قوة الشد
+- درجة الانصهار
+- نسبة الرماد (للخامات المعاد تدويرها)
 
-✅ **الصيانة المجانية**
-- إعادة البرمجة
-- تحديث البرامج الثابتة
-- الفحص الدوري
+#### 2. شهادات المنشأ
+- شهادة منشأ للخامات المستوردة
+- توثيق المصنع والبلد
+- مطلوبة للجمارك
+
+#### 3. شهادات ISO
+- نعمل مع مصانع حاصلة على ISO 9001
+- ضمان معايير الجودة العالمية
+
+### ما يغطيه ضمان الجودة
+
+✅ **مطابقة المواصفات:**
+- الخصائص الفيزيائية للخامة
+- معدل التدفق MFI
+- الكثافة واللون
+
+✅ **سلامة التغليف:**
+- أكياس سليمة ومحكمة الإغلاق
+- وزن صحيح (تفاوت ±1%)
+- علامات واضحة
+
+✅ **الخامات المعاد تدويرها:**
+- نسبة النقاء المتفق عليها
+- درجة التصنيف الصحيحة
+- خلو من الشوائب الضارة
 
 ### ما لا يغطيه الضمان
 
-❌ **الأضرار الناتجة عن:**
-- سوء الاستخدام أو الإهمال
-- الكوارث الطبيعية (صواعق، فيضانات، حرائق)
-- التركيب الخاطئ من قبل غير متخصصين
-- التعديلات غير المصرح بها
-- انقطاع الكهرباء المفاجئ
+❌ **التخزين الخاطئ:**
+- التعرض لأشعة الشمس المباشرة
+- الرطوبة العالية
+- درجات الحرارة غير المناسبة
 
-❌ **الأجزاء الاستهلاكية**
-- البطاريات (ضمان منفصل 3 أشهر)
-- الكابلات المقطوعة
-- الاكسسوارات الخارجية
+❌ **المعالجة الخاطئة:**
+- عدم اتباع تعليمات المعالجة
+- خلط خامات غير متوافقة
+- إضافة مواد غير مناسبة
 
-### كيفية استخدام الضمان
+❌ **ما بعد البيع:**
+- المنتجات النهائية المصنعة من الخامات
+- التطبيقات غير المناسبة للخامة
 
-#### 1. التواصل معنا
-- الهاتف: 01000000000
-- البريد الإلكتروني: warranty@alsadara.com
-- زيارة الفرع مباشرة
+### إجراءات المطالبة
 
-#### 2. تقديم المستندات
-- فاتورة الشراء الأصلية
-- بطاقة الضمان
-- رقم الطلب
+#### 1. الإبلاغ
+- خلال 48 ساعة من الاستلام
+- وصف دقيق للمشكلة
+- صور توضيحية
 
-#### 3. فحص المنتج
-- فحص فني مجاني
-- تحديد المشكلة خلال 24 ساعة
-- تقرير الصيانة
+#### 2. الفحص
+- فحص فني للعينات
+- مقارنة مع المواصفات
+- تقرير فني مفصل
 
-#### 4. الإصلاح أو الاستبدال
-- **الإصلاح**: خلال 3-7 أيام عمل
-- **الاستبدال**: فوري إذا كان العيب مصنعي
-- **المنتج البديل**: نوفر منتج مؤقت للعملاء المميزين
+#### 3. الحل
+- **استبدال**: للخامات غير المطابقة
+- **تعويض**: حسب حجم الضرر
+- **إعادة الأموال**: في الحالات الاستثنائية
 
-### مراكز الصيانة المعتمدة
+### عينات الاختبار
 
-- **القاهرة**: مدينة نصر، المعادي، مصر الجديدة
-- **الجيزة**: المهندسين، 6 أكتوبر
-- **الإسكندرية**: سموحة، العجمي
+نوفر عينات مجانية للفحص قبل الشراء:
+- 5-10 كجم للاختبار الأولي
+- تقرير مواصفات كامل
+- متاحة للطلبات الكبيرة
 
-### ضمان ما بعد الصيانة
+### الاتصال بقسم الجودة
 
-- **30 يوماً** ضمان على جميع أعمال الصيانة
-- في حالة تكرار العطل خلال 30 يوم: استبدال مجاني
+- **البريد**: quality@alsadara.org
+- **الهاتف**: +966554401575
+- **واتساب**: +966554401575
 
 ### الشروط العامة
 
-1. الضمان لا يشمل رسوم التوصيل للمناطق خارج القاهرة الكبرى
-2. يجب الاحتفاظ بالفاتورة الأصلية طوال فترة الضمان
-3. الضمان غير قابل للتحويل لشخص آخر
-4. يُلغى الضمان في حالة فتح الجهاز من قبل غير مختصين
+1. يجب الاحتفاظ بعينة من الشحنة للمقارنة
+2. المطالبات بعد 30 يوم غير مقبولة
+3. الضمان غير قابل للتحويل
+4. الضمان يسقط في حالة التخزين الخاطئ
 
 ---
 
 ## English
 
-### Types of Warranty
+### Quality Guarantee
 
-#### 1. Manufacturer Warranty
-- **Hikvision Cameras**: 2 years
-- **Dahua Cameras**: 2 years
-- **Intercom Systems**: 1 year
-- **Access Control Systems**: 2 years
-- **Cables and Wires**: 6 months
+We guarantee the quality of all our plastic raw materials and polymers according to agreed specifications.
 
-#### 2. Al Sadara Warranty
-- We add **6 months additional warranty** on all products
-- Free maintenance service during warranty period
-- Immediate replacement for defective products
+### Quality Certificates
 
-### What's Covered
+#### 1. Certificate of Analysis (COA)
+- Provided with every shipment
+- Includes all physical properties
+- Certified by producing factory
 
-✅ **Manufacturing Defects**
-- Hardware failures
-- Original software issues
-- Manufacturing defects
+**Included Specifications:**
+- Melt Flow Index (MFI)
+- Density
+- Tensile Strength
+- Melting Point
+- Ash Content (for recycled materials)
 
-✅ **Free Maintenance**
-- Reprogramming
-- Firmware updates
-- Periodic inspections
+#### 2. Certificates of Origin
+- Certificate of origin for imported materials
+- Factory and country documentation
+- Required for customs
 
-### What's Not Covered
+#### 3. ISO Certificates
+- We work with ISO 9001 certified factories
+- Guarantee of international quality standards
 
-❌ **Damage Caused by:**
-- Misuse or negligence
-- Natural disasters (lightning, floods, fires)
-- Incorrect installation by non-professionals
-- Unauthorized modifications
-- Sudden power outages
+### What Quality Guarantee Covers
 
-❌ **Consumable Parts**
-- Batteries (separate 3-month warranty)
-- Cut cables
-- External accessories
+✅ **Specification Compliance:**
+- Physical properties of material
+- MFI flow rate
+- Density and color
 
-### How to Use Warranty
+✅ **Packaging Integrity:**
+- Intact and sealed bags
+- Correct weight (±1% tolerance)
+- Clear markings
 
-#### 1. Contact Us
-- Phone: 01000000000
-- Email: warranty@alsadara.com
-- Visit branch directly
+✅ **Recycled Materials:**
+- Agreed purity percentage
+- Correct grade classification
+- Free from harmful impurities
 
-#### 2. Provide Documents
-- Original purchase invoice
-- Warranty card
-- Order number
+### What Guarantee Doesn't Cover
 
-#### 3. Product Inspection
-- Free technical inspection
-- Problem diagnosis within 24 hours
-- Maintenance report
+❌ **Improper Storage:**
+- Exposure to direct sunlight
+- High humidity
+- Unsuitable temperatures
 
-#### 4. Repair or Replacement
-- **Repair**: Within 3-7 business days
-- **Replacement**: Immediate if manufacturing defect
-- **Temporary Product**: Provided for premium customers
+❌ **Improper Processing:**
+- Not following processing instructions
+- Mixing incompatible materials
+- Adding unsuitable additives
 
-### Authorized Service Centers
+❌ **Post-Sale:**
+- Final products manufactured from materials
+- Unsuitable applications for material
 
-- **Cairo**: Nasr City, Maadi, Heliopolis
-- **Giza**: Mohandessin, 6th of October
-- **Alexandria**: Smouha, Agami
+### Claim Procedures
 
-### Post-Maintenance Warranty
+#### 1. Reporting
+- Within 48 hours of receipt
+- Accurate description of problem
+- Explanatory photos
 
-- **30 days** warranty on all maintenance work
-- If fault recurs within 30 days: Free replacement
+#### 2. Inspection
+- Technical inspection of samples
+- Comparison with specifications
+- Detailed technical report
+
+#### 3. Resolution
+- **Replacement**: For non-conforming materials
+- **Compensation**: Based on damage extent
+- **Refund**: In exceptional cases
+
+### Test Samples
+
+We provide free samples for testing before purchase:
+- 5-10 kg for initial testing
+- Complete specification report
+- Available for bulk orders
+
+### Contact Quality Department
+
+- **Email**: quality@alsadara.org
+- **Phone**: +966554401575
+- **WhatsApp**: +966554401575
 
 ### General Terms
 
-1. Warranty doesn't cover shipping fees for areas outside Greater Cairo
-2. Must keep original invoice throughout warranty period
-3. Warranty is non-transferable
-4. Warranty void if device opened by non-specialists
+1. Must retain sample from shipment for comparison
+2. Claims after 30 days not accepted
+3. Guarantee is non-transferable
+4. Guarantee void in case of improper storage

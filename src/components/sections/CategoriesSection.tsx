@@ -4,14 +4,12 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  Camera,
-  Shield,
-  Phone,
-  Radio,
-  Flame,
-  MapPinned,
-  HeadphonesIcon,
+  Cylinder,
+  Box,
   Layers,
+  Recycle,
+  Beaker,
+  Factory,
   ArrowRight,
 } from 'lucide-react'
 
@@ -22,64 +20,64 @@ interface CategoriesSectionProps {
 
 const categories = [
   {
-    slug: 'cctv',
-    nameEn: 'CCTV Cameras',
-    nameAr: 'كاميرات المراقبة',
-    descEn: 'IP & HD surveillance systems for complete security coverage',
-    descAr: 'أنظمة مراقبة عالية الدقة لتغطية أمنية شاملة',
-    icon: Camera,
-    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80',
+    slug: 'hdpe',
+    nameEn: 'HDPE',
+    nameAr: 'بولي إيثيلين عالي الكثافة',
+    descEn: 'High Density Polyethylene for pipes and containers',
+    descAr: 'للأنابيب والحاويات والتطبيقات الصناعية',
+    icon: Cylinder,
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80',
     color: 'from-blue-600 to-blue-800',
   },
   {
-    slug: 'access-control',
-    nameEn: 'Access Control',
-    nameAr: 'أجهزة الحضور والانصراف',
-    descEn: 'Biometric systems & smart card solutions',
-    descAr: 'أنظمة البصمة والكروت الذكية',
-    icon: Shield,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80',
+    slug: 'ldpe',
+    nameEn: 'LDPE',
+    nameAr: 'بولي إيثيلين منخفض الكثافة',
+    descEn: 'Low Density Polyethylene for bags and films',
+    descAr: 'للأكياس والأغشية والتغليف المرن',
+    icon: Box,
+    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=600&q=80',
+    color: 'from-cyan-600 to-cyan-800',
+  },
+  {
+    slug: 'pp',
+    nameEn: 'Polypropylene',
+    nameAr: 'بولي بروبلين',
+    descEn: 'PP for packaging, textiles, and automotive',
+    descAr: 'للتغليف والمنسوجات وقطع السيارات',
+    icon: Layers,
+    image: 'https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&w=600&q=80',
     color: 'from-green-600 to-green-800',
   },
   {
-    slug: 'pbx',
-    nameEn: 'PBX Systems',
-    nameAr: 'السنترالات',
-    descEn: 'IP & Digital phone systems for businesses',
-    descAr: 'أنظمة اتصالات رقمية للشركات',
-    icon: Phone,
-    image: 'https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&w=600&q=80',
+    slug: 'recycled',
+    nameEn: 'Recycled Plastics',
+    nameAr: 'بلاستيك معاد التدوير',
+    descEn: 'Eco-friendly recycled plastic materials',
+    descAr: 'خامات بلاستيكية صديقة للبيئة',
+    icon: Recycle,
+    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80',
+    color: 'from-emerald-600 to-emerald-800',
+  },
+  {
+    slug: 'polymers',
+    nameEn: 'Polymers',
+    nameAr: 'البوليمرات',
+    descEn: 'Various polymer types for industrial use',
+    descAr: 'أنواع البوليمرات للاستخدام الصناعي',
+    icon: Beaker,
+    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80',
     color: 'from-purple-600 to-purple-800',
   },
   {
-    slug: 'intercom',
-    nameEn: 'Intercom Systems',
-    nameAr: 'أنظمة الإنتركم',
-    descEn: 'Video door phones & communication systems',
-    descAr: 'أنظمة الاتصال الداخلي والباب بالفيديو',
-    icon: Radio,
-    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80',
-    color: 'from-orange-600 to-orange-800',
-  },
-  {
-    slug: 'fire-alarm',
-    nameEn: 'Fire Alarm',
-    nameAr: 'إنذار الحريق',
-    descEn: 'Detection & alert systems for safety',
-    descAr: 'أنظمة كشف وتنبيه للسلامة',
-    icon: Flame,
-    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=600&q=80',
-    color: 'from-red-600 to-red-800',
-  },
-  {
-    slug: 'gps',
-    nameEn: 'GPS Tracking',
-    nameAr: 'تتبع المركبات',
-    descEn: 'Vehicle & fleet tracking solutions',
-    descAr: 'حلول تتبع المركبات والأساطيل',
-    icon: MapPinned,
+    slug: 'masterbatch',
+    nameEn: 'Masterbatch',
+    nameAr: 'ماستر باتش',
+    descEn: 'Color and additive concentrates',
+    descAr: 'ملونات ومضافات مركزة للبلاستيك',
+    icon: Factory,
     image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=600&q=80',
-    color: 'from-teal-600 to-teal-800',
+    color: 'from-orange-600 to-orange-800',
   },
 ]
 
@@ -123,8 +121,8 @@ export default function CategoriesSection({ locale, title }: CategoriesSectionPr
           </h2>
           <p className="text-lg text-secondary-600 leading-relaxed">
             {isRTL
-              ? 'اكتشف مجموعتنا الواسعة من حلول المباني الذكية والأنظمة الأمنية'
-              : 'Discover our wide range of smart building solutions and security systems'}
+              ? 'اكتشف مجموعتنا الواسعة من خامات البلاستيك والبوليمرات عالية الجودة'
+              : 'Discover our wide range of high-quality plastic raw materials and polymers'}
           </p>
         </div>
 

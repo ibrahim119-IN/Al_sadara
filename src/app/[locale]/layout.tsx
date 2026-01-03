@@ -30,26 +30,26 @@ export async function generateMetadata({
   const isArabic = locale === 'ar'
 
   const title = isArabic
-    ? 'الصدارة - حلول المباني الذكية'
-    : 'Al Sadara - Smart Building Solutions'
+    ? 'مجموعة شركات السيد شحاتة - خامات البلاستيك'
+    : 'El Sayed Shehata Group - Plastic Raw Materials'
 
   const description = isArabic
-    ? 'مجموعة الصدارة القابضة - رائدون في الإلكترونيات وأنظمة إدارة المباني، كاميرات مراقبة، أنظمة حضور وانصراف، سنترالات، حلول تكنولوجية متكاملة'
-    : 'Al Sadara Holding Group - Leaders in Electronics and Building Management Systems, CCTV, Access Control, PBX, Integrated Technology Solutions'
+    ? 'مجموعة شركات السيد شحاتة - رائدون في تجارة وتوريد خامات البلاستيك والبوليمرات، HDPE، LDPE، PP، إعادة التدوير، مصر والسعودية والإمارات'
+    : 'El Sayed Shehata Group of Companies - Leaders in Plastic Raw Materials Trading and Polymers Supply, HDPE, LDPE, PP, Recycling - Egypt, Saudi Arabia, and UAE'
 
   return {
     metadataBase: new URL(BASE_URL),
     title: {
       default: title,
-      template: isArabic ? '%s | الصدارة' : '%s | Al Sadara',
+      template: isArabic ? '%s | مجموعة السيد شحاتة' : '%s | El Sayed Shehata Group',
     },
     description,
     keywords: isArabic
-      ? ['الصدارة', 'كاميرات مراقبة', 'أنظمة أمان', 'سنترالات', 'أنظمة حضور', 'إلكترونيات', 'مصر', 'السعودية']
-      : ['Al Sadara', 'CCTV', 'Security Systems', 'PBX', 'Access Control', 'Electronics', 'Egypt', 'Saudi Arabia'],
-    authors: [{ name: 'Al Sadara Group' }],
-    creator: 'Al Sadara Holding Group',
-    publisher: 'Al Sadara',
+      ? ['مجموعة السيد شحاتة', 'خامات بلاستيك', 'بوليمرات', 'HDPE', 'LDPE', 'PP', 'إعادة تدوير', 'مصر', 'السعودية', 'الإمارات']
+      : ['El Sayed Shehata Group', 'Plastic Raw Materials', 'Polymers', 'HDPE', 'LDPE', 'PP', 'Recycling', 'Egypt', 'Saudi Arabia', 'UAE'],
+    authors: [{ name: 'El Sayed Shehata Group' }],
+    creator: 'El Sayed Shehata Group of Companies',
+    publisher: 'El Sayed Shehata Group',
     formatDetection: {
       email: true,
       address: true,
@@ -67,7 +67,7 @@ export async function generateMetadata({
       locale: isArabic ? 'ar_EG' : 'en_US',
       alternateLocale: isArabic ? 'en_US' : 'ar_EG',
       url: `${BASE_URL}/${locale}`,
-      siteName: isArabic ? 'مجموعة الصدارة' : 'Al Sadara Group',
+      siteName: isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group',
       title,
       description,
       images: [
@@ -75,7 +75,7 @@ export async function generateMetadata({
           url: `${BASE_URL}/images/og-image.jpg`,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
+          alt: isArabic ? 'مجموعة شركات السيد شحاتة' : 'El Sayed Shehata Group of Companies',
         },
       ],
     },
@@ -100,7 +100,7 @@ export async function generateMetadata({
     verification: {
       google: process.env.GOOGLE_SITE_VERIFICATION,
     },
-    category: 'technology',
+    category: 'business',
   }
 }
 

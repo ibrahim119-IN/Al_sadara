@@ -19,7 +19,7 @@ export const searchProductsFunction: FunctionDeclaration = {
       },
       category: {
         type: 'string',
-        description: 'فئة المنتج (اختياري): cctv, access-control, intercom, fire-alarm, etc.',
+        description: 'فئة المنتج (اختياري): hdpe, ldpe, pp, pvc, pet, ps, recycled, masterbatch, additives, etc.',
       },
       priceMin: {
         type: 'number',
@@ -166,7 +166,7 @@ export const calculateBudgetSolutionFunction: FunctionDeclaration = {
       },
       requirements: {
         type: 'string',
-        description: 'وصف تفصيلي للاحتياجات (مثال: نظام كامل لفيلا، كاميرات خارجية وداخلية، الخ)',
+        description: 'وصف تفصيلي للاحتياجات (مثال: HDPE لصناعة الأنابيب، PP للعبوات، خامات معاد تدويرها، الخ)',
       },
       priority: {
         type: 'string',

@@ -17,8 +17,8 @@ export async function generateMetadata({
 
   return {
     title: isArabic
-      ? 'سلة التسوق | مجموعة الصدارة القابضة'
-      : 'Shopping Cart | Al Sadara Holding Group',
+      ? 'سلة التسوق | مجموعة شركات السيد شحاتة'
+      : 'Shopping Cart | El Sayed Shehata Group',
     description: isArabic
       ? 'راجع سلة التسوق الخاصة بك وأتم عملية الشراء'
       : 'Review your shopping cart and complete your purchase',

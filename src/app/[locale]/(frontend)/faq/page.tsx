@@ -35,15 +35,15 @@ export default function FAQPage() {
       categories: [
         {
           icon: Building2,
-          title: 'عن مجموعة الصدارة',
+          title: 'عن مجموعة شركات السيد شحاتة',
           items: [
             {
-              question: 'ما هي مجموعة الصدارة القابضة؟',
-              answer: 'مجموعة الصدارة القابضة هي شركة رائدة في مجال تجارة خامات البلاستيك والبوليمرات، تعمل في السعودية ومصر والإمارات مع 5 شركات متخصصة تقدم منتجات وخدمات عالية الجودة منذ 2005.',
+              question: 'ما هي مجموعة شركات السيد شحاتة؟',
+              answer: 'مجموعة شركات السيد شحاتة هي شركة رائدة في مجال تجارة خامات البلاستيك والبوليمرات، تعمل في السعودية ومصر والإمارات مع 5 شركات متخصصة تقدم منتجات وخدمات عالية الجودة منذ 2005.',
             },
             {
-              question: 'ما هي الشركات التابعة لمجموعة الصدارة؟',
-              answer: 'تضم المجموعة 5 شركات: الصدارة للصناعة (السعودية)، التالة الخضراء والقيصر (مصر)، إس.إيه.إم والسيد شحاتة بوليمرز (الإمارات). كل شركة متخصصة في تجارة وتوريد خامات البلاستيك.',
+              question: 'ما هي الشركات التابعة للمجموعة؟',
+              answer: 'تضم المجموعة 5 شركات: الصدارة للصناعة (السعودية)، التالة الخضراء والقيصر (مصر)، S.A.M والسيد شحاتة بوليمرز (الإمارات). كل شركة متخصصة في تجارة وتوريد خامات البلاستيك.',
             },
             {
               question: 'أين تقع مكاتب الشركة؟',
@@ -145,14 +145,14 @@ export default function FAQPage() {
       categories: [
         {
           icon: Building2,
-          title: 'About Al Sadara Group',
+          title: 'About El Sayed Shehata Group',
           items: [
             {
-              question: 'What is Al Sadara Holding Group?',
-              answer: 'Al Sadara Holding Group is a leading company in plastic raw materials and polymers trading, operating in Saudi Arabia, Egypt, and UAE with 5 specialized companies offering high-quality products and services since 2005.',
+              question: 'What is El Sayed Shehata Group of Companies?',
+              answer: 'El Sayed Shehata Group of Companies is a leading company in plastic raw materials and polymers trading, operating in Saudi Arabia, Egypt, and UAE with 5 specialized companies offering high-quality products and services since 2005.',
             },
             {
-              question: 'What are the subsidiaries of Al Sadara Group?',
+              question: 'What are the subsidiaries of the Group?',
               answer: 'The group includes 5 companies: Al Sadara Industry (Saudi Arabia), Al Talah Al Khadra and Al Qaysar (Egypt), S.A.M and El Sayed Shehata Polymers (UAE). Each specializes in plastic raw materials trading and supply.',
             },
             {

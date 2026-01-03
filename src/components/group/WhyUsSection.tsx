@@ -21,10 +21,10 @@ interface WhyUsSectionProps {
 const features = [
   {
     icon: Award,
-    title: { ar: 'خبرة +20 سنة', en: '20+ Years Experience' },
+    title: { ar: 'خبرة +21 سنة', en: '21+ Years Experience' },
     description: {
-      ar: 'خبرة واسعة في مجال تجارة وصناعة البلاستيك والإلكترونيات',
-      en: 'Extensive experience in plastics trade, manufacturing, and electronics',
+      ar: 'خبرة واسعة في مجال تجارة وتوريد خامات البلاستيك والبوليمرات',
+      en: 'Extensive experience in plastic raw materials trading and polymers supply',
     },
     color: 'from-amber-500 to-orange-600',
     bgColor: 'bg-amber-50',
@@ -53,8 +53,8 @@ const features = [
     icon: Package,
     title: { ar: 'تنوع المنتجات', en: 'Product Variety' },
     description: {
-      ar: 'تشكيلة واسعة من خامات البلاستيك والمنتجات الإلكترونية',
-      en: 'Wide range of plastic materials and electronic products',
+      ar: 'تشكيلة واسعة من خامات البلاستيك والبوليمرات المتنوعة',
+      en: 'Wide range of plastic raw materials and various polymers',
     },
     color: 'from-purple-500 to-indigo-600',
     bgColor: 'bg-purple-50',
@@ -202,7 +202,7 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
               </div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">6</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">5</div>
               <div className="text-white/80 text-sm">
                 {locale === 'ar' ? 'شركات تابعة' : 'Subsidiaries'}
               </div>

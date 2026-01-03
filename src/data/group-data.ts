@@ -36,7 +36,7 @@ export interface Company {
     }
   }
   founded: number
-  type: 'plastics' | 'electronics' | 'recycling' | 'trading'
+  type: 'plastics' | 'recycling' | 'trading'
   contact: {
     phones: string[]
     email: string
@@ -68,8 +68,8 @@ export interface Company {
 // Group Information - الهوية الصحيحة للمجموعة
 export const groupInfo = {
   name: {
-    ar: 'مجموعة السيد شحاتة للتجارة والصناعة',
-    en: 'El Sayed Shehata Group for Trade & Industry',
+    ar: 'مجموعة شركات السيد شحاتة',
+    en: 'El Sayed Shehata Group of Companies',
   },
   shortName: {
     ar: 'ITs',
@@ -88,8 +88,8 @@ export const groupInfo = {
   },
   website: 'elsayedshehatagroup.com',
   description: {
-    ar: 'مجموعة متكاملة من الشركات المتخصصة في تجارة خامات البلاستيك والإلكترونيات وأنظمة المباني الذكية، تعمل في مصر والسعودية والإمارات',
-    en: 'An integrated group of companies specialized in plastic raw materials trading, electronics, and smart building systems, operating in Egypt, Saudi Arabia, and UAE',
+    ar: 'مجموعة متكاملة من الشركات المتخصصة في تجارة وتوريد خامات البلاستيك والبوليمرات، تعمل في مصر والسعودية والإمارات',
+    en: 'An integrated group of companies specialized in plastic raw materials trading and polymers supply, operating in Egypt, Saudi Arabia, and UAE',
   },
   contact: {
     phones: ['+966554401575', '+201099853546'],
@@ -300,7 +300,7 @@ export const companies: Company[] = [
     id: '4',
     slug: 'sam',
     name: {
-      ar: 'إس.إيه.إم',
+      ar: 'S.A.M',
       en: 'S.A.M',
     },
     logo: '/images/sam-logo.png',
@@ -310,7 +310,7 @@ export const companies: Company[] = [
       en: 'International Plastic Material Trading FZE - Specialized in plastic raw materials',
     },
     fullDescription: {
-      ar: 'تأسست شركة إس.إيه.إم (International Plastic Material Trading FZE) عام 2017 في الشارقة بالإمارات العربية المتحدة. نحن شركة متخصصة في تجارة وتوريد خامات ومواد البلاستيك عالية الجودة، ونعمل على خدمة المصانع والشركات في منطقة الخليج والشرق الأوسط.',
+      ar: 'تأسست شركة S.A.M (International Plastic Material Trading FZE) عام 2017 في الشارقة بالإمارات العربية المتحدة. نحن شركة متخصصة في تجارة وتوريد خامات ومواد البلاستيك عالية الجودة، ونعمل على خدمة المصانع والشركات في منطقة الخليج والشرق الأوسط.',
       en: 'S.A.M (International Plastic Material Trading FZE) was established in 2017 in Sharjah, UAE. We are a company specialized in trading and supplying high-quality plastic raw materials, serving factories and companies in the Gulf region and Middle East.',
     },
     location: {
@@ -445,7 +445,7 @@ export function getCompaniesByCountry(country: 'egypt' | 'saudi' | 'uae'): Compa
 }
 
 // Helper function to get companies by type
-export function getCompaniesByType(type: 'plastics' | 'electronics' | 'recycling' | 'trading'): Company[] {
+export function getCompaniesByType(type: 'plastics' | 'recycling' | 'trading'): Company[] {
   return companies.filter((company) => company.type === type)
 }
 

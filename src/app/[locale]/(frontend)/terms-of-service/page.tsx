@@ -20,9 +20,9 @@ export default function TermsOfServicePage() {
         {
           icon: FileText,
           title: 'قبول الشروط',
-          content: `باستخدامك لموقع مجموعة الصدارة القابضة، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، يرجى عدم استخدام موقعنا.
+          content: `باستخدامك لموقع مجموعة شركات السيد شحاتة، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، يرجى عدم استخدام موقعنا.
 
-تحتفظ مجموعة الصدارة القابضة بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر التغييرات على هذه الصفحة، ويعتبر استمرارك في استخدام الموقع بعد نشر التغييرات موافقة منك على الشروط المعدلة.`,
+تحتفظ مجموعة شركات السيد شحاتة بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر التغييرات على هذه الصفحة، ويعتبر استمرارك في استخدام الموقع بعد نشر التغييرات موافقة منك على الشروط المعدلة.`,
         },
         {
           icon: Scale,
@@ -89,9 +89,9 @@ export default function TermsOfServicePage() {
         {
           icon: FileText,
           title: 'Acceptance of Terms',
-          content: `By using Al Sadara Holding Group's website, you agree to be bound by these terms and conditions. If you do not agree to any part of these terms, please do not use our website.
+          content: `By using El Sayed Shehata Group's website, you agree to be bound by these terms and conditions. If you do not agree to any part of these terms, please do not use our website.
 
-Al Sadara Holding Group reserves the right to modify these terms at any time. Changes will be posted on this page, and your continued use of the site after posting changes constitutes acceptance of the modified terms.`,
+El Sayed Shehata Group reserves the right to modify these terms at any time. Changes will be posted on this page, and your continued use of the site after posting changes constitutes acceptance of the modified terms.`,
         },
         {
           icon: Scale,
