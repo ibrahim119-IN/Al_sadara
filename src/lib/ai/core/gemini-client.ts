@@ -105,7 +105,7 @@ export class GeminiClient {
     } catch (error: unknown) {
       console.error('[GeminiClient] Chat stream error:', error)
       throw this.handleError(error)
-    // }
+    }
   }
 
   /**
@@ -160,7 +160,7 @@ export class GeminiClient {
     } catch (error: unknown) {
       console.error('[GeminiClient] Chat error:', error)
       throw this.handleError(error)
-    // }
+    }
   }
 
   /**
@@ -183,7 +183,7 @@ export class GeminiClient {
     } catch (error: unknown) {
       console.error('[GeminiClient] Embedding generation error:', error)
       throw this.handleError(error)
-    // }
+    }
   }
 
   /**
@@ -207,7 +207,7 @@ export class GeminiClient {
     } catch (error: unknown) {
       console.error('[GeminiClient] Batch embedding generation error:', error)
       throw this.handleError(error)
-    // }
+    }
   }
 
   /**
@@ -234,7 +234,7 @@ export class GeminiClient {
       }
 
       return new Error(`Gemini API error: ${message}`)
-    // }
+    }
 
     return new Error('Unknown Gemini API error')
   }
@@ -249,7 +249,7 @@ export class GeminiClient {
     } catch (error) {
       console.error('[GeminiClient] Connection test failed:', error)
       return false
-    // }
+    }
   }
 
   /**
@@ -261,7 +261,7 @@ export class GeminiClient {
       embeddingModel: this.embeddingModel,
       temperature: this.temperature,
       maxTokens: this.maxTokens,
-    // }
+    }
   }
 }
 
