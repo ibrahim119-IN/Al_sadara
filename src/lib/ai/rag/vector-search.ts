@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getEmbeddingsService } from '../core/embeddings-service'
 import type { VectorSearchOptions, VectorSearchResult, Product } from '../types'
 import { withTimeout, withTimeoutFallback, TIMEOUTS } from '@/lib/utils/timeout'

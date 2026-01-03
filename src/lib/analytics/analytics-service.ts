@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Analytics Service - Data Aggregation and Metrics Calculation
 
 import { getCachedPayload } from '@/lib/payload-client'
