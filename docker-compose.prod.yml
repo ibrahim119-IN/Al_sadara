@@ -29,6 +29,7 @@ services:
         DATABASE_URI: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-your-secure-password}@db:5432/${POSTGRES_DB:-alsadara}
         PAYLOAD_SECRET: ${PAYLOAD_SECRET}
         NEXT_PUBLIC_SERVER_URL: https://alsadara.org
+        GEMINI_API_KEY: ${GEMINI_API_KEY}
     container_name: alsadara-app
     restart: always
     ports:
