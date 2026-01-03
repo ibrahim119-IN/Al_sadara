@@ -17,29 +17,38 @@ export function OrganizationSchema() {
       width: 200,
       height: 200,
     },
-    description: 'Al Sadara Holding Group - Leaders in Electronics and Building Management Systems',
-    foundingDate: '2010',
+    description: 'Al Sadara Holding Group - Leaders in Plastic Raw Materials Trading',
+    foundingDate: '2005',
     numberOfEmployees: {
       '@type': 'QuantitativeValue',
-      minValue: 100,
-      maxValue: 500,
+      minValue: 50,
+      maxValue: 200,
     },
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'EG',
-      addressRegion: 'Cairo',
+      addressCountry: 'SA',
+      addressRegion: 'Jeddah',
     },
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+20-XXX-XXX-XXXX',
+        telephone: '+966554401575',
         contactType: 'customer service',
+        areaServed: 'SA',
         availableLanguage: ['Arabic', 'English'],
       },
       {
         '@type': 'ContactPoint',
-        telephone: '+966-XXX-XXX-XXXX',
+        telephone: '+201099853546',
         contactType: 'sales',
+        areaServed: 'EG',
+        availableLanguage: ['Arabic', 'English'],
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+971503830860',
+        contactType: 'sales',
+        areaServed: 'AE',
         availableLanguage: ['Arabic', 'English'],
       },
     ],
@@ -52,32 +61,32 @@ export function OrganizationSchema() {
       {
         '@type': 'Organization',
         name: 'Al Sadara Industry',
+        description: 'Plastic raw materials trading - Jeddah, Saudi Arabia',
         url: 'https://industry.alsadara.org',
       },
       {
         '@type': 'Organization',
         name: 'Al Talah Al Khadra',
+        description: 'Plastic raw materials trading & recycling - 6th October, Egypt',
         url: 'https://talah.alsadara.org',
       },
       {
         '@type': 'Organization',
-        name: 'El Sayed Shehata Polymers',
-        url: 'https://polymers.alsadara.org',
-      },
-      {
-        '@type': 'Organization',
         name: 'S.A.M International',
+        description: 'International Plastic Material Trading FZE - Sharjah, UAE',
         url: 'https://sam.alsadara.org',
       },
       {
         '@type': 'Organization',
-        name: 'Al Qaysar',
-        url: 'https://qaysar.alsadara.org',
+        name: 'El Sayed Shehata Polymers',
+        description: 'International polymers trading - Dubai, UAE',
+        url: 'https://polymers.alsadara.org',
       },
       {
         '@type': 'Organization',
-        name: 'Coderatech',
-        url: 'https://coderatech.alsadara.org',
+        name: 'Al Qaysar',
+        description: 'Plastic raw materials trading - 6th October, Egypt',
+        url: 'https://qaysar.alsadara.org',
       },
     ],
   }
@@ -102,8 +111,8 @@ export function WebsiteSchema({ locale }: { locale: string }) {
     url: BASE_URL,
     name: isArabic ? 'مجموعة الصدارة' : 'Al Sadara Group',
     description: isArabic
-      ? 'مجموعة الصدارة القابضة - رائدون في الإلكترونيات وأنظمة إدارة المباني'
-      : 'Al Sadara Holding Group - Leaders in Electronics and Building Management Systems',
+      ? 'مجموعة الصدارة القابضة - رائدون في تجارة خامات البلاستيك'
+      : 'Al Sadara Holding Group - Leaders in Plastic Raw Materials Trading',
     publisher: {
       '@id': `${BASE_URL}/#organization`,
     },

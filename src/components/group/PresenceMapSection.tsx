@@ -9,42 +9,41 @@ interface PresenceMapSectionProps {
 
 const locations = [
   {
-    country: 'egypt',
-    flagEmoji: '🇪🇬',
-    nameEn: 'Egypt',
-    nameAr: 'مصر',
-    cityEn: '6th of October, Giza',
-    cityAr: '6 أكتوبر، الجيزة',
-    companies: [
-      { nameEn: 'El Talah Al Khadra', nameAr: 'التالة الخضراء' },
-      { nameEn: 'Al Qaysar', nameAr: 'القيصر' },
-      { nameEn: 'Coderatech', nameAr: 'كوديراتك' },
-    ],
-    phones: ['01099853546', '01050464424'],
-    color: '#E53935',
-  },
-  {
     country: 'saudi',
     flagEmoji: '🇸🇦',
     nameEn: 'Saudi Arabia',
     nameAr: 'السعودية',
-    cityEn: 'Jeddah, Industrial Zone 3',
-    cityAr: 'جدة، المنطقة الصناعية الثالثة',
+    cityEn: 'Jeddah',
+    cityAr: 'جدة',
     companies: [
       { nameEn: 'Al-Sadara Industry Co.', nameAr: 'شركة الصدارة للصناعة' },
-      { nameEn: 'S.A.M International', nameAr: 'سام انترناشيونال' },
     ],
     phones: ['+966554401575', '+966553335462'],
     color: '#43A047',
+  },
+  {
+    country: 'egypt',
+    flagEmoji: '🇪🇬',
+    nameEn: 'Egypt',
+    nameAr: 'مصر',
+    cityEn: '6th of October City, Giza',
+    cityAr: '6 أكتوبر، الجيزة',
+    companies: [
+      { nameEn: 'El Talah Al Khadra', nameAr: 'التالة الخضراء' },
+      { nameEn: 'Al Qaysar', nameAr: 'القيصر' },
+    ],
+    phones: ['+201099853546', '+201050464424'],
+    color: '#E53935',
   },
   {
     country: 'uae',
     flagEmoji: '🇦🇪',
     nameEn: 'UAE',
     nameAr: 'الإمارات',
-    cityEn: 'Dubai, Business Bay',
-    cityAr: 'دبي، الخليج التجاري',
+    cityEn: 'Sharjah & Dubai',
+    cityAr: 'الشارقة ودبي',
     companies: [
+      { nameEn: 'S.A.M International', nameAr: 'إس.إيه.إم' },
       { nameEn: 'El Sayed Shehata Polymers', nameAr: 'السيد شحاتة بوليمرز' },
     ],
     phones: ['+971503830860', '+971522097468'],
@@ -221,9 +220,9 @@ export default function PresenceMapSection({ locale }: PresenceMapSectionProps) 
                 {locations.map((location, index) => {
                   // Position markers in a triangular pattern
                   const positions = [
-                    { top: '25%', left: '35%' }, // Egypt
-                    { top: '45%', left: '65%' }, // Saudi
-                    { top: '35%', left: '75%' }, // UAE
+                    { top: '45%', left: '65%' }, // Saudi (Jeddah)
+                    { top: '25%', left: '35%' }, // Egypt (6 October)
+                    { top: '35%', left: '75%' }, // UAE (Sharjah/Dubai)
                   ]
                   return (
                     <button

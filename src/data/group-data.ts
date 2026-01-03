@@ -93,7 +93,7 @@ export const groupInfo = {
   },
   contact: {
     phones: ['+966554401575', '+201099853546'],
-    email: 'alsayedshehata2050@gmail.com',
+    email: 'info@alsadara.org',
     whatsapp: '+966554401575',
   },
 }

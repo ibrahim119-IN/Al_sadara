@@ -83,25 +83,33 @@ export default async function ContactPage({ params }: ContactPageProps) {
     mainEntity: {
       '@type': 'Organization',
       name: isRTL ? 'مجموعة الصدارة القابضة' : 'Al Sadara Holding Group',
-      telephone: '+20 2 1234 5678',
+      telephone: '+966554401575',
       email: 'info@alsadara.org',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: isRTL ? 'القاهرة' : 'Cairo',
-        addressCountry: isRTL ? 'مصر' : 'Egypt',
+        addressLocality: isRTL ? 'جدة' : 'Jeddah',
+        addressCountry: isRTL ? 'السعودية' : 'Saudi Arabia',
       },
       contactPoint: [
         {
           '@type': 'ContactPoint',
-          telephone: '+20 2 1234 5678',
+          telephone: '+966554401575',
           contactType: 'customer service',
+          areaServed: 'SA',
           availableLanguage: ['Arabic', 'English'],
         },
         {
           '@type': 'ContactPoint',
-          telephone: '+966 11 123 4567',
+          telephone: '+201099853546',
           contactType: 'sales',
-          areaServed: 'SA',
+          areaServed: 'EG',
+          availableLanguage: ['Arabic', 'English'],
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: '+971503830860',
+          contactType: 'sales',
+          areaServed: 'AE',
           availableLanguage: ['Arabic', 'English'],
         },
       ],
@@ -129,26 +137,34 @@ export default async function ContactPage({ params }: ContactPageProps) {
     },
     offices: [
       {
-        country: isRTL ? 'مصر' : 'Egypt',
-        city: isRTL ? 'القاهرة' : 'Cairo',
-        address: isRTL ? 'المعادي، القاهرة' : 'Maadi, Cairo',
-        phone: '+20 2 1234 5678',
-        email: 'egypt@alsadara.org',
+        country: isRTL ? 'السعودية' : 'Saudi Arabia',
+        city: isRTL ? 'جدة' : 'Jeddah',
+        address: isRTL ? 'جدة، المملكة العربية السعودية' : 'Jeddah, Saudi Arabia',
+        phone: '+966 55 440 1575',
+        email: 'info@alsadara.org',
+        isMain: true,
       },
       {
-        country: isRTL ? 'السعودية' : 'Saudi Arabia',
-        city: isRTL ? 'الرياض' : 'Riyadh',
-        address: isRTL ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
-        phone: '+966 11 123 4567',
-        email: 'saudi@alsadara.org',
+        country: isRTL ? 'مصر' : 'Egypt',
+        city: isRTL ? '6 أكتوبر' : '6th October',
+        address: isRTL ? '6 أكتوبر، الجيزة' : '6th October City, Giza',
+        phone: '+20 109 985 3546',
+        email: 'info@alsadara.org',
+      },
+      {
+        country: isRTL ? 'الإمارات' : 'UAE',
+        city: isRTL ? 'دبي' : 'Dubai',
+        address: isRTL ? 'دبي، الإمارات العربية المتحدة' : 'Dubai, UAE',
+        phone: '+971 50 383 0860',
+        email: 'info@alsadara.org',
       },
     ],
     info: [
       {
         icon: Phone,
         title: isRTL ? 'الهاتف' : 'Phone',
-        value: '+20 2 1234 5678',
-        link: 'tel:+2021234567',
+        value: '+966 55 440 1575',
+        link: 'tel:+966554401575',
       },
       {
         icon: Mail,
@@ -231,7 +247,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         {/* Office Locations */}
         <section className="py-12 -mt-8 relative z-20">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {content.offices.map((office, index) => (
                 <div
                   key={index}
@@ -506,7 +522,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       <Linkedin className="w-5 h-5" />
                     </a>
                     <a
-                      href="https://wa.me/201234567890"
+                      href="https://wa.me/966554401575"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 bg-secondary-100 rounded-xl flex items-center justify-center text-secondary-600 hover:bg-green-600 hover:text-white transition-colors"
@@ -524,7 +540,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         {/* Map Section */}
         <section className="h-96 bg-secondary-200 relative">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.0!2d31.2357!3d29.9773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDU4JzM4LjMiTiAzMcKwMTQnMDguNSJF!5e0!3m2!1sen!2seg!4v1234567890"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59524.95!2d39.1728!3d21.4858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118db!2sJeddah%2C%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1704326400000"
             width="100%"
             height="100%"
             style={{ border: 0 }}

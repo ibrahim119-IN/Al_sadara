@@ -167,13 +167,13 @@ export function Header({ locale, dict }: HeaderProps) {
           <div className="flex items-center justify-between h-10 text-sm">
             {/* Contact Info */}
             <div className="hidden md:flex items-center gap-6">
-              <a href="tel:+201234567890" className="flex items-center gap-2 hover:text-accent-400 transition-colors">
+              <a href="tel:+966554401575" className="flex items-center gap-2 hover:text-accent-400 transition-colors">
                 <Phone className="w-4 h-4" />
-                <span dir="ltr">+20 123 456 7890</span>
+                <span dir="ltr">+966 55 440 1575</span>
               </a>
-              <a href="mailto:info@alsadara.com" className="flex items-center gap-2 hover:text-accent-400 transition-colors">
+              <a href="mailto:info@alsadara.org" className="flex items-center gap-2 hover:text-accent-400 transition-colors">
                 <Mail className="w-4 h-4" />
-                <span>info@alsadara.com</span>
+                <span>info@alsadara.org</span>
               </a>
               <span className="flex items-center gap-2 text-primary-200">
                 <Clock className="w-4 h-4" />
@@ -185,7 +185,7 @@ export function Header({ locale, dict }: HeaderProps) {
             <div className="flex items-center gap-4 ms-auto">
               <span className="hidden lg:flex items-center gap-2 text-primary-200">
                 <MapPin className="w-4 h-4" />
-                <span>{isRTL ? 'القاهرة، مصر' : 'Cairo, Egypt'}</span>
+                <span>{isRTL ? 'جدة، السعودية' : 'Jeddah, Saudi Arabia'}</span>
               </span>
               <div className="h-4 w-px bg-primary-700 hidden lg:block" />
               <ThemeToggle locale={locale} />
@@ -482,13 +482,13 @@ export function Header({ locale, dict }: HeaderProps) {
 
             {/* Mobile Contact */}
             <div className="border-t border-secondary-200 dark:border-secondary-700 mt-4 pt-4">
-              <a href="tel:+201234567890" className="flex items-center gap-3 text-secondary-600 dark:text-secondary-300 py-2">
+              <a href="tel:+966554401575" className="flex items-center gap-3 text-secondary-600 dark:text-secondary-300 py-2">
                 <Phone className="w-5 h-5 text-primary-600 dark:text-primary-400" />
-                <span dir="ltr">+20 123 456 7890</span>
+                <span dir="ltr">+966 55 440 1575</span>
               </a>
-              <a href="mailto:info@alsadara.com" className="flex items-center gap-3 text-secondary-600 dark:text-secondary-300 py-2">
+              <a href="mailto:info@alsadara.org" className="flex items-center gap-3 text-secondary-600 dark:text-secondary-300 py-2">
                 <Mail className="w-5 h-5 text-primary-600 dark:text-primary-400" />
-                <span>info@alsadara.com</span>
+                <span>info@alsadara.org</span>
               </a>
             </div>
           </div>

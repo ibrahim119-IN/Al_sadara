@@ -78,9 +78,9 @@ export default function PrivacyPolicyPage() {
           icon: Mail,
           title: 'اتصل بنا',
           content: `إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى التواصل معنا:
-          • البريد الإلكتروني: privacy@alsadara.org
-          • الهاتف: +20 2 1234 5678
-          • العنوان: القاهرة، مصر`,
+          • البريد الإلكتروني: info@alsadara.org
+          • الهاتف: +966 55 440 1575
+          • العنوان: جدة، السعودية`,
         },
       ],
     },
@@ -150,9 +150,9 @@ export default function PrivacyPolicyPage() {
           icon: Mail,
           title: 'Contact Us',
           content: `If you have any questions about this Privacy Policy, please contact us:
-          • Email: privacy@alsadara.org
-          • Phone: +20 2 1234 5678
-          • Address: Cairo, Egypt`,
+          • Email: info@alsadara.org
+          • Phone: +966 55 440 1575
+          • Address: Jeddah, Saudi Arabia`,
         },
       ],
     },

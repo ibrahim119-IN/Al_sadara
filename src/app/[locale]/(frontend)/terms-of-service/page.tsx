@@ -77,7 +77,7 @@ export default function TermsOfServicePage() {
           title: 'القانون الواجب التطبيق',
           content: `تخضع هذه الشروط لقوانين جمهورية مصر العربية والمملكة العربية السعودية حسب موقع الخدمة. أي نزاع ينشأ يخضع للاختصاص القضائي للمحاكم المختصة.
 
-للاستفسارات القانونية، يرجى التواصل على: legal@alsadara.org`,
+للاستفسارات القانونية، يرجى التواصل على: info@alsadara.org`,
         },
       ],
     },
@@ -146,7 +146,7 @@ Al Sadara Holding Group reserves the right to modify these terms at any time. Ch
           title: 'Governing Law',
           content: `These terms are governed by the laws of the Arab Republic of Egypt and the Kingdom of Saudi Arabia depending on service location. Any dispute arising is subject to the jurisdiction of the competent courts.
 
-For legal inquiries, please contact: legal@alsadara.org`,
+For legal inquiries, please contact: info@alsadara.org`,
         },
       ],
     },

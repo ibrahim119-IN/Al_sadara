@@ -208,13 +208,13 @@ export function Footer({ locale, dict }: FooterProps) {
             </h3>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+201234567890" className="flex items-start gap-3 text-secondary-400 hover:text-white transition-colors group">
+                <a href="tel:+966554401575" className="flex items-start gap-3 text-secondary-400 hover:text-white transition-colors group">
                   <div className="w-9 h-9 bg-secondary-800 rounded-lg flex items-center justify-center group-hover:bg-primary-600 transition-colors flex-shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
                     <span className="text-xs text-secondary-500 block">{isRTL ? 'اتصل بنا' : 'Call us'}</span>
-                    <span className="text-sm" dir="ltr">+20 123 456 7890</span>
+                    <span className="text-sm" dir="ltr">+966 55 440 1575</span>
                   </div>
                 </a>
               </li>
@@ -236,7 +236,7 @@ export function Footer({ locale, dict }: FooterProps) {
                   </div>
                   <div>
                     <span className="text-xs text-secondary-500 block">{isRTL ? 'العنوان' : 'Address'}</span>
-                    <span className="text-sm">{isRTL ? 'القاهرة، مصر' : 'Cairo, Egypt'}</span>
+                    <span className="text-sm">{isRTL ? 'جدة، السعودية' : 'Jeddah, Saudi Arabia'}</span>
                   </div>
                 </div>
               </li>
@@ -291,7 +291,7 @@ export function Footer({ locale, dict }: FooterProps) {
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://wa.me/201234567890"
+                  href="https://wa.me/966554401575"
                   className="w-10 h-10 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors"
                   aria-label="WhatsApp"
                 >
