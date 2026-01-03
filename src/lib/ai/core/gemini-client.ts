@@ -90,7 +90,7 @@ export class GeminiClient {
         if (chunk.type === 'function_call') {
           const functionCalls = Array.isArray(chunk.data) ? chunk.data : [chunk.data]
           yield {
-            functionCalls: functionCalls.map((fc) => ({
+            functionCalls: functionCalls.map((fc: any) => ({
               name: fc.name,
               arguments: fc.args,
             })),
@@ -99,7 +99,7 @@ export class GeminiClient {
       }
 
       yield {
-        finishReason: 'STOP',
+        finishReason: 'stop' as const,
         metadata: { model: this.model },
       }
     } catch (error: unknown) {
@@ -173,10 +173,11 @@ export class GeminiClient {
         throw new Error('Text cannot be empty for embedding generation')
       }
 
-      const values = await newGenerateEmbedding(text)
+      const result = await newGenerateEmbedding(text)
+      const values = Array.isArray(result) ? result : (result as any).values || []
 
       return {
-        values,
+        values: values as number[],
         dimension: values.length,
       }
     } catch (error: unknown) {

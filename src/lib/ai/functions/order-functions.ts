@@ -58,9 +58,9 @@ export async function executeGetOrderStatus(params: {
         createdAt: order.createdAt,
         total: order.total,
         shippingAddress: order.shippingAddress,
-        paymentMethod: order.paymentMethod,
-        paymentStatus: order.paymentStatus,
-        trackingNumber: order.trackingNumber,
+        paymentMethod: (order as any).paymentMethod,
+        paymentStatus: (order as any).paymentStatus,
+        trackingNumber: (order as any).trackingNumber,
         itemsCount: order.items?.length || 0,
       },
     }
@@ -105,7 +105,7 @@ export async function executeGetOrderHistory(params: {
       status: order.status,
       createdAt: order.createdAt,
       total: order.total,
-      paymentStatus: order.paymentStatus,
+      paymentStatus: (order as any).paymentStatus,
       itemsCount: order.items?.length || 0,
     }))
 
