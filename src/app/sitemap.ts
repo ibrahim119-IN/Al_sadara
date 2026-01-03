@@ -20,12 +20,11 @@ const staticPages = [
 
 // Company subdomains
 const companies = [
-  { slug: 'industry', name: 'Al Sadara Industry' },
+  { slug: 'sadara-industry', name: 'Al Sadara Industry' },
   { slug: 'talah', name: 'Al Talah Al Khadra' },
   { slug: 'polymers', name: 'El Sayed Shehata Polymers' },
   { slug: 'sam', name: 'S.A.M International' },
   { slug: 'qaysar', name: 'Al Qaysar' },
-  { slug: 'coderatech', name: 'Coderatech' },
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

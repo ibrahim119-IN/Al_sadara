@@ -39,15 +39,15 @@ export default function FAQPage() {
           items: [
             {
               question: 'ما هي مجموعة الصدارة القابضة؟',
-              answer: 'مجموعة الصدارة القابضة هي شركة رائدة في مجال الإلكترونيات وأنظمة المباني الذكية، تعمل في مصر والسعودية مع 6 شركات متخصصة تقدم منتجات وخدمات عالية الجودة.',
+              answer: 'مجموعة الصدارة القابضة هي شركة رائدة في مجال تجارة خامات البلاستيك والبوليمرات، تعمل في السعودية ومصر والإمارات مع 5 شركات متخصصة تقدم منتجات وخدمات عالية الجودة منذ 2005.',
             },
             {
               question: 'ما هي الشركات التابعة لمجموعة الصدارة؟',
-              answer: 'تضم المجموعة 6 شركات: الصدارة للصناعة، التالة الخضراء، السيد شحاتة بوليمرز، سام انترناشيونال، القيصر، وكوديراتك. كل شركة متخصصة في مجال معين من الإلكترونيات والتقنيات الذكية.',
+              answer: 'تضم المجموعة 5 شركات: الصدارة للصناعة (السعودية)، التالة الخضراء والقيصر (مصر)، إس.إيه.إم والسيد شحاتة بوليمرز (الإمارات). كل شركة متخصصة في تجارة وتوريد خامات البلاستيك.',
             },
             {
               question: 'أين تقع مكاتب الشركة؟',
-              answer: 'لدينا مكاتب في مصر (القاهرة، العاشر من رمضان، السادس من أكتوبر) والسعودية (الرياض). يمكنك زيارة صفحة "تواصل معنا" للحصول على العناوين التفصيلية.',
+              answer: 'لدينا مكاتب في السعودية (جدة)، مصر (6 أكتوبر)، والإمارات (الشارقة ودبي). يمكنك زيارة صفحة "تواصل معنا" للحصول على العناوين التفصيلية.',
             },
           ],
         },
@@ -149,15 +149,15 @@ export default function FAQPage() {
           items: [
             {
               question: 'What is Al Sadara Holding Group?',
-              answer: 'Al Sadara Holding Group is a leading company in electronics and smart building systems, operating in Egypt and Saudi Arabia with 6 specialized companies offering high-quality products and services.',
+              answer: 'Al Sadara Holding Group is a leading company in plastic raw materials and polymers trading, operating in Saudi Arabia, Egypt, and UAE with 5 specialized companies offering high-quality products and services since 2005.',
             },
             {
               question: 'What are the subsidiaries of Al Sadara Group?',
-              answer: 'The group includes 6 companies: Al Sadara Industry, Al Talah Al Khadra, El Sayed Shehata Polymers, S.A.M International, Al Qaysar, and Coderatech. Each specializes in a specific area of electronics and smart technologies.',
+              answer: 'The group includes 5 companies: Al Sadara Industry (Saudi Arabia), Al Talah Al Khadra and Al Qaysar (Egypt), S.A.M and El Sayed Shehata Polymers (UAE). Each specializes in plastic raw materials trading and supply.',
             },
             {
               question: 'Where are the company offices located?',
-              answer: 'We have offices in Egypt (Cairo, 10th of Ramadan, 6th of October) and Saudi Arabia (Riyadh). Visit our "Contact Us" page for detailed addresses.',
+              answer: 'We have offices in Saudi Arabia (Jeddah), Egypt (6th of October City), and UAE (Sharjah and Dubai). Visit our "Contact Us" page for detailed addresses.',
             },
           ],
         },

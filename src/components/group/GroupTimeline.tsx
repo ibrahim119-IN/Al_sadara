@@ -293,7 +293,7 @@ export default function GroupTimeline({ locale, className = '' }: GroupTimelineP
   const foundingCount = timelineEvents.filter((e) => e.type === 'founding').length
   const achievementCount = timelineEvents.filter((e) => e.type === 'achievement').length
   const expansionCount = timelineEvents.filter((e) => e.type === 'expansion').length
-  const yearsCount = new Date().getFullYear() - 2008
+  const yearsCount = new Date().getFullYear() - 2005
 
   // Animated counters
   const animatedFounding = useCountUp(foundingCount, 1500, statsVisible)
@@ -371,8 +371,8 @@ export default function GroupTimeline({ locale, className = '' }: GroupTimelineP
           </h2>
           <p className="text-lg text-secondary-600 max-w-2xl mx-auto mb-10">
             {isArabic
-              ? 'رحلة ممتدة منذ 2008 نحو الريادة، مليئة بالإنجازات والتوسعات والنجاحات'
-              : 'An extended journey since 2008 towards leadership, filled with achievements, expansions, and successes'}
+              ? 'رحلة ممتدة منذ 2005 نحو الريادة، مليئة بالإنجازات والتوسعات والنجاحات'
+              : 'An extended journey since 2005 towards leadership, filled with achievements, expansions, and successes'}
           </p>
 
           {/* Filter Buttons - Enhanced */}

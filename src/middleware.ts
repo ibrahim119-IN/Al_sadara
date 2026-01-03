@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 import { locales, defaultLocale, isValidLocale } from '@/lib/i18n/config'
 
 // Valid subdomains (company slugs)
-const VALID_SUBDOMAINS = ['industry', 'talah', 'polymers', 'sam', 'qaysar', 'coderatech']
+const VALID_SUBDOMAINS = ['industry', 'talah', 'polymers', 'sam', 'qaysar']
 
 // ============================================
 // Rate Limiting Configuration

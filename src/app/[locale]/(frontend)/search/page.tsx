@@ -71,11 +71,11 @@ const performSearch = async (query: string): Promise<SearchResult[]> => {
     {
       id: '4',
       type: 'company',
-      title: 'Coderatech',
-      titleAr: 'كوديراتك',
-      description: 'Software development and digital solutions',
-      descriptionAr: 'تطوير البرمجيات والحلول الرقمية',
-      url: '/companies/coderatech',
+      title: 'S.A.M International',
+      titleAr: 'إس.إيه.إم',
+      description: 'International Plastic Material Trading FZE - Sharjah',
+      descriptionAr: 'تجارة دولية لخامات البلاستيك - الشارقة',
+      url: '/companies/sam',
     },
     {
       id: '5',
@@ -183,8 +183,8 @@ export default function SearchPage() {
     : results.filter(r => r.type === filterType)
 
   const suggestions = isArabic
-    ? ['إضاءة ذكية', 'أجهزة منزلية', 'كوديراتك', 'الصدارة للصناعة']
-    : ['Smart lighting', 'Home devices', 'Coderatech', 'Al Sadara Industry']
+    ? ['خامات بلاستيك', 'بولي إيثيلين', 'بوليمرات', 'الصدارة للصناعة']
+    : ['Plastic materials', 'Polyethylene', 'Polymers', 'Al Sadara Industry']
 
   return (
     <div className="min-h-screen bg-secondary-50">
