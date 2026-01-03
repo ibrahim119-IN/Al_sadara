@@ -41,7 +41,7 @@ export async function executeGetOrderStatus(params: {
           ? order.customer.id
           : order.customer
 
-      if (orderCustomerId !== customerId) {
+      if (String(orderCustomerId) !== String(customerId)) {
         return {
           success: false,
           error: 'هذا الطلب لا ينتمي لحسابك',
