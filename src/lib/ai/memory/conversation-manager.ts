@@ -30,7 +30,7 @@ export async function createConversation(
         collection: 'ai-conversations',
         data: {
           sessionId,
-          customer: context.customerId ? String(context.customerId) : undefined,
+          customer: context.customerId ? Number(context.customerId) : undefined,
           status: 'active',
           metadata: {
             locale: context.locale || 'ar',
