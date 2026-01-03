@@ -126,7 +126,7 @@ export async function addMessage(
       payload.create({
         collection: 'ai-messages',
         data: {
-          conversation: conversationId,
+          conversation: Number(conversationId),
           role: message.role,
           content: message.content,
           functionCalls: message.functionCalls,
