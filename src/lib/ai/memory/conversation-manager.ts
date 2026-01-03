@@ -5,7 +5,7 @@ import type {
   Message,
   AIMessageDoc,
 } from '../types'
-import type { AIConversation } from '@/payload-types'
+import type { AiConversation } from '@/payload-types'
 import { withTimeout, TIMEOUTS } from '@/lib/utils/timeout'
 import { getCachedPayload } from '@/lib/payload-client'
 
@@ -19,7 +19,7 @@ import { getCachedPayload } from '@/lib/payload-client'
  */
 export async function createConversation(
   context: ConversationContext
-): Promise<AIConversation> {
+): Promise<AiConversation> {
   try {
     const payload = await getCachedPayload()
 
@@ -58,7 +58,7 @@ export async function createConversation(
  */
 export async function getOrCreateConversation(
   context: ConversationContext
-): Promise<AIConversation> {
+): Promise<AiConversation> {
   try {
     const payload = await getCachedPayload()
 
@@ -91,7 +91,7 @@ export async function getOrCreateConversation(
 /**
  * Get conversation by ID
  */
-export async function getConversation(conversationId: string): Promise<AIConversation | null> {
+export async function getConversation(conversationId: string): Promise<AiConversation | null> {
   try {
     const payload = await getCachedPayload()
 
@@ -239,7 +239,7 @@ export async function getConversationHistory(
 export async function getCustomerConversations(
   customerId: string,
   limit: number = 10
-): Promise<AIConversation[]> {
+): Promise<AiConversation[]> {
   try {
     const payload = await getCachedPayload()
 
