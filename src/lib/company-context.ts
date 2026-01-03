@@ -61,9 +61,8 @@ export const SUBDOMAIN_MAP: Record<string, string> = {
   'industry': 'industry',      // الصدارة للصناعة
   'talah': 'talah',            // التالة الخضراء
   'polymers': 'polymers',      // السيد شحاتة بوليمرز
-  'sam': 'sam',                // S.A.M International
+  'sam': 'sam',                // إس.إيه.إم
   'qaysar': 'qaysar',          // القيصر
-  'coderatech': 'coderatech',  // كوديراتك
 }
 
 // Default company colors based on type

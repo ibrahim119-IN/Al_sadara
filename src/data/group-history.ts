@@ -22,78 +22,79 @@ export interface TimelineEvent {
 export const timelineEvents: TimelineEvent[] = [
   {
     id: '1',
-    year: 2008,
-    type: 'founding',
-    title: {
-      ar: 'تأسيس السيد شحاتة بوليمرز',
-      en: 'El Sayed Shehata Polymers Founded',
-    },
-    description: {
-      ar: 'بداية الرحلة مع تأسيس أول شركة في المجموعة، متخصصة في صناعة البلاستيك والبوليمرات',
-      en: 'The journey began with the founding of the first company in the group, specialized in plastic and polymer manufacturing',
-    },
-    icon: '🏭',
-    color: '#8b5cf6',
-    companySlug: 'polymers',
-  },
-  {
-    id: '2',
-    year: 2010,
+    year: 2005,
     type: 'founding',
     title: {
       ar: 'تأسيس الصدارة للصناعة',
       en: 'Al Sadara Industry Founded',
     },
     description: {
-      ar: 'تأسيس الشركة الأم للمجموعة، الصدارة للإلكترونيات وأنظمة المباني الذكية',
-      en: 'Establishment of the group\'s parent company, Al Sadara for Electronics and Smart Building Systems',
+      ar: 'بداية الرحلة مع تأسيس الشركة الأم في جدة، المملكة العربية السعودية - متخصصة في تجارة خامات البلاستيك',
+      en: 'The journey began with the founding of the parent company in Jeddah, Saudi Arabia - specialized in plastic raw materials trading',
     },
-    icon: '⚡',
+    icon: '🏭',
     color: '#0066CC',
-    companySlug: 'industry',
+    companySlug: 'sadara-industry',
   },
   {
-    id: '3',
-    year: 2011,
-    type: 'achievement',
-    title: {
-      ar: 'أول 100 عميل',
-      en: 'First 100 Clients',
-    },
-    description: {
-      ar: 'تحقيق إنجاز الوصول لأول 100 عميل مؤسسي في مجال أنظمة الأمان والمراقبة',
-      en: 'Achieved the milestone of reaching the first 100 institutional clients in security and surveillance systems',
-    },
-    icon: '🎯',
-    color: '#22c55e',
-  },
-  {
-    id: '4',
-    year: 2012,
+    id: '2',
+    year: 2015,
     type: 'founding',
     title: {
       ar: 'تأسيس التالة الخضراء',
       en: 'Al Talah Al Khadra Founded',
     },
     description: {
-      ar: 'توسيع نطاق المجموعة بدخول قطاع الحلول الزراعية والمنتجات الطبيعية',
-      en: 'Expanding the group\'s scope by entering the agricultural solutions and natural products sector',
+      ar: 'توسيع نطاق المجموعة مع تأسيس التالة الخضراء في 6 أكتوبر، مصر - متخصصة في تجارة وإعادة تدوير خامات البلاستيك',
+      en: 'Expanding the group with the founding of Al Talah Al Khadra in 6th October City, Egypt - specialized in plastic raw materials trading and recycling',
     },
     icon: '🌿',
     color: '#22c55e',
     companySlug: 'talah',
   },
   {
+    id: '3',
+    year: 2017,
+    type: 'expansion',
+    title: {
+      ar: 'تأسيس إس.إيه.إم في الإمارات',
+      en: 'S.A.M Founded in UAE',
+    },
+    description: {
+      ar: 'تأسيس شركة إس.إيه.إم (International Plastic Material Trading FZE) في الشارقة، الإمارات العربية المتحدة',
+      en: 'Establishment of S.A.M (International Plastic Material Trading FZE) in Sharjah, United Arab Emirates',
+    },
+    icon: '🌍',
+    color: '#f59e0b',
+    companySlug: 'sam',
+  },
+  {
+    id: '4',
+    year: 2021,
+    type: 'founding',
+    title: {
+      ar: 'تأسيس السيد شحاتة بوليمرز',
+      en: 'El Sayed Shehata Polymers Founded',
+    },
+    description: {
+      ar: 'تأسيس شركة السيد شحاتة بوليمرز في دبي، الإمارات - للتجارة الدولية للبوليمرات',
+      en: 'Establishment of El Sayed Shehata Polymers in Dubai, UAE - for international polymers trading',
+    },
+    icon: '🏭',
+    color: '#8b5cf6',
+    companySlug: 'polymers',
+  },
+  {
     id: '5',
-    year: 2014,
+    year: 2024,
     type: 'founding',
     title: {
       ar: 'تأسيس القيصر',
       en: 'Al Qaysar Founded',
     },
     description: {
-      ar: 'دخول سوق التجزئة والجملة مع تأسيس شركة القيصر للمنتجات الاستهلاكية',
-      en: 'Entering the retail and wholesale market with the founding of Al Qaysar for consumer products',
+      ar: 'تأسيس شركة القيصر في 6 أكتوبر، مصر - للتوسع في سوق تجارة خامات البلاستيك المصري',
+      en: 'Establishment of Al Qaysar in 6th October City, Egypt - expanding in the Egyptian plastic raw materials market',
     },
     icon: '👑',
     color: '#ef4444',
@@ -101,98 +102,6 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     id: '6',
-    year: 2015,
-    type: 'expansion',
-    title: {
-      ar: 'التوسع إلى السعودية',
-      en: 'Expansion to Saudi Arabia',
-    },
-    description: {
-      ar: 'تأسيس سام إنترناشيونال في الرياض، أول تواجد للمجموعة خارج مصر',
-      en: 'Establishment of S.A.M International in Riyadh, the group\'s first presence outside Egypt',
-    },
-    icon: '🌍',
-    color: '#f59e0b',
-    companySlug: 'sam',
-  },
-  {
-    id: '7',
-    year: 2016,
-    type: 'achievement',
-    title: {
-      ar: 'شهادة الأيزو 9001',
-      en: 'ISO 9001 Certification',
-    },
-    description: {
-      ar: 'حصول المجموعة على شهادة الجودة العالمية ISO 9001 لأنظمة إدارة الجودة',
-      en: 'The group obtained the international ISO 9001 quality certification for quality management systems',
-    },
-    icon: '🏆',
-    color: '#0066CC',
-  },
-  {
-    id: '8',
-    year: 2018,
-    type: 'founding',
-    title: {
-      ar: 'تأسيس كوديراتك',
-      en: 'Coderatech Founded',
-    },
-    description: {
-      ar: 'دخول عالم التكنولوجيا الرقمية مع تأسيس شركة كوديراتك لتطوير البرمجيات',
-      en: 'Entering the digital technology world with the founding of Coderatech for software development',
-    },
-    icon: '💻',
-    color: '#06b6d4',
-    companySlug: 'coderatech',
-  },
-  {
-    id: '9',
-    year: 2020,
-    type: 'milestone',
-    title: {
-      ar: 'تجاوز 500 موظف',
-      en: 'Surpassing 500 Employees',
-    },
-    description: {
-      ar: 'نمو فريق العمل ليتجاوز 500 موظف عبر جميع شركات المجموعة',
-      en: 'Team growth to surpass 500 employees across all group companies',
-    },
-    icon: '👥',
-    color: '#8b5cf6',
-  },
-  {
-    id: '10',
-    year: 2022,
-    type: 'achievement',
-    title: {
-      ar: 'إطلاق المنصة الرقمية',
-      en: 'Digital Platform Launch',
-    },
-    description: {
-      ar: 'إطلاق المنصة الرقمية الموحدة للمجموعة مع نظام ذكاء اصطناعي متكامل',
-      en: 'Launch of the group\'s unified digital platform with an integrated AI system',
-    },
-    icon: '🚀',
-    color: '#0066CC',
-  },
-  {
-    id: '11',
-    year: 2024,
-    type: 'expansion',
-    title: {
-      ar: 'التوسع في جدة',
-      en: 'Expansion to Jeddah',
-    },
-    description: {
-      ar: 'افتتاح فرع جديد للقيصر في جدة لتعزيز التواجد في السوق السعودي',
-      en: 'Opening a new Al Qaysar branch in Jeddah to strengthen presence in the Saudi market',
-    },
-    icon: '📍',
-    color: '#ef4444',
-  },
-  {
-    id: '12',
     year: 2025,
     type: 'milestone',
     title: {

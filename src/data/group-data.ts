@@ -77,7 +77,7 @@ export const groupInfo = {
   },
   logo: '/images/group-logo.png',
   founded: 2005,
-  totalCompanies: 6,
+  totalCompanies: 5,
   countries: {
     ar: ['مصر', 'السعودية', 'الإمارات'],
     en: ['Egypt', 'Saudi Arabia', 'UAE'],
@@ -135,7 +135,7 @@ export const companies: Company[] = [
     founded: 2005,
     type: 'plastics',
     contact: {
-      phones: ['+966554401575'],
+      phones: ['+966554401575', '+966553335462'],
       email: 'sadaraplast@gmail.com',
       whatsapp: '+966554401575',
       website: 'elsayedshehatagroup.com',
@@ -203,9 +203,9 @@ export const companies: Company[] = [
     founded: 2015,
     type: 'recycling',
     contact: {
-      phones: ['01099853546'],
+      phones: ['+201099853546', '+201050464424'],
       email: 'talahgregypt@gmail.com',
-      whatsapp: '01099853546',
+      whatsapp: '+201099853546',
       website: 'elsayedshehatagroup.com',
     },
     services: [
@@ -267,7 +267,7 @@ export const companies: Company[] = [
     founded: 2021,
     type: 'trading',
     contact: {
-      phones: ['+971503830860'],
+      phones: ['+971503830860', '+971522097468'],
       email: 'alsayedshehata2050@gmail.com',
       whatsapp: '+971503830860',
       website: 'elsayedshehatagroup.com',
@@ -300,39 +300,39 @@ export const companies: Company[] = [
     id: '4',
     slug: 'sam',
     name: {
-      ar: 'سام انترناشيونال',
-      en: 'S.A.M International',
+      ar: 'إس.إيه.إم',
+      en: 'S.A.M',
     },
     logo: '/images/sam-logo.png',
     color: '#f59e0b',
     description: {
-      ar: 'شركة متخصصة في تجارة وتوريد خامات البلاستيك في السعودية',
-      en: 'Company specialized in plastic raw materials trading and supply in Saudi Arabia',
+      ar: 'شركة متخصصة في تجارة خامات البلاستيك - International Plastic Material Trading FZE',
+      en: 'International Plastic Material Trading FZE - Specialized in plastic raw materials',
     },
     fullDescription: {
-      ar: 'في عام 2025 توسعت المجموعة وقامت بافتتاح شركة S.A.M International في جدة بالمملكة العربية السعودية. نحن شركة متخصصة في تجارة وتوريد خامات ومواد البلاستيك عالية الجودة، ونعمل على خدمة المصانع والشركات داخل السعودية وخارجها.',
-      en: 'In 2025, the group expanded and opened S.A.M International in Jeddah, Saudi Arabia. We are a company specialized in trading and supplying high-quality plastic raw materials, serving factories and companies inside and outside Saudi Arabia.',
+      ar: 'تأسست شركة إس.إيه.إم (International Plastic Material Trading FZE) عام 2017 في الشارقة بالإمارات العربية المتحدة. نحن شركة متخصصة في تجارة وتوريد خامات ومواد البلاستيك عالية الجودة، ونعمل على خدمة المصانع والشركات في منطقة الخليج والشرق الأوسط.',
+      en: 'S.A.M (International Plastic Material Trading FZE) was established in 2017 in Sharjah, UAE. We are a company specialized in trading and supplying high-quality plastic raw materials, serving factories and companies in the Gulf region and Middle East.',
     },
     location: {
-      country: 'saudi',
+      country: 'uae',
       city: {
-        ar: 'جدة',
-        en: 'Jeddah',
+        ar: 'الشارقة',
+        en: 'Sharjah',
       },
       address: {
-        ar: 'جدة، المملكة العربية السعودية',
-        en: 'Jeddah, Saudi Arabia',
+        ar: 'الشارقة، الإمارات العربية المتحدة',
+        en: 'Sharjah, United Arab Emirates',
       },
       coordinates: {
-        lat: 21.4858,
-        lng: 39.1925,
+        lat: 25.3463,
+        lng: 55.4209,
       },
     },
-    founded: 2025,
-    type: 'plastics',
+    founded: 2017,
+    type: 'trading',
     contact: {
-      phones: ['+966554401575', '+966551585140'],
-      email: 'alsayedshehata2050@gmail.com',
+      phones: ['+966554401575', '+966553335462'],
+      email: 'sadaraplast@gmail.com',
       whatsapp: '+966554401575',
       website: 'elsayedshehatagroup.com',
     },
@@ -430,77 +430,6 @@ export const companies: Company[] = [
       { ar: 'أسعار تنافسية', en: 'Competitive prices' },
       { ar: 'سرعة في التوريد', en: 'Fast delivery' },
       { ar: 'خدمة ما بعد البيع', en: 'After-sales service' },
-    ],
-  },
-  {
-    id: '6',
-    slug: 'coderatech',
-    name: {
-      ar: 'كوديراتك',
-      en: 'Coderatech',
-    },
-    logo: '/images/coderatech-logo.png',
-    color: '#06b6d4',
-    description: {
-      ar: 'شركة رائدة في مجال الأنظمة الأمنية والإلكترونية',
-      en: 'Leading company in security and electronic systems',
-    },
-    fullDescription: {
-      ar: 'نحن شركة رائدة في مجال الأنظمة الأمنية والإلكترونية، نقدم خدمات متكاملة تشمل التوريد والتركيب والصيانة، مع ضمان أعلى معايير الجودة والأمان. نعمل على تلبية احتياجات الشركات والمؤسسات وجميع العملاء بأحدث التقنيات.',
-      en: 'We are a leading company in security and electronic systems, providing integrated services including supply, installation, and maintenance, with the highest quality and security standards. We work to meet the needs of companies, institutions, and all customers with the latest technologies.',
-    },
-    location: {
-      country: 'egypt',
-      city: {
-        ar: 'مصر',
-        en: 'Egypt',
-      },
-      address: {
-        ar: 'مصر',
-        en: 'Egypt',
-      },
-      coordinates: {
-        lat: 30.0444,
-        lng: 31.2357,
-      },
-    },
-    founded: 2020,
-    type: 'electronics',
-    contact: {
-      phones: ['01099853546', '01036129275'],
-      email: 'coderatech4@gmail.com',
-      whatsapp: '01099853546',
-    },
-    services: [
-      { ar: 'كاميرات المراقبة CCTV', en: 'CCTV Surveillance Cameras' },
-      { ar: 'أجهزة الحضور والانصراف', en: 'Access Control Systems' },
-      { ar: 'أجهزة تتبع السيارات GPS', en: 'GPS Vehicle Tracking' },
-      { ar: 'أنظمة إنذار السرقة', en: 'Burglar Alarm Systems' },
-      { ar: 'الأنظمة الصوتية', en: 'Audio Systems' },
-      { ar: 'الإنتركم والتحكم في الأبواب', en: 'Intercom & Door Control' },
-      { ar: 'السنترالات PBX', en: 'PBX Systems' },
-      { ar: 'أنظمة استدعاء الممرضات', en: 'Nurse Call Systems' },
-      { ar: 'أنظمة انتظار العملاء', en: 'Queue Management Systems' },
-    ],
-    products: [
-      { ar: 'كاميرات مراقبة عالية الدقة', en: 'High-definition surveillance cameras' },
-      { ar: 'أجهزة بصمة يد ووجه', en: 'Fingerprint and face recognition devices' },
-      { ar: 'أجهزة GPS للتتبع', en: 'GPS tracking devices' },
-      { ar: 'سنترالات رقمية', en: 'Digital PBX systems' },
-    ],
-    vision: {
-      ar: 'أن نكون بحلول عام 2030 رائدة في مجال الأنظمة الذكية باستخدام أحدث التكنولوجيا وأن تمتد خدمات الشركة لدول الخليج العربي وأفريقيا',
-      en: 'To be by 2030 a leader in smart systems using the latest technology and to extend our services to the Gulf countries and Africa',
-    },
-    mission: {
-      ar: 'تقديم حلول إلكترونية متطورة تدعم الأمان والإدارة بكفاءة وجودة عالية',
-      en: 'Providing advanced electronic solutions that support security and management with efficiency and high quality',
-    },
-    whyChooseUs: [
-      { ar: 'فريق متخصص في التركيب والصيانة', en: 'Specialized installation and maintenance team' },
-      { ar: 'أسعار تنافسية وعروض مستمرة', en: 'Competitive prices and ongoing offers' },
-      { ar: 'ضمان شامل ودعم فني متواصل', en: 'Comprehensive warranty and continuous technical support' },
-      { ar: 'توريد جميع الأجهزة', en: 'Supply of all devices' },
     ],
   },
 ]
