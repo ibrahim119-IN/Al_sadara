@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
 import { SimpleBreadcrumb } from '@/components/shared/Breadcrumb'
-import InteractiveGroupMap from '@/components/group/InteractiveGroupMap'
+import InteractiveLeafletMap from '@/components/group/InteractiveLeafletMap'
 import GroupTimeline from '@/components/group/GroupTimeline'
 import {
   Award,
@@ -249,7 +249,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Interactive Map Section */}
-      <InteractiveGroupMap locale={locale} />
+      <InteractiveLeafletMap locale={locale} />
 
       {/* Values */}
       <section className="py-20 bg-secondary-50">
